@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html xmlns:ng="http://angularjs.org" lang="en" id="ng-app" ng-app="App" class="no-js">
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title>AngularJS POC</title>
+	<meta name="description" content="">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link href="lib/bootstrap/bootstrap.min.css" rel="stylesheet">
+	<link href="lib/bootstrap/bootstrap-responsive.min.css" rel="stylesheet">
+
+	<link href="bundles/css/font-awesome.css" rel="stylesheet">
+	<link href="bundles/css/style.css" rel="stylesheet">
+	<link href="bundles/css/signin.css" rel="stylesheet">
+</head>
+<body>
+   <div class="main">
+		<div class="main-inner">
+			<div class="container" ui-view></div>
+		</div>
+	</div>
+    <script src="lib/jquery/dist/jquery.min.js"></script>
+	<script src="lib/angular/angular.min.js"></script>
+	<script src="lib/angular-ui-router/release/angular-ui-router.min.js"></script>
+
+	<script src="lib/bootstrap/bootstrap.min.js"></script>
+
+	<script src="lib/angular-bootstrap/ui-bootstrap.min.js"></script>
+	<script src="lib/angular-bootstrap/ui-bootstrap-tpls.min.js"></script>
+	<script src="lib/angular-validation/angular-validation.js"></script>
+	<script src="lib/angular-validation/angular-validation-rule.js"></script>
+
+	<script src="app.js"></script>
+
+	<!-- startinject layouts -->
+	<script src="views/layout/defaulLayoutController.js"></script>
+	<script src="views/layout/loginLayoutController.js"></script>
+	<!-- endinject layouts -->
+
+	<!-- startinject users -->
+	<script src="views/security/loginController.js"></script>
+	<script src="views/security/service/loginFactory.js"></script>
+	<!-- endinject users -->
+
+	<!-- startinject poster -->
+	<script src="views/poster/service/posterFactory.js"></script>
+	<!-- endinject poster -->
+
+	<!-- startinject home -->
+	<script src="views/home/homeController.js"></script>
+	<!-- endinject home -->
+</body>
+</html>

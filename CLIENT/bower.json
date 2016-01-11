@@ -1,0 +1,9 @@
+{
+  "name": "angularJsBase",
+  "private": "true",
+  "devDependencies": {
+	  	"angular-resource": "~1.4.7",
+		"angular-ui-router": "~0.2.15",
+	  	"Materialize": "materialize#~0.97.3"
+  }
+}
