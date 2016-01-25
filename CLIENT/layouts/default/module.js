@@ -46,7 +46,7 @@ angular.module('layouts')
                     value: layoutName
                 },
                 provider: {
-                    value: 'pages',
+                    value: 'home',
                     squash: true
                 },
                 methodName: {

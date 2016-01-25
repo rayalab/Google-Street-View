@@ -1,7 +1,7 @@
 angular.module('app')
 
 .controller('auth.login', function authLogin($stateParams, $flash, $scope, $oauth) {
-
+	console.log(localStorage);
 	$scope.userData = {};
 
 	// send auth login

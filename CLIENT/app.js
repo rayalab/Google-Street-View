@@ -22,6 +22,8 @@ angular.module('app', [
 	'lbServices',
 	'flashMessage',
 	'oauthFacebookService',
+	'posterService',
+	'trackService',
 	'autoMenu',
 	'materialize'
 ])

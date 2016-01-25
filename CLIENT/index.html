@@ -7,7 +7,8 @@
     <title>Base LoopBack</title>
     <link href="vendor/Materialize/dist/css/materialize.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-    <script src="boot/facebook_sdk.js"></script>
+    <script src="boot/facebook_sdk.js"></script>    
+    <script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=false&libraries=geometry"></script>
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
@@ -29,6 +30,8 @@
 
     <!-- inject:services:js -->
     <script src="services/oauth-facebook-service.js"></script>
+    <script src="services/poster-service.js"></script>
+    <script src="services/track-service.js"></script>
     <script src="services/layout-handler.js"></script>
     <!-- endinject -->
 
@@ -61,6 +64,7 @@
     <script src="modules/auth/module.js"></script>
     <script src="modules/pages/module.js"></script>
     <script src="modules/post/module.js"></script>
+    <script src="modules/home/module.js"></script>
     <!-- endinject -->
 
     <!-- inject:components:js -->

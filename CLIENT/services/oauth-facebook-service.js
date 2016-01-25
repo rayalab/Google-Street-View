@@ -17,7 +17,22 @@ angular.module("oauthFacebookService", [])
                           gender      : response.gender,
                           facebook_token : accessToken.accessToken
                          };
-                         return aryObj;
+                         
+                         var dataStorage = $http.post('http://localhost:8000/social', aryObj).success(function(data) { 
+                            Object.keys(data.user).map(function(value) {
+                              localStorage.setItem(value, data.user[value]);
+                            });
+
+                            Object.keys(data.game).map(function(value) {
+                              localStorage.setItem(value, data.game[value]);
+                            });
+
+                            return 'ok';
+                         });
+
+                          dataStorage.then(function successCallback(response) {
+                            $window.location.href = '#/home';
+                          });
                     });
                   } else {
                    console.log('User cancelled login or did not fully authorize.');

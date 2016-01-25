@@ -15,7 +15,7 @@ class Poster extends Model
      */
     protected $fillable = ['longitude', 'latitude', 'longitude_line', 'latitude_line', 'longitude_wall_line', 'latitude_wall_line'];
 
-	public function Track(){
+	public function track(){
 
     	return $this->hasMany('App\Track');
     }

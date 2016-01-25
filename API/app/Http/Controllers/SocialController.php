@@ -24,7 +24,8 @@ class SocialController extends Controller
      */
     public function index()
     {
-        
+        $Game = Game::where('user_id', 1)->where('finish','0000-00-00 00:00:00')->get();
+        return $collection = collect($Game[0]);
     }
 
     /**
@@ -59,14 +60,14 @@ class SocialController extends Controller
         $User->position_latitude = "-33.415208";
         $User->save();
 
-        $Game = Game::where('user_id', $User->user_id)->where('finish','0000-00-00 00:00:00')->get();
+        $Game = Game::where('user_id', $User->user_id)->where('finish','0000-00-00 00:00:00')->select('game_id')->get();
 
         if(!$Game->count() > 0){
             $Game = new Game();
             $Game->user_id = $User->user_id;
             $Game->save();
         }else{
-            $Game = collect($Game);
+            $Game = $Game[0];
         }
 
         return response()->json(array('user' => $User,'game' => $Game));
