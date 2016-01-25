@@ -17,8 +17,19 @@ class CreatePostersTable extends Migration
             $table->increments('poster_id');
             $table->string('longitude');
             $table->string('latitude');
-            $table->longText('default_image');
-            $table->longText('token');
+            $table->string('longitude_line');
+            $table->string('latitude_line');
+            $table->string('longitude_wall_line');
+            $table->string('latitude_wall_line');
+            $table->longText('image_1');
+            $table->longText('image_2');
+            $table->longText('image_3');
+            $table->longText('image_4');
+            $table->longText('image_5');
+            $table->longText('image_6');
+            $table->longText('image_7');
+            $table->longText('image_8');
+            $table->longText('image_9');
             $table->timestamps();
         });
     }

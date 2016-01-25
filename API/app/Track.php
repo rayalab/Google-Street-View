@@ -18,5 +18,11 @@ class Track extends Model
      *
      * @var array
      */
-    protected $fillable = ['longitude', 'latitude', 'title', 'description', 'token', 'poster_id'];
+    protected $fillable = ['longitude', 'latitude', 'title', 'description', 'poster_id'];
+
+
+    public function Poster(){
+
+        return $this->belongsTo('App\Poster');
+    }
 }

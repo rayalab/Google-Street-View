@@ -15,7 +15,11 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+Route::resource('social', 'SocialController', ['only' => ['index', 'store', 'update', 'destroy', 'show']]);
+/*Route::get('auth/facebook', 'SocialController@redirectToProvider');
+Route::get('auth/facebook/callback', 'SocialController@handleProviderCallback');*/
+
 Route::resource('user', 'UserController', ['only' => ['index', 'store', 'update', 'destroy', 'show']]);
 Route::resource('poster', 'PosterController', ['only' => ['index', 'store', 'update', 'destroy', 'show']]);
 Route::resource('track', 'TrackController', ['only' => ['index', 'store', 'update', 'destroy', 'show']]);
-
+Route::resource('userPoster', 'UserPosterController', ['only' => ['index', 'store', 'update', 'destroy', 'show']]);

@@ -1,0 +1,20 @@
+<!--Navigation-->
+ <div class="navbar-fixed">
+	<nav id="nav_f" class="default_color" role="navigation">
+		<div class="container">
+			<div class="nav-wrapper">
+			<a href="#" id="logo-container" class="brand-logo">
+				sample.domain.com
+			</a>
+				<ul class="right hide-on-med-and-down">
+					<li><a href="/#/">Inicio</a></li>
+					<auto-menu></auto-menu>
+					<li ng-if="currentUser"><a href="/auth/logout">{{currentUserName}} (salir)</a></li>
+						<li ng-if="!currentUser"><a href="#auth/signup">Registrarse</a></li>
+						<li ng-if="!currentUser"><a href="#auth/login">Ingresar</a></li>
+				</ul>
+			<a href="#" data-activates="nav-mobile" class="button-collapse"><i class="mdi-navigation-menu"></i></a>
+			</div>
+		</div>
+	</nav>
+</div>

@@ -15,9 +15,8 @@ class CreateUserPostersTable extends Migration
         Schema::create('user_poster', function (Blueprint $table) {
             $table->increments('user_poster_id');
             $table->integer('user_id');
-            $table->integer('play_id');
-            $table->integer('poster_id');
-            $table->longText('token');            
+            $table->integer('game_id');
+            $table->integer('poster_id');          
             $table->timestamps();
         });
     }

@@ -1,53 +1,73 @@
 <!DOCTYPE html>
-<html xmlns:ng="http://angularjs.org" lang="en" id="ng-app" ng-app="App" class="no-js">
-<head>
-	<meta charset="utf-8">
-	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>AngularJS POC</title>
-	<meta name="description" content="">
-	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<link href="lib/bootstrap/bootstrap.min.css" rel="stylesheet">
-	<link href="lib/bootstrap/bootstrap-responsive.min.css" rel="stylesheet">
+<html lang="en">
+  <head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Base LoopBack</title>
+    <link href="vendor/Materialize/dist/css/materialize.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <script src="boot/facebook_sdk.js"></script>
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+  </head>
+  <body ng-app="app" id="top" class="scrollspy" ng-controller="main.controller">
+    <div ui-view=""></div>
 
-	<link href="bundles/css/font-awesome.css" rel="stylesheet">
-	<link href="bundles/css/style.css" rel="stylesheet">
-	<link href="bundles/css/signin.css" rel="stylesheet">
-</head>
-<body>
-   <div class="main">
-		<div class="main-inner">
-			<div class="container" ui-view></div>
-		</div>
-	</div>
-    <script src="lib/jquery/dist/jquery.min.js"></script>
-	<script src="lib/angular/angular.min.js"></script>
-	<script src="lib/angular-ui-router/release/angular-ui-router.min.js"></script>
+    <!-- Vendors -->
+    <script src="vendor/jquery/dist/jquery.js"></script>
+    <script src="vendor/Materialize/dist/js/materialize.js"></script>
+    <script src="vendor/angular/angular.js"></script>
+    <script src="vendor/angular-resource/angular-resource.js"></script>
+    <script src="vendor/angular-ui-router/release/angular-ui-router.js"></script>
+    <script src="vendor/pickadate/lib/compressed/picker.js"></script>
+    <script src="vendor/pickadate/lib/compressed/picker.time.js"></script>
 
-	<script src="lib/bootstrap/bootstrap.min.js"></script>
+    <!-- inject:services:js -->
+    <script src="services/oauth-facebook-service.js"></script>
+    <script src="services/layout-handler.js"></script>
+    <!-- endinject -->
 
-	<script src="lib/angular-bootstrap/ui-bootstrap.min.js"></script>
-	<script src="lib/angular-bootstrap/ui-bootstrap-tpls.min.js"></script>
-	<script src="lib/angular-validation/angular-validation.js"></script>
-	<script src="lib/angular-validation/angular-validation-rule.js"></script>
+    <!-- inject:lb-services:js -->
+    <script src="services/lb-services.js"></script>
+    <!-- endinject -->
 
-	<script src="app.js"></script>
+    <!-- inject:app:js -->
+    <script src="app.js"></script>
+    <!-- endinject -->
 
-	<!-- startinject layouts -->
-	<script src="views/layout/defaulLayoutController.js"></script>
-	<script src="views/layout/loginLayoutController.js"></script>
-	<!-- endinject layouts -->
+    <!-- inject:boot:js -->
+    <script src="boot/cache.js"></script>
+    <script src="boot/flash.js"></script>
+    <script src="boot/routing.js"></script>
+    <script src="boot/run.js"></script>
+    <!-- endinject -->
 
-	<!-- startinject users -->
-	<script src="views/security/loginController.js"></script>
-	<script src="views/security/service/loginFactory.js"></script>
-	<!-- endinject users -->
+    <!-- inject:layouts:js -->
+    <script src="layouts/admin/module.js"></script>
+    <script src="layouts/error/module.js"></script>
+    <script src="layouts/sample-domain-com/module.js"></script>
+    <!-- endinject -->
 
-	<!-- startinject poster -->
-	<script src="views/poster/service/posterFactory.js"></script>
-	<!-- endinject poster -->
+    <!-- inject:defaultLayout:js -->
+    <script src="layouts/default/module.js"></script>
+    <!-- endinject -->
 
-	<!-- startinject home -->
-	<script src="views/home/homeController.js"></script>
-	<!-- endinject home -->
-</body>
+    <!-- inject:modules:js -->
+    <script src="modules/auth/module.js"></script>
+    <script src="modules/pages/module.js"></script>
+    <script src="modules/post/module.js"></script>
+    <!-- endinject -->
+
+    <!-- inject:components:js -->
+    <script src="components/auto-menu/auto-menu.js"></script>
+    <script src="components/materialize/materialize.js"></script>
+    <script src="components/ng-enter/ng-enter.js"></script>
+    <!-- endinject -->
+    
+  </body>
 </html>

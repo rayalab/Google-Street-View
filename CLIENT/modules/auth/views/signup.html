@@ -1,0 +1,29 @@
+<div style="border:1px solid; background:#FFF700; padding:10px;text-align:center;display:none" id="errmsg">Error</div>
+<div class="row">
+	<div class="col s12">
+		<form ng-enter="signup()">
+			<h5>Registro</h5>
+			
+			<div class="input-field">
+				<input type="text" id="username"  class="validate" name="username" ng-model="userData.username">
+				<label for="username">Usuario</label>
+			</div>
+			
+			<div class="input-field">
+				<input type="password" name="password" ng-model="userData.password">
+				<label for="password">Contraseña</label>
+			</div>
+			
+			<div class="input-field">
+				<input type="text" name="email" ng-model="userData.email">
+				<label for="email">Email</label>
+			</div>
+			
+			<div class="input-field">
+				<a class="btn waves-effect waves-light" ng-click="signup()">Registrarse</a>
+			</div>
+
+			<!-- <pre>User data: {{ userData }}</pre> -->
+		</form>
+	</div>
+</div>

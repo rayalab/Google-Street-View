@@ -1,0 +1,41 @@
+<h1>Hosts admitidos</h1>
+<table class="striped">
+    <thead>
+    	<tr>
+			<th>Nombre del Cliente</th>
+			<th>Nombre del Host / Dominio</th>
+			<th>Base de datos a utilizar</th>
+			<th>Acciones</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr ng-repeat="client in clients">
+			<td>{{client.name}}</td>
+			<td>{{client.host}}</td>
+			<td>{{client.db}}</td>
+			<td>
+				<!-- <materialize-link href="#/admin/hosts/edit/{{client.id}}" icon="edit" label="" ></materialize-link> -->
+				<materialize-link ng-click="del(client.id)" icon="delete" label="" ></materialize-link>
+			</td>
+		</tr>
+	</tbody>
+</table>
+
+<br/><br/>
+<h3>Añadir nuevo cliente</h3>
+<table>
+	<tr>
+		<td>
+			<materialize-input-text ng-model="newClient.name" placeholder="Nombre cliente"></materialize-input-text>
+		</td>
+		<td>
+			<materialize-input-text ng-model="newClient.host" placeholder="Host o Dominio"></materialize-input-text>
+		</td>
+		<td>
+			<materialize-input-text ng-model="newClient.db" placeholder="Nombre base de datos"></materialize-input-text>
+		</td>
+		<td>
+			<materialize-link ng-click="add()" icon="add" label="" ></materialize-link>
+		</td>
+	</tr>
+</table>

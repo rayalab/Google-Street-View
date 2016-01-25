@@ -18,7 +18,6 @@ class CreateTracksTable extends Migration
             $table->string('latitude');
             $table->string('title');
             $table->string('description');
-            $table->longText('token');
             $table->integer('poster_id');
             $table->timestamps();
         });

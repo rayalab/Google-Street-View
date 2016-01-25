@@ -1,0 +1,10 @@
+<h1>This is tha'posts</h1>
+<div ng-repeat="eachPost in postList">
+	<hr/>
+	<h3>{{eachPost.title}}</h3>
+	<p>{{eachPost.content}}</p>
+	<a class="btn waves-effect waves-light" href="#/post/edit/{{eachPost.id}}" >Edit this post</a>
+	<a class="btn waves-effect waves-light" href="#/post/delete/{{eachPost.id}}" >Delete this post</a>
+</div>
+<hr/>
+<a class="btn waves-effect waves-light" href="#/post/new" >Add new one</a>

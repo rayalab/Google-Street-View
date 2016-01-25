@@ -78,9 +78,16 @@ class UserController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $user = User::find($id);
-        $user->update($request->all());
-        return ['updated' => true];
+
+        $req = $request->all();
+        $User = User::firstOrNew([
+            'user_id' => $id
+        ]);
+        $User->run = $req["run"];
+        $User->email_contact = $req["email_contact"];
+        $User->save();
+
+        return response()->json($User);
     }
 
     /**

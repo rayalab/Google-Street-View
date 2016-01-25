@@ -1,0 +1,18 @@
+<h1>This is tha'form for edit posts</h1>
+
+<div class="row">
+	<div class="col s12">
+		<form>
+			<div class="input-field">
+				<input class="validate" id="postTitle" name="postTitle" type="text" ng-model="post.title" value="{{post.title}}" />
+				<label class="active" for="postTitle">Post title</label>
+			</div>
+			<div class="input-field">
+				<textarea class="materialize-textarea" id="postContent" name="postContent" ng-model="post.content">{{post.content}}</textarea>
+				<label class="active" for="postContent">Post content</label> 
+			</div>
+			<input class="btn waves-effect waves-light" type="button" value="Update post" ng-click="sendPost()" />
+			<a class="btn waves-effect waves-light" href="#/post" >Back</a>
+		</form>
+	</div>
+</div>

@@ -22,8 +22,9 @@ class PosterController extends Controller
      */
     public function index()
     {
+
         $poster = Poster::All();
-        return response()->json($poster->toArray());
+        return response()->json($poster);
     }
 
     /**

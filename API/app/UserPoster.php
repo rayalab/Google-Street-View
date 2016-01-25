@@ -13,5 +13,5 @@ class UserPoster extends Model
      *
      * @var array
      */
-    protected $fillable = ['user_poster_id', 'user_id', 'poster_id', 'game_id', 'token'];
+    protected $fillable = ['user_poster_id', 'user_id', 'poster_id', 'game_id'];
 }

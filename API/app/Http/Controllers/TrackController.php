@@ -54,7 +54,8 @@ class TrackController extends Controller
      */
     public function show($id)
     {
-        //
+        $Track = Track::where('poster_id', $id)->select('track_id', 'longitude', 'latitude', 'title', 'description', 'poster_id')->get();
+        return response()->json($Track);
     }
 
     /**
