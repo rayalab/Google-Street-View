@@ -6,6 +6,9 @@ angular.module('app')
 	$scope.facebook_id = localStorage.facebook_id;
 	$scope.defaultImage = "http://vignette2.wikia.nocookie.net/guiltycrown/images/6/64/Ejemplo.png/revision/latest?cb=20120305205546&path-prefix=es";
 
+
+	// calle  -33.39790772, -70.5823195
+	// cartel -33.39775097,-70.58235705
 	$scope.zoom = 12;
 	$scope.slat = localStorage.position_latitude;	
 	$scope.slng = localStorage.position_longitude;	
@@ -26,42 +29,17 @@ angular.module('app')
 	$scope.lat_wall_line =  0;
 	$scope.lng_wall_line =  0;
 
-	$scope.streetPt = new google.maps.LatLng(-33.44560, -70.66033);
-
-
 
 	$scope.clickTrack = function(id) {
 	   $('#modal1').openModal();
 	};
 
+
+	//cachear ubicaciones de banderas y posters
 	$scope.init = function() {
 	  	$poster.getAll().then(function(result){
 	  		var response = JSON.parse(JSON.stringify(result.data));
 	  		$scope.aryPoster = response;
-	
-	  		/*$scope.posterId =  response.poster_id;
-	  		$scope.lat =  response.latitude;
-	  		$scope.lng =  response.longitude;
-	  		$scope.lat_line =  response.latitude_line;
-	  		$scope.lng_line =  response.longitude_line;
-	  		$scope.lat_wall_line =  response.latitude_wall_line;
-	  		$scope.lng_wall_line =  response.longitude_wall_line;
-		    $scope.aryImg = {
-
-		    	foto_001 : "bundles/img/posters/001.png",
-		    	foto_002 : "bundles/img/posters/002.png",
-		    	foto_003 : "bundles/img/posters/003.png",
-		    	foto_004 : "bundles/img/posters/004.png",
-		    	foto_005 : "bundles/img/posters/005.png",
-		    	foto_006 : "bundles/img/posters/006.png",
-		    	foto_007 : "bundles/img/posters/007.png",
-		    	foto_008 : "bundles/img/posters/008.png",
-		    	foto_009 : "bundles/img/posters/009.png"
-	    	};*/
-
-  		    $scope.pt = new google.maps.LatLng(-33.44560, -70.66033);
-    		/*$scope.pt_street_reference = new google.maps.LatLng($scope.lat_line, $scope.lng_line);*/
-
 			$scope.main_map_init();
 		});	
 	};
@@ -84,8 +62,16 @@ angular.module('app')
 	    $scope.map = new google.maps.Map(div_main_map, mapOptions);
 
 
+
+	    //colocar a la persona
+		$scope.streetPt = new google.maps.LatLng(-33.39794355, -70.58267355);
+
+
+	    //colocar banderas y posters
 	    angular.forEach($scope.aryPoster, function(item) {
 	    	console.log(item);
+
+	    	//PONER BANDERA
 			$scope.marker = new google.maps.Marker({
 		            position: new google.maps.LatLng(item.first_clue_latitude, item.first_clue_longitude),
 		            map: $scope.map,
@@ -102,16 +88,45 @@ angular.module('app')
 			    console.log(latitude);
 			    $scope.map.setCenter(new google.maps.LatLng(item.first_clue_latitude, item.first_clue_longitude));
 		    	$scope.map.setZoom($scope.zoom + 3);
-
-		    	
 			  });
+
+
+			//PONER POSTER
+	  		// $scope.lat =  item.latitude;
+	  		// $scope.lng =  item.longitude;
+	  		// $scope.posterId =  item.poster_id;
+	  		// $scope.lat_line =  -33.39797938;
+	  		$scope.lng_line =  -70.58249652;
+	  		// $scope.lat_wall_line =  item.latitude_wall_line;
+	  		// $scope.lng_wall_line =  item.longitude_wall_line;
+	  		$scope.lat_wall_line =  -33.39781591;
+	  		$scope.lng_wall_line =  -70.58228195;
+  		    $scope.pt = new google.maps.LatLng(-33.39781591, -70.58228195);
+    		$scope.pt_street_reference = new google.maps.LatLng(-33.39797938, -70.58249652);
+
+		    $scope.aryImg = {
+
+		    	foto_001 : "bundles/img/posters/001.png",
+		    	foto_002 : "bundles/img/posters/002.png",
+		    	foto_003 : "bundles/img/posters/003.png",
+		    	foto_004 : "bundles/img/posters/004.png",
+		    	foto_005 : "bundles/img/posters/005.png",
+		    	foto_006 : "bundles/img/posters/006.png",
+		    	foto_007 : "bundles/img/posters/007.png",
+		    	foto_008 : "bundles/img/posters/008.png",
+		    	foto_009 : "bundles/img/posters/009.png"
+	    	};
+		
+		
+		
+			
 
 			$scope.marker.addListener($scope.map,'zoom_changed',function () {
 		         console.log($scope.map.getZoon());
 			});
      	 });
 
-        /*$scope.m_initPanorama();*/
+        $scope.m_initPanorama();
 	};
 
 	$scope.m_initPanorama = function (){
@@ -132,6 +147,7 @@ angular.module('app')
 	        pitch: $scope.spitch,
 	        zoom: $scope.szoom
 	    };
+	    console.log('asd',l_panDiv, l_panOptions);
 
 	    $scope.pan = new google.maps.StreetViewPanorama(l_panDiv, l_panOptions);
 
