@@ -1,8 +1,7 @@
 angular.module('app')
 
-.controller('home.index', function homeIndex($stateParams, $flash, $scope, $poster, $track) {
+.controller('home.index', function homeIndex($stateParams, $flash, $scope, $poster) {
 		
-	$scope.track = {};
 	$scope.full_name = localStorage.full_name;
 	$scope.facebook_id = localStorage.facebook_id;
 	$scope.defaultImage = "http://vignette2.wikia.nocookie.net/guiltycrown/images/6/64/Ejemplo.png/revision/latest?cb=20120305205546&path-prefix=es";
@@ -19,7 +18,6 @@ angular.module('app')
 	$scope.panHeight = 600;
 	$scope.markerWidth = 50;
 	$scope.markerHeight = 62;
- 	$scope.trackTitle = "";
 	$scope.posterId =  0;
 	$scope.lat =  0;
 	$scope.lng =  0;
@@ -310,10 +308,7 @@ angular.module('app')
 	       	user_id     : usr.user_id
        	};
 
-		$track.setNew(aryObj).then(function(result){
-			$scope.defaultImage = result.data.poster;
-		});	
-    	
+   	
 	}
 	$scope.init();
 });
