@@ -36,20 +36,31 @@ angular.module('app')
 
 	$scope.init = function() {
 	  	$poster.getAll().then(function(result){
-	  		var response = JSON.parse(JSON.stringify(result.data[0]));
+	  		var response = JSON.parse(JSON.stringify(result.data));
 	  		$scope.aryPoster = response;
 	
-	  		$scope.posterId =  response.poster_id;
+	  		/*$scope.posterId =  response.poster_id;
 	  		$scope.lat =  response.latitude;
 	  		$scope.lng =  response.longitude;
 	  		$scope.lat_line =  response.latitude_line;
 	  		$scope.lng_line =  response.longitude_line;
 	  		$scope.lat_wall_line =  response.latitude_wall_line;
 	  		$scope.lng_wall_line =  response.longitude_wall_line;
+		    $scope.aryImg = {
 
+		    	foto_001 : "bundles/img/posters/001.png",
+		    	foto_002 : "bundles/img/posters/002.png",
+		    	foto_003 : "bundles/img/posters/003.png",
+		    	foto_004 : "bundles/img/posters/004.png",
+		    	foto_005 : "bundles/img/posters/005.png",
+		    	foto_006 : "bundles/img/posters/006.png",
+		    	foto_007 : "bundles/img/posters/007.png",
+		    	foto_008 : "bundles/img/posters/008.png",
+		    	foto_009 : "bundles/img/posters/009.png"
+	    	};*/
 
-  		    $scope.pt = new google.maps.LatLng($scope.lat, $scope.lng);
-    		$scope.pt_street_reference = new google.maps.LatLng($scope.lat_line, $scope.lng_line);
+  		    $scope.pt = new google.maps.LatLng(-33.44560, -70.66033);
+    		/*$scope.pt_street_reference = new google.maps.LatLng($scope.lat_line, $scope.lng_line);*/
 
 			$scope.main_map_init();
 		});	
@@ -66,10 +77,32 @@ angular.module('app')
 	        scaleControl: true,
 	        scrollwheel: false,
 	        draggable: false,
+	        disableDefaultUI: true,
 	        mapTypeControl: false
 	    };
 
 	    $scope.map = new google.maps.Map(div_main_map, mapOptions);
+
+
+	    angular.forEach($scope.aryPoster, function(item) {
+	    	console.log(item);
+			$scope.marker = new google.maps.Marker({
+		            position: new google.maps.LatLng(item.first_clue_latitude, item.first_clue_longitude),
+		            map: $scope.map,
+		            title : item.first_clue_title,
+		            icon: 'bundles/img/beachflag.png',
+		            visible:true
+		      });
+
+			$scope.marker.addListener('click', function() {
+				var longtude = item.first_clue_latitude;
+				var latitude = item.first_clue_longitude;
+			    console.log(longtude);
+			    console.log(latitude);
+			    $scope.map.setCenter(new google.maps.LatLng(item.first_clue_latitude, item.first_clue_longitude));
+		    	$scope.map.setZoom($scope.zoom + 3);
+			  });
+     	 });
 
         /*$scope.m_initPanorama();*/
 	};
