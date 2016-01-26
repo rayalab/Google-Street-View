@@ -21,15 +21,15 @@ class CreatePostersTable extends Migration
             $table->string('latitude_line');
             $table->string('longitude_wall_line');
             $table->string('latitude_wall_line');
-            $table->longText('image_1');
-            $table->longText('image_2');
-            $table->longText('image_3');
-            $table->longText('image_4');
-            $table->longText('image_5');
-            $table->longText('image_6');
-            $table->longText('image_7');
-            $table->longText('image_8');
-            $table->longText('image_9');
+            $table->longText('image_default');
+            $table->longText('first_clue_latitude');
+            $table->longText('first_clue_longitude');
+            $table->longText('first_clue_title');
+            $table->longText('first_clue_description');
+            $table->longText('second_clue_latitude');
+            $table->longText('second_clue_longitude');
+            $table->longText('second_clue_title');
+            $table->longText('second_clue_description');
             $table->timestamps();
         });
     }

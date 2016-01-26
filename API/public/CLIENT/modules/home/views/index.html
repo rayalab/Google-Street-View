@@ -5,12 +5,12 @@
 </div>
 <div class="col s12">
 	    <div class="col s9">
-            <div id="mapDiv" style="width:800px; height:600px;" ng-show="!active" >
+            <div id="div_main_map" style="width:1000px; height:800px;" ng-show="!active" >
                 <div id="trak" style="position:relative;top:0px;left:0px;z-index:1000;cursor:pointer"></div>
             </div>
-            <div id="panFrame" style="position:relative; width:800px; height:600px; overflow:hidden;" ng-show="active">
-                <div id="panDiv" style="position:absolute;top:0px;left:0px; width:800px; height:600px;" ng-show="active"></div>
-                <div id="markerDiv" style="position:relative;top:0px;left:0px;z-index:1000;cursor:pointer" ng-show="active" ng-click="findPoster(posterId)">
+            <div id="panFrame" style="position:relative; width:1000px; height:800px; overflow:hidden;" ng-show="!active">
+                <div id="panDiv" style="position:absolute;top:0px;left:0px; width:1000px; height:800px;" ng-show="!active"></div>
+                <div id="markerDiv" style="position:relative;top:0px;left:0px;z-index:1000;cursor:pointer" ng-show="!active" ng-click="findPoster(posterId)">
                     <img ng-repeat="(key, value) in aryImg" id="{{key}}" ng-src="{{value}}" width='100%' height='100%' alt='' style="display:none"/>
                 </div>
             </div>

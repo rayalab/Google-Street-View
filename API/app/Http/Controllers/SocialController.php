@@ -48,29 +48,22 @@ class SocialController extends Controller
     {
         $req = $request->all();
 
-        $User = User::firstOrNew([
-            'email' => $req["email"]
-        ]);
-        $User->full_name = $req["full_name"];
-        $User->name = $req["last_name"];
-        $User->facebook_email = $req["email"];
-        $User->facebook_id = $req["facebook_id"];
-        $User->facebook_token = $req["facebook_token"];
-        $User->position_longitude = "-70.584075208";
-        $User->position_latitude = "-33.415208";
-        $User->save();
+        $User = User::where('facebook_id', $req["facebook_id"])->get();
 
-        $Game = Game::where('user_id', $User->user_id)->where('finish','0000-00-00 00:00:00')->select('game_id')->get();
-
-        if(!$Game->count() > 0){
-            $Game = new Game();
-            $Game->user_id = $User->user_id;
-            $Game->save();
+        if(!$User->count() > 0){
+            $User = new User();
+            $User->full_name = $req["full_name"];
+            $User->name = $req["last_name"];
+            $User->facebook_id = $req["facebook_id"];
+            $User->facebook_token = $req["facebook_token"];
+            $User->position_longitude = "-70.584075208";
+            $User->position_latitude = "-33.415208";
+            $User->save();
         }else{
-            $Game = $Game[0];
+            $User = $User[0];
         }
 
-        return response()->json(array('user' => $User,'game' => $Game));
+        return response()->json(array('user' => $User));
     }
 
     /**

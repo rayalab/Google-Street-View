@@ -2,120 +2,72 @@ angular.module('app')
 
 .controller('home.index', function homeIndex($stateParams, $flash, $scope, $poster, $track) {
 		
-	console.log(localStorage);
+	$scope.aryPoster = [];
+
+	//user Info
 	$scope.full_name = localStorage.full_name;
 	$scope.facebook_id = localStorage.facebook_id;
+	$scope.slat = localStorage.position_latitude;	
+	$scope.slng = localStorage.position_longitude;	
+
 
 
 	$scope.defaultImage = "http://vignette2.wikia.nocookie.net/guiltycrown/images/6/64/Ejemplo.png/revision/latest?cb=20120305205546&path-prefix=es";
 
-	$scope.zoom = 0;
-	$scope.slat = localStorage.position_latitude;	
-	$scope.slng = localStorage.position_longitude;	
+	$scope.zoom = 12;
 	$scope.sheading = 69.58;
 	$scope.spitch = 0;
 	$scope.szoom = 1;
 	$scope.distance = 0;
 	$scope.maximumDistance = 40;
-	$scope.panWidth = 800;
-	$scope.panHeight = 600;
+	$scope.panWidth = 1000;
+	$scope.panHeight = 800;
 	$scope.markerWidth = 50;
 	$scope.markerHeight = 62;
 
-	$scope.clickTrack = function(id) {
-		console.log('$scope.clickTrack');
-		console.log($scope.trackTitle);
 
-	   $('#modal1').openModal();
-	};
-
-
-
- 	$scope.actionChangeView = function() {
- 		if($scope.active){
- 			$scope.active = false;
- 		}else{
- 			$scope.active = true;
- 		}
-		$scope.m_initPanorama();
-		$scope.streetPt = $scope.pan.getPosition();
-		$scope.map.setCenter($scope.streetPt);
-		$scope.m_updateMarker();
-	};
-
-  	$poster.getAll().then(function(result){
-  		var response = JSON.parse(JSON.stringify(result.data[0]));
-  		console.log(response.latitude);
-  		$scope.posterId =  response.poster_id;
-  		$scope.lat =  response.latitude;
-  		$scope.lng =  response.longitude;
-  		$scope.lat_line =  response.latitude_line;
-  		$scope.lng_line =  response.longitude_line;
-  		$scope.lat_wall_line =  response.latitude_wall_line;
-  		$scope.lng_wall_line =  response.longitude_wall_line;
+	$scope.lat =  -33.41511;
+	$scope.lng =  -70.58365;
+	$scope.lat_line =  -33.415296;
+	$scope.lng_line =  -70.58403;
+	$scope.lat_wall_line =  -33.41488;
+	$scope.lng_wall_line =  -70.58365;
 
 
-  		//generate maps
-	    $scope.pt = new google.maps.LatLng($scope.lat, $scope.lng);
-	    $scope.pt_street_reference = new google.maps.LatLng($scope.lat_line, $scope.lng_line);
-
-	    $scope.aryImg = {
-
-	    	foto_001 : response.image_1,
-	    	foto_002 : response.image_2,
-	    	foto_003 : response.image_3,
-	    	foto_004 : response.image_4,
-	    	foto_005 : response.image_5,
-	    	foto_006 : response.image_6,
-	    	foto_007 : response.image_7,
-	    	foto_008 : response.image_8,
-	    	foto_009 : response.image_9
-	    };
-
-	    $track.getTracksByPoster($scope.posterId).then(function(result){
-	    	if(result.data){
-	    		$scope.track = result.data; 
-	    		$scope.m_initMap();
-	    	}else{
-	    		$scope.m_initMap();
-	    	}
-		});	
-
-
-	});	
 	
+	//Punto Centro Mapa
+	$scope.pt = new google.maps.LatLng(-33.44560, -70.66033);
+
+	//Punto Centro Calle
+	$scope.pt_street_reference = new google.maps.LatLng(-33.44560, -70.66033);
 
 
-    $scope.m_initMap = function (){
-	    var mapDiv = document.getElementById("mapDiv");
+	//Init Function
+	$scope.init = function() {
+	  	$poster.getAll().then(function(result){
+	  		var response = JSON.parse(JSON.stringify(result.data));
+	  		$scope.aryPoster = response;
+			$scope.main_map_init();
+		});	
+	};
+
+
+    $scope.main_map_init = function (){
+	    var div_main_map = document.getElementById("div_main_map");
 
 	    var mapOptions =
 	    {
 	        center: $scope.pt,
-	        zoom: 15,
+	        zoom: $scope.zoom,
 	        mapTypeId: google.maps.MapTypeId.ROADMAP,
 	        scaleControl: true,
+	        scrollwheel: false,
+	        draggable: false,
+	        disableDefaultUI: true,
 	        mapTypeControl: false
 	    };
 
-	    $scope.map = new google.maps.Map(mapDiv, mapOptions);
-
-        angular.forEach($scope.track, function(item) {
-			$scope.marker = new google.maps.Marker({
-		            position: new google.maps.LatLng(item.latitude, item.longitude),
-		            map: $scope.map,
-		            title : item.title,
-		            icon: 'bundles/img/beachflag.png',
-		            visible:true
-		      });
-
-			$scope.marker.addListener('click', function() {
-
-				$scope.trackTitle = item.title;
-				console.log($scope.trackTitle);
-			    $scope.clickTrack(item.poster_id)
-			  });
-     	 });
+	    $scope.map = new google.maps.Map(div_main_map, mapOptions);
 
         $scope.m_initPanorama();
 	};
@@ -359,5 +311,7 @@ angular.module('app')
 		});	
     	
 	}
+
+	$scope.init();
 
 });

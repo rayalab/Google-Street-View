@@ -22,11 +22,6 @@ angular.module("oauthFacebookService", [])
                             Object.keys(data.user).map(function(value) {
                               localStorage.setItem(value, data.user[value]);
                             });
-
-                            Object.keys(data.game).map(function(value) {
-                              localStorage.setItem(value, data.game[value]);
-                            });
-
                             return 'ok';
                          });
 
