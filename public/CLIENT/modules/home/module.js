@@ -91,7 +91,8 @@ angular.module('app')
 		            map: $scope.map,
 		            title : item.first_clue_title,
 		            icon: 'bundles/img/beachflag.png',
-		            visible:true
+		            visible:true,
+		            draggable: false
 		      });
 
 			$scope.marker.addListener('click', function() {
@@ -101,7 +102,13 @@ angular.module('app')
 			    console.log(latitude);
 			    $scope.map.setCenter(new google.maps.LatLng(item.first_clue_latitude, item.first_clue_longitude));
 		    	$scope.map.setZoom($scope.zoom + 3);
+
+		    	
 			  });
+
+			$scope.marker.addListener($scope.map,'zoom_changed',function () {
+		         console.log($scope.map.getZoon());
+			});
      	 });
 
         /*$scope.m_initPanorama();*/
