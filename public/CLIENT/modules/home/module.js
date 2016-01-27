@@ -69,7 +69,6 @@ angular.module('app')
 		$poster.getAll().then(function(result){
 			var response = JSON.parse(JSON.stringify(result.data));
 			$scope.aryPoster = response;
-			console.log($scope.aryPoster);
 			$scope.main_map_init();
 		});	
 	};
@@ -95,7 +94,6 @@ angular.module('app')
 
 		//colocar banderas y posters
 		$scope.posters = [];
-
 		angular.forEach($scope.aryPoster, function(item) {
 			var newFlag;
 			console.log(item);
@@ -110,7 +108,7 @@ angular.module('app')
 				draggable: false
 			});
 			newFlag.mycategory = "firts";
-			$scope.gmarkers.push(newFlag);
+			$scope.gmarkers.push($scope.marker);
 
 			newFlag.addListener('click', function() {
 				console.log('setting current poster to ',item);
