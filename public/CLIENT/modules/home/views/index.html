@@ -26,11 +26,13 @@
      <!-- Modal Structure -->
       <div id="modal1" class="modal">
         <div class="modal-content">
-          <h4>Modal Header</h4>
-          <p>{{trackTitle}}</p>
+          <h4>Modal Header {{titleCluee}}</h4>
+        </div>
+                <div class="modal-body">
+            <input type="text" ng-model="form.testField">
         </div>
         <div class="modal-footer">
-          <a href="#!" class=" modal-action modal-close waves-effect waves-green btn-flat">Agree</a>
+          <a ng-click="goStreet(category)" class=" modal-action modal-close waves-effect waves-green btn-flat">Agree</a>
         </div>
       </div>
 

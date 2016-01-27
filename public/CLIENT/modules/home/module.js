@@ -5,7 +5,7 @@ angular.module('app')
 	$scope.full_name = localStorage.full_name;
 	$scope.facebook_id = localStorage.facebook_id;
 	$scope.defaultImage = "http://vignette2.wikia.nocookie.net/guiltycrown/images/6/64/Ejemplo.png/revision/latest?cb=20120305205546&path-prefix=es";
-
+	$scope.gmarkers = [];
 	$scope.zoom = 12;
 	$scope.slat = localStorage.position_latitude;	
 	$scope.slng = localStorage.position_longitude;	
@@ -18,7 +18,7 @@ angular.module('app')
 	$scope.panHeight = 600;
 	$scope.markerWidth = 50;
 	$scope.markerHeight = 62;
-	$scope.posterId =  0;
+	$scope.posterId =  0;-
 	$scope.lat =  0;
 	$scope.lng =  0;
 	$scope.lat_line =  0;
@@ -26,12 +26,36 @@ angular.module('app')
 	$scope.lat_wall_line =  0;
 	$scope.lng_wall_line =  0;
 
+	$scope.obj = [];
+	$scope.titleClue = "";
 	$scope.streetPt = new google.maps.LatLng(-33.44560, -70.66033);
 
 
+	$scope.goStreet = function(scope) {
 
-	$scope.clickTrack = function(id) {
-	   $('#modal1').openModal();
+		console.log(scope);
+		for (var i=0; i<$scope.gmarkers.length; i++) {
+          if ($scope.gmarkers[i].mycategory == category) {
+            $scope.gmarkers[i].setVisible(false);
+          }
+        }
+
+		$scope.marker = new google.maps.Marker({
+	            position: new google.maps.LatLng($scope.obj.second_clue_latitude, $scope.obj.second_clue_longitude),
+	            map: $scope.map,
+	            title : $scope.obj.second_clue_title,
+	            icon: 'bundles/img/beachflag.png',
+	            visible:true,
+	            draggable: false
+	      });
+	};
+
+	$scope.clickClue = function(obj) {
+		console.log(obj.first_clue_title);
+		$scope.titleCluee = obj.first_clue_title;
+		if($scope.titleCluee == obj.first_clue_title){
+		   $('#modal1').openModal();
+		}
 	};
 
 	$scope.init = function() {
@@ -94,21 +118,29 @@ angular.module('app')
 		            visible:true,
 		            draggable: false
 		      });
+			$scope.marker.mycategory = "firts";
+			$scope.gmarkers.push($scope.marker);
 
 			$scope.marker.addListener('click', function() {
-				var longtude = item.first_clue_latitude;
-				var latitude = item.first_clue_longitude;
-			    console.log(longtude);
-			    console.log(latitude);
+				var longitude = item.first_clue_longitude;
+				var latitude = item.first_clue_latitude;
+
+				var obj = {
+					first_clue_longitude : item.first_clue_longitude,
+					first_clue_latitude : item.first_clue_latitude,	
+					first_clue_title    : item.first_clue_title,
+					second_clue_latitude : item.second_clue_latitude,	
+					second_clue_longitude : item.second_clue_longitude,
+					second_clue_title    : item.second_clue_title,
+					category    : $scope.marker.mycategory	
+				}
+
 			    $scope.map.setCenter(new google.maps.LatLng(item.first_clue_latitude, item.first_clue_longitude));
 		    	$scope.map.setZoom($scope.zoom + 3);
 
-		    	
+		    	$scope.clickClue(obj);
 			  });
 
-			$scope.marker.addListener($scope.map,'zoom_changed',function () {
-		         console.log($scope.map.getZoon());
-			});
      	 });
 
         /*$scope.m_initPanorama();*/
