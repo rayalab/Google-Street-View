@@ -56,9 +56,9 @@ angular.module('app')
 	};
 
 	$scope.clickClue = function(obj) {
-		console.log(obj.first_clue_title);
-		$scope.titleCluee = obj.first_clue_title;
-		if($scope.titleCluee == obj.first_clue_title){
+		console.log(obj.default_clue_title);
+		$scope.titleCluee = obj.default_clue_title;
+		if($scope.titleCluee == obj.default_clue_title){
 		   $('#modal1').openModal();
 		}
 	};
@@ -102,7 +102,7 @@ angular.module('app')
 			newFlag = new google.maps.Marker({
 				position: new google.maps.LatLng(item.default_clue_latitude, item.default_clue_longitude),
 				map: $scope.map,
-				title : item.first_clue_title,
+				title : item.default_clue_title,
 				icon: 'bundles/img/beachflag.png',
 				visible:true,
 				draggable: false
@@ -112,8 +112,8 @@ angular.module('app')
 
 			newFlag.addListener('click', function() {
 				console.log('setting current poster to ',item);
-				var longtude = item.first_clue_latitude;
-				var latitude = item.first_clue_longitude;
+				var longtude = item.default_clue_latitude;
+				var latitude = item.default_clue_longitude;
 				$scope.currentPoster = item;
 				$scope.map.setCenter(new google.maps.LatLng(item.default_clue_latitude, item.default_clue_longitude));
 				$scope.map.setZoom($scope.zoom + 4);
@@ -151,9 +151,10 @@ angular.module('app')
 		// $scope.currentPoster.lng_line =  -70.58249652; //-70.58249652
 		// $scope.currentPoster.lat_line =  -70.58249652; //-70.58249652
 		// $scope.currentPoster.streetPt = new google.maps.LatLng(-33.39797938, -70.58249652); //PERSONA
-		$scope.currentPoster.streetPt = new google.maps.LatLng($scope.currentPoster.first_clue_latitude, $scope.currentPoster.first_clue_longitude); //PERSONA
-		$scope.currentPoster.pt = new google.maps.LatLng(-33.3977241, -70.58262527); //POSTER
-		$scope.currentPoster.pt_street_reference = new google.maps.LatLng(-33.39787637,-70.58241874); //REFERENCIA
+		$scope.currentPoster.streetPt = new google.maps.LatLng($scope.currentPoster.default_clue_latitude, $scope.currentPoster.default_clue_longitude); //PERSONA
+		console.log('pon',$scope.currentPoster.latitude);
+		$scope.currentPoster.pt = new google.maps.LatLng($scope.currentPoster.latitude,$scope.currentPoster.longitude); //POSTER
+		$scope.currentPoster.pt_street_reference = new google.maps.LatLng($scope.currentPoster.latitude,$scope.currentPoster.longitude); //REFERENCIA
   		
 		$scope.currentPoster.images = {
 			foto_001 : "bundles/img/posters/001.png",
