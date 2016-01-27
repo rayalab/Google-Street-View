@@ -75,7 +75,8 @@ angular.module('app')
 
 	$scope.main_map_init = function (){
 		var div_main_map = document.getElementById("div_main_map");
-	    $scope.map = new google.maps.LatLng(-33.39781591, -70.58228195);
+	    // $scope.map = new google.maps.LatLng(-33.39781591, -70.58228195);
+	    $scope.map = new google.maps.LatLng(-33.45120886,-70.66783905);
 
 		var mapOptions =
 		{
@@ -107,7 +108,7 @@ angular.module('app')
 				visible:true,
 				draggable: false
 			});
-			$scope.marker.mycategory = "firts";
+			newFlag.mycategory = "firts";
 			$scope.gmarkers.push($scope.marker);
 
 			newFlag.addListener('click', function() {
