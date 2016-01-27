@@ -23,6 +23,7 @@ angular.module('app', [
 	'flashMessage',
 	'oauthFacebookService',
 	'posterService',
+	'clueService',
 	'autoMenu',
 	'materialize'
 ])

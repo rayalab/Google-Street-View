@@ -1,6 +1,6 @@
 angular.module('app')
 
-.controller('home.index', function homeIndex($stateParams, $flash, $scope, $poster) {
+.controller('home.index', function homeIndex($stateParams, $flash, $scope, $poster, $clue) {
 		
 	$scope.full_name = localStorage.full_name;
 	$scope.facebook_id = localStorage.facebook_id;
@@ -69,13 +69,14 @@ angular.module('app')
 		$poster.getAll().then(function(result){
 			var response = JSON.parse(JSON.stringify(result.data));
 			$scope.aryPoster = response;
+			console.log($scope.aryPoster);
 			$scope.main_map_init();
 		});	
 	};
 
 	$scope.main_map_init = function (){
 		var div_main_map = document.getElementById("div_main_map");
-	    $scope.map = new google.maps.LatLng(-33.39781591, -70.58228195);
+	    $scope.map = new google.maps.LatLng(-33.44560, -70.66033);
 
 		var mapOptions =
 		{
@@ -94,28 +95,29 @@ angular.module('app')
 
 		//colocar banderas y posters
 		$scope.posters = [];
+
 		angular.forEach($scope.aryPoster, function(item) {
 			var newFlag;
 			console.log(item);
 
 			//PONER BANDERA
 			newFlag = new google.maps.Marker({
-				position: new google.maps.LatLng(item.first_clue_latitude, item.first_clue_longitude),
+				position: new google.maps.LatLng(item.default_clue_latitude, item.default_clue_longitude),
 				map: $scope.map,
 				title : item.first_clue_title,
 				icon: 'bundles/img/beachflag.png',
 				visible:true,
 				draggable: false
 			});
-			$scope.marker.mycategory = "firts";
-			$scope.gmarkers.push($scope.marker);
+			newFlag.mycategory = "firts";
+			$scope.gmarkers.push(newFlag);
 
 			newFlag.addListener('click', function() {
 				console.log('setting current poster to ',item);
 				var longtude = item.first_clue_latitude;
 				var latitude = item.first_clue_longitude;
 				$scope.currentPoster = item;
-				$scope.map.setCenter(new google.maps.LatLng(item.first_clue_latitude, item.first_clue_longitude));
+				$scope.map.setCenter(new google.maps.LatLng(item.default_clue_latitude, item.default_clue_longitude));
 				$scope.map.setZoom($scope.zoom + 4);
 				$scope.m_initPanorama();
 			});
