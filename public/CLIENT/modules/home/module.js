@@ -28,12 +28,12 @@ angular.module('app')
 	$scope.lng_line =  0;
 	$scope.lat_wall_line =  0;
 	$scope.lng_wall_line =  0;
-	$scope.currentPoster = {};
+	$scope.currentZone = {};
 	$scope.mode='map';
 
 	$scope.obj = [];
 	$scope.titleClue = "";
-	$scope.streetPt = new google.maps.LatLng(-33.44560, -70.66033);
+	$scope.posPersona = new google.maps.LatLng(-33.44560, -70.66033);
 
 
 	$scope.goStreet = function(scope) {
@@ -114,7 +114,7 @@ angular.module('app')
 				console.log('setting current poster to ',item);
 				var longtude = item.default_clue_latitude;
 				var latitude = item.default_clue_longitude;
-				$scope.currentPoster = item;
+				$scope.currentZone = item;
 				$scope.map.setCenter(new google.maps.LatLng(item.default_clue_latitude, item.default_clue_longitude));
 				$scope.map.setZoom($scope.zoom + 4);
 				$scope.m_initPanorama();
@@ -144,19 +144,11 @@ angular.module('app')
 
 
 		//SITUAR PERSONA Y COLOCAR POSTER
-		// $scope.currentPoster.ptLat =  item.latitude;
-		// $scope.currentPoster.ptLng =  item.longitude;
-		// $scope.currentPoster.lat_wall_line =  item.latitude_wall_line; //-33.39781591
-		// $scope.currentPoster.lng_wall_line =  item.longitude_wall_line; //-70.58228195
-		// $scope.currentPoster.lng_line =  -70.58249652; //-70.58249652
-		// $scope.currentPoster.lat_line =  -70.58249652; //-70.58249652
-		// $scope.currentPoster.streetPt = new google.maps.LatLng(-33.39797938, -70.58249652); //PERSONA
-		$scope.currentPoster.streetPt = new google.maps.LatLng($scope.currentPoster.default_clue_latitude, $scope.currentPoster.default_clue_longitude); //PERSONA
-		console.log('pon',$scope.currentPoster.latitude);
-		$scope.currentPoster.pt = new google.maps.LatLng($scope.currentPoster.latitude,$scope.currentPoster.longitude); //POSTER
-		$scope.currentPoster.pt_street_reference = new google.maps.LatLng($scope.currentPoster.latitude,$scope.currentPoster.longitude); //REFERENCIA
+		$scope.currentZone.posPersona = new google.maps.LatLng($scope.currentZone.default_clue_latitude, $scope.currentZone.default_clue_longitude);
+		$scope.currentZone.posPoster = new google.maps.LatLng($scope.currentZone.latitude,$scope.currentZone.longitude);
+		$scope.currentZone.posReference = new google.maps.LatLng($scope.currentZone.latitude,$scope.currentZone.longitude);
   		
-		$scope.currentPoster.images = {
+		$scope.currentZone.images = {
 			foto_001 : "bundles/img/posters/001.png",
 			foto_002 : "bundles/img/posters/002.png",
 			foto_003 : "bundles/img/posters/003.png",
@@ -178,7 +170,7 @@ angular.module('app')
 			// linksControl: false
 		};
 
-		l_panOptions.position = $scope.currentPoster.streetPt;
+		l_panOptions.position = $scope.currentZone.posPersona;
 		l_panOptions.pov =
 		{
 			heading: $scope.sheading,
@@ -207,8 +199,8 @@ angular.module('app')
 		//CAMBIO DE UBICACION
 		google.maps.event.addListener($scope.pan, 'position_changed', function ()
 		{
-		    $scope.currentPoster.streetPt = $scope.pan.getPosition();
-		    $scope.map.setCenter($scope.currentPoster.streetPt);
+		    $scope.currentZone.posPersona = $scope.pan.getPosition();
+		    $scope.map.setCenter($scope.currentZone.posPersona);
 
 		    $scope.m_updateMarker();
 		});
@@ -222,6 +214,7 @@ angular.module('app')
 	 * @return {[type]} [description]
 	 */
 	$scope.m_updateMarker = function () {
+			console.log('m_updateMarker');
 			var l_pov = $scope.pan.getPov();
 			if (l_pov)
 			{
@@ -232,9 +225,9 @@ angular.module('app')
 
 
 				// recalculate icon heading and pitch now
-				$scope.sheading = google.maps.geometry.spherical.computeHeading($scope.currentPoster.streetPt, $scope.currentPoster.pt)
-				$scope.distance = google.maps.geometry.spherical.computeDistanceBetween($scope.currentPoster.streetPt, $scope.currentPoster.pt);
-				$scope.distance_to_street_reference = google.maps.geometry.spherical.computeDistanceBetween($scope.currentPoster.streetPt, $scope.currentPoster.pt_street_reference);
+				$scope.sheading = google.maps.geometry.spherical.computeHeading($scope.currentZone.posPersona, $scope.currentZone.posPoster)
+				$scope.distance = google.maps.geometry.spherical.computeDistanceBetween($scope.currentZone.posPersona, $scope.currentZone.posPoster);
+				$scope.distance_to_street_reference = google.maps.geometry.spherical.computeDistanceBetween($scope.currentZone.posPersona, $scope.currentZone.posReference);
 
 				var l_pixelPoint = $scope.m_convertPointProjection(l_pov, l_adjustedZoom);
 
@@ -255,11 +248,16 @@ angular.module('app')
 				var y = l_pixelPoint.y - Math.floor(ht / 2);
 
 
-				var angle_in_radians = $scope.find_angle({'x': $scope.currentPoster.streetPt.lat(), 'y': $scope.currentPoster.streetPt.lng()}, {'x': $scope.lat, 'y': $scope.lng}, {'x': $scope.currentPoster.latitude_line, 'y': $scope.currentPoster.longitude_line});
+				console.log('Posicion persona: ' + $scope.currentZone.posPersona.lat() + " ; " + $scope.currentZone.posPersona.lng());
+				console.log('$scope.currentZone.line: ' + $scope.currentZone.latitude_line + " ; " + $scope.currentZone.longitude_line);
+				console.log('$scope.currentZone.wall_line: ' + $scope.currentZone.latitude_wall_line + " ; " + $scope.currentZone.longitude_wall_line);
+
+
+				var angle_in_radians = $scope.find_angle({'x': $scope.currentZone.posPersona.lat(), 'y': $scope.currentZone.posPersona.lng()}, {'x': $scope.lat, 'y': $scope.lng}, {'x': $scope.currentZone.latitude_line, 'y': $scope.currentZone.longitude_line});
 				var angle_in_degrees = angle_in_radians * (180/3.1415);
 				//console.log('angle: ' + angle_in_degrees);
 
-				var angle_in_radians_wall = $scope.find_angle({'x': $scope.currentPoster.streetPt.lat(), 'y': $scope.currentPoster.streetPt.lng()}, {'x': $scope.lat, 'y': $scope.lng}, {'x': $scope.lat_wall_line, 'y': $scope.lng_wall_line});
+				var angle_in_radians_wall = $scope.find_angle({'x': $scope.currentZone.posPersona.lat(), 'y': $scope.currentZone.posPersona.lng()}, {'x': $scope.lat, 'y': $scope.lng}, {'x': $scope.currentZone.latitude_wall_line, 'y': $scope.currentZone.longitude_wall_line});
 				var angle_in_degrees_wall = angle_in_radians_wall * (180/3.1415);
 				//console.log('angle wall: ' + angle_in_degrees_wall);
 
@@ -276,6 +274,8 @@ angular.module('app')
 					document.getElementById("foto_008"),
 					document.getElementById("foto_009")
 				 ];
+
+				console.log('angle_in_degrees: ' + angle_in_degrees + " ; angle_in_degrees_wall: " + angle_in_degrees_wall);
 				
 				if (angle_in_degrees < 10 ) {
 					posters_id[4].style.display = '';
@@ -340,7 +340,7 @@ angular.module('app')
 				l_markerDiv.style.display = $scope.distance_to_street_reference < $scope.maximumDistance ? "block" : "none";
 				// glog("distance = " + Math.floor(this.distance) + " m (" + l_markerDiv.style.display + ") distance scale = " + l_distanceScale + " l_adjustedZoom = " + l_adjustedZoom);
 
-				document.getElementById("markerInfo").innerHTML = "lat: " + $scope.formatFloat($scope.currentPoster.streetPt.lat(), 6) + " lng: " + $scope.formatFloat($scope.currentPoster.streetPt.lng(), 6) + " distance: " + Math.floor($scope.distance) + " m";
+				document.getElementById("markerInfo").innerHTML = "lat: " + $scope.formatFloat($scope.currentZone.posPersona.lat(), 6) + " lng: " + $scope.formatFloat($scope.currentZone.posPersona.lng(), 6) + " distance: " + Math.floor($scope.distance) + " m";
 			}
 	}
 
