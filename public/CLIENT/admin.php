@@ -3,12 +3,14 @@
 <meta name="viewport" content="initial-scale=1.0, user-scalable=no" />
 <meta charset="utf8" />
 <script type="text/javascript" src="http://maps.google.com/maps/api/js"></script>
+
 <button onclick="location='?zona=3'">Las Condes</button>
 <button onclick="location='?zona=2'">Maipu</button>
 <button onclick="location='?zona=1'">La Florida</button>
-
+<button onclick="verCiudad()'">ciudad</button>
+<button onclick="verPista()'">pista</button>
 <?php
-$m = new mysqli("localhost", "forge", "forge", "forge");
+$m = is_dir("/etc")?new mysqli("localhost","forge","forge","forge"):new mysqli("localhost","RICHI","forge","forge");
 if (!$_GET['zona']) die;
 if ($_POST) {
 
@@ -59,10 +61,14 @@ function updateMarkerAddress(str) {
   document.getElementById('address').innerHTML = str;
 }
 
+function verCiudad() {
+  map.setCenter(new google.maps.LatLng(-33.44560, -70.66033));
+}
+var map;
 function initialize() {
   var latLng = new google.maps.LatLng(<?php printf($r['default_clue_latitude']); ?>, <?php printf($r['default_clue_longitude']); ?>);
-  var map = new google.maps.Map(document.getElementById('mapCanvas'), {
-    zoom: 18,
+  map = new google.maps.Map(document.getElementById('mapCanvas'), {
+    zoom: 17,
     center: latLng,
     mapTypeId: google.maps.MapTypeId.ROADMAP
   });
@@ -155,8 +161,8 @@ google.maps.event.addDomListener(window, 'load', initialize);
 <body>
   <style>
   #mapCanvas {
-    width: 500px;
-    height: 400px;
+    width: 900px;
+    height: 600px;
     float: left;
   }
   #infoPanel {
