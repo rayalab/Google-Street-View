@@ -35,6 +35,11 @@ angular.module('app')
 	$scope.posPersona = new google.maps.LatLng(-33.44560, -70.66033);
 
 
+	$scope.gogo = function() {
+		console.log('wii')
+		$scope.currentZone = $scope.AER;
+		$scope.m_initPanorama(-33.53889242671432, -70.56680178094723);
+	}
 	$scope.nextClue = function(category, obj) {
 
 		for (var i=0; i<$scope.gmarkers.length; i++) {
@@ -70,7 +75,7 @@ angular.module('app')
 					//$scope.gmarkers.push(newClue);
 
 					newClue.addListener('click', function() {
-						console.log('setting current poster top ',$scope.currentPoster);
+						console.log('setting current zone to',$scope.currentZone);
 						$scope.m_initPanorama(item.latitude, item.longitude);
 						//$scope.clickClue(item, firtsCategory);
 						/*$scope.m_initPanorama();*/
@@ -124,6 +129,7 @@ angular.module('app')
 		//colocar banderas y posters
 		$scope.posters = [];
 		angular.forEach($scope.aryPoster, function(item) {
+			if (!$scope.AER) $scope.AER = item;
 			var newFlag;
 			var firtsCategory = "firts_clue";
 
@@ -168,10 +174,11 @@ angular.module('app')
 		var visible = false;
 		var l_panDiv = document.getElementById("panDiv");
 		$scope.mode = 'street';
-		$scope.$apply();
 
 		$scope.currentZone.default_clue_latitude = clue_latitude;
 		$scope.currentZone.default_clue_longitude = clue_longitude;
+
+
 		//SITUAR PERSONA Y COLOCAR POSTER
 		$scope.currentZone.posPersona = new google.maps.LatLng($scope.currentZone.default_clue_latitude, $scope.currentZone.default_clue_longitude);
 		$scope.currentZone.posPoster = new google.maps.LatLng($scope.currentZone.latitude,$scope.currentZone.longitude);
@@ -188,7 +195,7 @@ angular.module('app')
 			foto_008 : "bundles/img/posters/008.png",
 			foto_009 : "bundles/img/posters/009.png"
 		};
-		$scope.$apply();
+		// $scope.$apply();
 
 
 
@@ -280,17 +287,19 @@ angular.module('app')
 
 
 				console.log('Posicion persona: ' + $scope.currentZone.posPersona.lat() + " ; " + $scope.currentZone.posPersona.lng());
-				console.log('$scope.currentZone.line: ' + $scope.currentZone.latitude_line + " ; " + $scope.currentZone.longitude_line);
-				console.log('$scope.currentZone.wall_line: ' + $scope.currentZone.latitude_wall_line + " ; " + $scope.currentZone.longitude_wall_line);
+				console.log('Posicion poster: ' + $scope.currentZone.latitude + " ; " + $scope.currentZone.longitude);
+
+				// console.log('$scope.currentZone.line: ' + $scope.currentZone.latitude_line + " ; " + $scope.currentZone.longitude_line);
+				// console.log('$scope.currentZone.wall_line: ' + $scope.currentZone.latitude_wall_line + " ; " + $scope.currentZone.longitude_wall_line);
 
 
-				var angle_in_radians = $scope.find_angle({'x': $scope.currentZone.posPersona.lat(), 'y': $scope.currentZone.posPersona.lng()}, {'x': $scope.lat, 'y': $scope.lng}, {'x': $scope.currentZone.latitude_line, 'y': $scope.currentZone.longitude_line});
+				var angle_in_radians = $scope.find_angle({'x': $scope.currentZone.posPersona.lat(), 'y': $scope.currentZone.posPersona.lng()}, {'x': $scope.currentZone.latitude, 'y': $scope.currentZone.longitude}, {'x': $scope.currentZone.latitude_line, 'y': $scope.currentZone.longitude_line});
 				var angle_in_degrees = angle_in_radians * (180/3.1415);
-				//console.log('angle: ' + angle_in_degrees);
+				console.log('angle: ' + angle_in_degrees);
 
 				var angle_in_radians_wall = $scope.find_angle({'x': $scope.currentZone.posPersona.lat(), 'y': $scope.currentZone.posPersona.lng()}, {'x': $scope.lat, 'y': $scope.lng}, {'x': $scope.currentZone.latitude_wall_line, 'y': $scope.currentZone.longitude_wall_line});
 				var angle_in_degrees_wall = angle_in_radians_wall * (180/3.1415);
-				//console.log('angle wall: ' + angle_in_degrees_wall);
+				console.log('angle wall: ' + angle_in_degrees_wall);
 
 	   
 
