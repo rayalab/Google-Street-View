@@ -120,10 +120,10 @@ function nombre ($i) {
 function ico ($i) {
   global $r;
   switch($i) {
-    case 1: return "orange-dot"; break;
-    case 2: return "yellow-dot"; break;
+    case 1: return "green-dot"; break;
+    case 2: return "orange-dot"; break;
     case 3: return "purple-dot"; break;
-    case 4: return "green-dot"; break;
+    case 4: return "blue-dot"; break;
     default: return "red-dot"; break;
   }  
 }
@@ -222,11 +222,6 @@ google.maps.event.addDomListener(window, 'load', initialize);
   <input name="f_1_lat" id="f_1_lat" value="<?php printf($r['latitude']); ?>">,
   <input name="f_1_lng" id="f_1_lng" value="<?php printf($r['longitude']); ?>"><br><br>
   
-  <img style="float:left" width="20" src="http://www.google.com/intl/en_us/mapfiles/ms/micons/<?php printf(ico(2)); ?>.png">
-  pista#1:
-  <input name="f_2_lat" id="f_2_lat" value="<?php printf($r['default_clue_latitude']); ?>">,
-  <input name="f_2_lng" id="f_2_lng" value="<?php printf($r['default_clue_longitude']); ?>"><br><br>
-  
   <img style="float:left" width="20" src="http://www.google.com/intl/en_us/mapfiles/ms/micons/<?php printf(ico(3)); ?>.png">
   line:
   <input name="f_3_lat" id="f_3_lat" value="<?php printf($r['latitude_line']); ?>">,
@@ -235,33 +230,37 @@ google.maps.event.addDomListener(window, 'load', initialize);
   <img style="float:left" width="20" src="http://www.google.com/intl/en_us/mapfiles/ms/micons/<?php printf(ico(4)); ?>.png">
   wall:
   <input name="f_4_lat" id="f_4_lat" value="<?php printf($r['latitude_wall_line']); ?>">,
-  <input name="f_4_lng" id="f_4_lng" value="<?php printf($r['longitude_wall_line']); ?>"><br>
+  <input name="f_4_lng" id="f_4_lng" value="<?php printf($r['longitude_wall_line']); ?>"><br><br>
 
+  <img style="float:left" width="20" src="http://www.google.com/intl/en_us/mapfiles/ms/micons/<?php printf(ico(2)); ?>.png">
+  pista#1:
+  <input name="f_2_lat" id="f_2_lat" value="<?php printf($r['default_clue_latitude']); ?>">,
+  <input name="f_2_lng" id="f_2_lng" value="<?php printf($r['default_clue_longitude']); ?>"><br><br>
   <!-- clues -->  
 
   <img style="float:left" width="20" src="http://www.google.com/intl/en_us/mapfiles/ms/micons/<?php printf(ico(5)); ?>.png">
   pista#2:
   <input type="hidden" name="clues_ids_2" value="<?php printf($p[2]['id']); ?>">
   <input name="p_2_lat" id="p_2_lat" value="<?php printf($p[2]['latitude']); ?>">,
-  <input name="p_2_lng" id="p_2_lng" value="<?php printf($p[2]['longitude']); ?>"><br>
+  <input name="p_2_lng" id="p_2_lng" value="<?php printf($p[2]['longitude']); ?>"><br><br>
   
   <img style="float:left" width="20" src="http://www.google.com/intl/en_us/mapfiles/ms/micons/<?php printf(ico(5)); ?>.png">
   pista#3:
   <input type="hidden" name="clues_ids_3" value="<?php printf($p[3]['id']); ?>">
   <input name="p_3_lat" id="p_3_lat" value="<?php printf($p[3]['latitude']); ?>">,
-  <input name="p_3_lng" id="p_3_lng" value="<?php printf($p[3]['longitude']); ?>"><br>
+  <input name="p_3_lng" id="p_3_lng" value="<?php printf($p[3]['longitude']); ?>"><br><br>
   
   <img style="float:left" width="20" src="http://www.google.com/intl/en_us/mapfiles/ms/micons/<?php printf(ico(5)); ?>.png">
   pista#4:
   <input type="hidden" name="clues_ids_4" value="<?php printf($p[4]['id']); ?>">
   <input name="p_4_lat" id="p_4_lat" value="<?php printf($p[4]['latitude']); ?>">,
-  <input name="p_4_lng" id="p_4_lng" value="<?php printf($p[4]['longitude']); ?>"><br>
+  <input name="p_4_lng" id="p_4_lng" value="<?php printf($p[4]['longitude']); ?>"><br><br>
   
   <img style="float:left" width="20" src="http://www.google.com/intl/en_us/mapfiles/ms/micons/<?php printf(ico(5)); ?>.png">
   pista#5:
   <input type="hidden" name="clues_ids_5" value="<?php printf($p[5]['id']); ?>">
   <input name="p_5_lat" id="p_5_lat" value="<?php printf($p[5]['latitude']); ?>">,
-  <input name="p_5_lng" id="p_5_lng" value="<?php printf($p[5]['longitude']); ?>"><br>
+  <input name="p_5_lng" id="p_5_lng" value="<?php printf($p[5]['longitude']); ?>"><br><br>
   
   <img style="float:left" width="20" src="http://www.google.com/intl/en_us/mapfiles/ms/micons/<?php printf(ico(5)); ?>.png">
   pista#6:
