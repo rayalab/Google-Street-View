@@ -29,13 +29,13 @@
 	 <!-- Modal Structure -->
 	  <div id="modal1" class="modal">
 		<div class="modal-content">
-		  <h4>Modal Header</h4>
+		  <h4>{{title}}</h4>
         </div>
-                <div class="modal-body">
-            <input type="text" ng-model="form.testField">
+        <div class="modal-body">
+         	<p>{{description}}</p>
         </div>
         <div class="modal-footer">
-          <a ng-click="goStreet(category)" class=" modal-action modal-close waves-effect waves-green btn-flat">Agree</a>
+          <a ng-click="nextClue(category, obj)" class=" modal-action modal-close waves-effect waves-green btn-flat">Ir a las pistas</a>
         </div>
       </div>
 
