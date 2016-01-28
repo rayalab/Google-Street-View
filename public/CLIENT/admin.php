@@ -7,8 +7,6 @@
 <button onclick="location='?zona=3'">Las Condes</button>
 <button onclick="location='?zona=2'">Maipu</button>
 <button onclick="location='?zona=1'">La Florida</button>
-<button onclick="verCiudad()'">ciudad</button>
-<button onclick="verPista()'">pista</button>
 <?php
 $m = is_dir("/etc")?new mysqli("localhost","forge","forge","forge"):new mysqli("localhost","RICHI","forge","forge");
 if (!$_GET['zona']) die;
@@ -86,8 +84,10 @@ function initialize() {
     mapTypeId: google.maps.MapTypeId.ROADMAP
   });
 
-  var positions=[];
-  var markers=[];
+  var positionsGeneral=[];
+  var positionsClues=[];
+  var markersGeneral=[];
+  var markersClues=[];
 <?php 
 function getLat ($i) {
   global $r;
@@ -132,21 +132,21 @@ function ico ($i) {
 //POSICIONES GENERALES
 for($i=1; $i<5; $i++) { ?>
   id=<?php printf($i); ?>;
-  positions[id] = new google.maps.LatLng(<?php printf('%s,%s', getLat($i), getLng($i)); ?>);
-  markers[id] = new google.maps.Marker({
-    position: positions[id],
+  positionsGeneral[id] = new google.maps.LatLng(<?php printf('%s,%s', getLat($i), getLng($i)); ?>);
+  markersGeneral[id] = new google.maps.Marker({
+    position: positionsGeneral[id],
     title: 'Punto <?php echo nombre($i); ?>',
     map: map,
     draggable: true,
     icon: 'http://www.google.com/intl/en_us/mapfiles/ms/micons/<?php printf(ico($i)); ?>.png'
   });
-  updateMarkerPosition(positions[id]);
-  geocodePosition(positions[id]);
-  google.maps.event.addListener(markers[id], 'drag', function() {
-    updateMarkerPosition(markers[<?php printf($i); ?>].getPosition());
+  updateMarkerPosition(positionsGeneral[id]);
+  geocodePosition(positionsGeneral[id]);
+  google.maps.event.addListener(markersGeneral[id], 'drag', function() {
+    updateMarkerPosition(markersGeneral[<?php printf($i); ?>].getPosition());
   });
-  google.maps.event.addListener(markers[id], 'dragend', function() {
-    pos=markers[<?php printf($i); ?>].getPosition();
+  google.maps.event.addListener(markersGeneral[id], 'dragend', function() {
+    pos=markersGeneral[<?php printf($i); ?>].getPosition();
     geocodePosition(pos);
     f_<?php printf($i); ?>_lat.value=pos.lat();
     f_<?php printf($i); ?>_lng.value=pos.lng();
@@ -157,21 +157,21 @@ for($i=1; $i<5; $i++) { ?>
 //PISTAS SECUNDARIAS
 for($i=2; $i<7; $i++) { ?>
   id=<?php printf($i); ?>;
-  positions[id] = new google.maps.LatLng(<?php printf('%s,%s', $p[$i]['latitude'], $p[$i]['longitude']); ?>);
-  markers[id] = new google.maps.Marker({
-    position: positions[id],
+  positionsClues[id] = new google.maps.LatLng(<?php printf('%s,%s', $p[$i]['latitude'], $p[$i]['longitude']); ?>);
+  markersClues[id] = new google.maps.Marker({
+    position: positionsClues[id],
     title: 'Pista <?php echo $i; ?>',
     map: map,
     draggable: true,
     icon: 'http://www.google.com/intl/en_us/mapfiles/ms/micons/<?php printf(ico(6)); ?>.png'
   });
-  updateMarkerPosition(positions[id]);
-  geocodePosition(positions[id]);
-  google.maps.event.addListener(markers[id], 'drag', function() {
-    updateMarkerPosition(markers[<?php printf($i); ?>].getPosition());
+  updateMarkerPosition(positionsClues[id]);
+  geocodePosition(positionsClues[id]);
+  google.maps.event.addListener(markersClues[id], 'drag', function() {
+    updateMarkerPosition(markersClues[<?php printf($i); ?>].getPosition());
   });
-  google.maps.event.addListener(markers[id], 'dragend', function() {
-    pos=markers[<?php printf($i); ?>].getPosition();
+  google.maps.event.addListener(markersClues[id], 'dragend', function() {
+    pos=markersClues[<?php printf($i); ?>].getPosition();
     geocodePosition(pos);
     p_<?php printf($i); ?>_lat.value=pos.lat();
     p_<?php printf($i); ?>_lng.value=pos.lng();
@@ -202,7 +202,6 @@ google.maps.event.addDomListener(window, 'load', initialize);
   }
   #form {
     margin-top:160px;
-    border:1px solid;
   }
   </style>
   
@@ -211,7 +210,7 @@ google.maps.event.addDomListener(window, 'load', initialize);
     <b>Posición:</b>
     <div id="info"></div>
     <b>Dirección:</b>
-    <div id="address"></div>
+    <div id="address" style="font-size:10px"></div>
   </div>
   <div id="form">
   <form method="post">
@@ -222,6 +221,11 @@ google.maps.event.addDomListener(window, 'load', initialize);
   <input name="f_1_lat" id="f_1_lat" value="<?php printf($r['latitude']); ?>">,
   <input name="f_1_lng" id="f_1_lng" value="<?php printf($r['longitude']); ?>"><br><br>
   
+  <img style="float:left" width="20" src="http://www.google.com/intl/en_us/mapfiles/ms/micons/<?php printf(ico(2)); ?>.png">
+  pista#1:
+  <input name="f_2_lat" id="f_2_lat" value="<?php printf($r['default_clue_latitude']); ?>">,
+  <input name="f_2_lng" id="f_2_lng" value="<?php printf($r['default_clue_longitude']); ?>"><br><br>
+
   <img style="float:left" width="20" src="http://www.google.com/intl/en_us/mapfiles/ms/micons/<?php printf(ico(3)); ?>.png">
   line:
   <input name="f_3_lat" id="f_3_lat" value="<?php printf($r['latitude_line']); ?>">,
@@ -232,10 +236,6 @@ google.maps.event.addDomListener(window, 'load', initialize);
   <input name="f_4_lat" id="f_4_lat" value="<?php printf($r['latitude_wall_line']); ?>">,
   <input name="f_4_lng" id="f_4_lng" value="<?php printf($r['longitude_wall_line']); ?>"><br><br>
 
-  <img style="float:left" width="20" src="http://www.google.com/intl/en_us/mapfiles/ms/micons/<?php printf(ico(2)); ?>.png">
-  pista#1:
-  <input name="f_2_lat" id="f_2_lat" value="<?php printf($r['default_clue_latitude']); ?>">,
-  <input name="f_2_lng" id="f_2_lng" value="<?php printf($r['default_clue_longitude']); ?>"><br><br>
   <!-- clues -->  
 
   <img style="float:left" width="20" src="http://www.google.com/intl/en_us/mapfiles/ms/micons/<?php printf(ico(5)); ?>.png">
