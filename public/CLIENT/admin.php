@@ -60,9 +60,9 @@ function updateMarkerAddress(str) {
 }
 
 function initialize() {
-  var latLng = new google.maps.LatLng(<?php printf($r['latitude']); ?>, <?php printf($r['longitude']); ?>);
+  var latLng = new google.maps.LatLng(<?php printf($r['default_clue_latitude']); ?>, <?php printf($r['default_clue_longitude']); ?>);
   var map = new google.maps.Map(document.getElementById('mapCanvas'), {
-    zoom: 14,
+    zoom: 18,
     center: latLng,
     mapTypeId: google.maps.MapTypeId.ROADMAP
   });
@@ -102,9 +102,9 @@ function ico ($i) {
   global $r;
   switch($i) {
     case 1: return "orange-dot"; break;
-    case 2: return "pink-dot"; break;
+    case 2: return "yellow-dot"; break;
     case 3: return "purple-dot"; break;
-    case 4: return "yellow-dot"; break;
+    case 4: return "green-dot"; break;
   }  
 }
 
