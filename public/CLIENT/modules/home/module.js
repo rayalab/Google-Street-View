@@ -202,10 +202,11 @@ angular.module('app')
 		// controls can be hidden here to prevent the position being changed by the user
 		var l_panOptions =
 		{	
-	    	linksControl: false,
+	    	linksControl: true,
 	        panControl: false,
-	        enableCloseButton: false,
 			zoomControl: false,
+			addressControl: false,
+			disableDefaultUI: true
 		};
 
 		l_panOptions.position = $scope.currentZone.posPersona;
