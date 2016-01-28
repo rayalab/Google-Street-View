@@ -30,37 +30,66 @@ angular.module('app')
 	$scope.lng_wall_line =  0;
 	$scope.currentPoster = {};
 	$scope.mode='map';
-
+	$scope.testField = "";
 	$scope.obj = [];
-	$scope.titleClue = "";
 	$scope.streetPt = new google.maps.LatLng(-33.44560, -70.66033);
 
 
-	$scope.goStreet = function(scope) {
+	$scope.nextClue = function(category, obj) {
 
-		console.log(scope);
 		for (var i=0; i<$scope.gmarkers.length; i++) {
           if ($scope.gmarkers[i].mycategory == category) {
             $scope.gmarkers[i].setVisible(false);
           }
         }
 
-		$scope.marker = new google.maps.Marker({
-	            position: new google.maps.LatLng($scope.obj.second_clue_latitude, $scope.obj.second_clue_longitude),
-	            map: $scope.map,
-	            title : $scope.obj.second_clue_title,
-	            icon: 'bundles/img/beachflag.png',
-	            visible:true,
-	            draggable: false
-	      });
+		$clue.getByPosterId(obj.poster_id).then(function(result){
+			var response = JSON.parse(JSON.stringify(result.data));
+			$scope.map.setCenter(new google.maps.LatLng(obj.default_clue_latitude, obj.default_clue_longitude));
+			$scope.map.setZoom($scope.zoom + 4);
+			angular.forEach(response, function(item) {
+
+					console.log("latitude : "+ item.latitude);
+					console.log("longitude : "+ item.longitude);
+
+
+					var newClue;
+					var firtsCategory = "second_clue";
+
+					//PONER PISTA
+					newClue = new google.maps.Marker({
+						position: new google.maps.LatLng(item.latitude, item.longitude),
+						map: $scope.map,
+						icon: 'bundles/img/beachflag.png',
+						visible:true,
+						draggable: false
+					});
+
+					newClue.mycategory = firtsCategory;
+
+					//$scope.gmarkers.push(newClue);
+
+					newClue.addListener('click', function() {
+						console.log('setting current poster to ',$scope.currentPoster);
+
+						//$scope.clickClue(item, firtsCategory);
+						/*$scope.m_initPanorama();*/
+					});
+				});
+		});	
+
+
 	};
 
-	$scope.clickClue = function(obj) {
-		console.log(obj.default_clue_title);
-		$scope.titleCluee = obj.default_clue_title;
-		if($scope.titleCluee == obj.default_clue_title){
-		   $('#modal1').openModal();
-		}
+
+	$scope.clickClue = function(item, firtsCategory) {
+		$scope.title = item.default_clue_title;
+		$scope.description = item.default_clue_description;
+		$scope.category = firtsCategory;
+		$scope.obj      = item;
+		$scope.$apply();
+	   $('#modal1').openModal();
+		
 	};
 
 
@@ -96,7 +125,7 @@ angular.module('app')
 		$scope.posters = [];
 		angular.forEach($scope.aryPoster, function(item) {
 			var newFlag;
-			console.log(item);
+			var firtsCategory = "firts_clue";
 
 			//PONER BANDERA
 			newFlag = new google.maps.Marker({
@@ -107,17 +136,16 @@ angular.module('app')
 				visible:true,
 				draggable: false
 			});
-			newFlag.mycategory = "firts";
-			$scope.gmarkers.push($scope.marker);
+			newFlag.mycategory = firtsCategory;
+
+			$scope.gmarkers.push(newFlag);
 
 			newFlag.addListener('click', function() {
 				console.log('setting current poster to ',item);
-				var longtude = item.default_clue_latitude;
-				var latitude = item.default_clue_longitude;
 				$scope.currentPoster = item;
-				$scope.map.setCenter(new google.maps.LatLng(item.default_clue_latitude, item.default_clue_longitude));
-				$scope.map.setZoom($scope.zoom + 4);
-				$scope.m_initPanorama();
+				console.log(item);
+				$scope.clickClue(item, firtsCategory);
+				/*$scope.m_initPanorama();*/
 			});
 
 			newFlag.addListener($scope.map,'zoom_changed',function () {
