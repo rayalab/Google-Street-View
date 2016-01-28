@@ -70,8 +70,8 @@ angular.module('app')
 					//$scope.gmarkers.push(newClue);
 
 					newClue.addListener('click', function() {
-						console.log('setting current poster to ',$scope.currentPoster);
-
+						console.log('setting current poster top ',$scope.currentPoster);
+						$scope.m_initPanorama(item.latitude, item.longitude);
 						//$scope.clickClue(item, firtsCategory);
 						/*$scope.m_initPanorama();*/
 					});
@@ -164,13 +164,14 @@ angular.module('app')
 	 * 
 	 * @return {[type]} [description]
 	 */
-	$scope.m_initPanorama = function (){
+	$scope.m_initPanorama = function (clue_latitude, clue_longitude){
 		var visible = false;
 		var l_panDiv = document.getElementById("panDiv");
 		$scope.mode = 'street';
 		$scope.$apply();
 
-
+		$scope.currentZone.default_clue_latitude = clue_latitude;
+		$scope.currentZone.default_clue_longitude = clue_longitude;
 		//SITUAR PERSONA Y COLOCAR POSTER
 		$scope.currentZone.posPersona = new google.maps.LatLng($scope.currentZone.default_clue_latitude, $scope.currentZone.default_clue_longitude);
 		$scope.currentZone.posPoster = new google.maps.LatLng($scope.currentZone.latitude,$scope.currentZone.longitude);
@@ -193,14 +194,16 @@ angular.module('app')
 
 		// controls can be hidden here to prevent the position being changed by the user
 		var l_panOptions =
-		{
-			// zoomControl: false,
-			// linksControl: false
+		{	
+	    	linksControl: false,
+	        panControl: false,
+	        enableCloseButton: false,
+			zoomControl: false,
 		};
 
 		l_panOptions.position = $scope.currentZone.posPersona;
 		l_panOptions.pov =
-		{
+		{	
 			heading: $scope.sheading,
 			pitch: $scope.spitch,
 			zoom: $scope.szoom
