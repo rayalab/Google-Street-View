@@ -56,7 +56,8 @@ class PosterController extends Controller
      */
     public function show($id)
     {
-        //
+        $Poster = Poster::Where('poster_id', $id)->get();
+        return response()->json($Poster);
     }
 
     /**
