@@ -110,8 +110,8 @@ angular.module('app')
 		{
 			center: $scope.map,
 			zoom: $scope.zoom,
-			mapTypeId: google.maps.MapTypeId.ROADMAP,
-			scaleControl: true,
+			mapTypeId: google.maps.MapTypeId.HYBRID,
+			scaleControl: false,
 			scrollwheel: false,
 			draggable: false,
 			disableDefaultUI: true,
