@@ -200,8 +200,7 @@ angular.module('app')
 	    	linksControl: true,
 	        panControl: false,
 			zoomControl: false,
-			addressControl: false,
-			disableDefaultUI: true
+			addressControl: false
 		};
 
 		l_panOptions.position = $scope.currentZone.posPersona;
