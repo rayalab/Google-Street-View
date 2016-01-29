@@ -24,6 +24,7 @@ angular.module('app', [
 	'oauthFacebookService',
 	'posterService',
 	'clueService',
+	'sprintfService',
 	'autoMenu',
 	'materialize'
 ])

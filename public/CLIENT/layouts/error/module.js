@@ -5,12 +5,12 @@ angular.module('layouts').config(['$stateProvider', function ($stateProvider) {
         .state('error', {
             abstract: true,
             url: '/error',
-            templateUrl: '/layouts/error/layout.html',
+            templateUrl: 'layouts/error/layout.html',
         })
         .state('error.number', {
             url: '/:number',
             templateUrl: function (stateParams) {
-                return '/layouts/error/views/' + stateParams.number + '.html';
+                return 'layouts/error/views/' + stateParams.number + '.html';
             }
         });
 
