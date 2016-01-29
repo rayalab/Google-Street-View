@@ -65,7 +65,8 @@ $scope.initialize = function() {
   //POSICIONES GENERALES
   for(var i=1; i<5; i++) {
 	id=i;
-	$scope.positionsGeneral[id] = new google.maps.LatLng(sprintf('%s,%s', $scope.getLat(i), $scope.getLng(i)));
+	console.log('agregando pa mostrar')
+	$scope.positionsGeneral[id] = { lat: parseFloat($scope.getLat(i)), lng: parseFloat($scope.getLng(i)) };
 	$scope.markersGeneral[id] = new google.maps.Marker({
 	  position: $scope.positionsGeneral[id],
 	  title: 'Punto <?php echo nombre(i); ?>',
@@ -89,7 +90,7 @@ $scope.initialize = function() {
   //PISTAS SECUNDARIAS
   for(i=2; i<7; i++) {
 	id=i;
-	$scope.positionsClues[id] = new google.maps.LatLng(sprintf('%s,%s', $scope.getLat(i), $scope.getLng(i)));
+	$scope.positionsGeneral[id] = { lat: parseFloat($scope.getLat(i)), lng: parseFloat($scope.getLng(i)) };
 	$scope.markersClues[id] = new google.maps.Marker({
 	  position: $scope.positionsClues[id],
 	  title: 'Pista <?php echo i; ?>',
