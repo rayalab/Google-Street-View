@@ -4,10 +4,10 @@ angular.module("clueService", [])
 
       return {
         getAll: function() {
-                return $http.get('/cluePoster').success(function(data) { return data; });
+                return $http.get('http://gsv.com:8000/cluePoster').success(function(data) { return data; });
         },
         getByPosterId: function(Obj) {
-                return $http.get('/cluePoster/'+Obj+'').success(function(data) { return data; });
+                return $http.get('http://gsv.com:8000/cluePoster/'+Obj+'').success(function(data) { return data; });
         }
       };
 

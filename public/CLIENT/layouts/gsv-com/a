@@ -4,7 +4,7 @@ angular.module('layouts')
 
     function getLayoutHandler(){
 
-        var layoutName = 'default';
+        var layoutName = 'gsv-cl';
         var hostname = window.location.hostname;
 
         function checkIsIPV4(entry) {
