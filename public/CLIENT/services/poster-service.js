@@ -4,10 +4,10 @@ angular.module("posterService", [])
 
       return {
         getAll: function() {
-                return $http.get('/poster').success(function(data) { return data; });
+                return $http.get('http://'+$location.$$host+':8000/poster').success(function(data) { return data; });
         },
         getById: function(Obj) {
-                return $http.get('/poster/'+Obj+'').success(function(data) { return data; });
+                return $http.get('http://'+$location.$$host+':8000/poster/'+Obj+'').success(function(data) { return data; });
         }
       };
 
