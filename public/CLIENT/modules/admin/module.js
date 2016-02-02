@@ -20,7 +20,7 @@ angular.module('app')
 })
 
 
-.controller('admin.index', function adminIndex($scope, $flash, LoopBackAuth, Client, sprintf, $poster, $stateParams) {
+.controller('admin.index', function adminIndex($scope, $flash, LoopBackAuth, Client, sprintf, $poster, $stateParams, $clue) {
 
 
 $scope.geocoder = new google.maps.Geocoder();
@@ -60,15 +60,17 @@ $scope.initialize = function() {
   $scope.positionsClues=[];
   $scope.markersGeneral=[];
   $scope.markersClues=[];
+  $scope.clues=[];
 
 
   //POSICIONES GENERALES
   for(var i=1; i<5; i++) {
 	id=i;
-	$scope.positionsGeneral[id] = new google.maps.LatLng(sprintf('%s,%s', $scope.getLat(i), $scope.getLng(i)));
+	console.log('agregando pa mostrar')
+	$scope.positionsGeneral[id] = { lat: parseFloat($scope.getLat(i)), lng: parseFloat($scope.getLng(i)) };
 	$scope.markersGeneral[id] = new google.maps.Marker({
 	  position: $scope.positionsGeneral[id],
-	  title: 'Punto <?php echo nombre(i); ?>',
+	  title: 'Punto '+i,
 	  map: $scope.map,
 	  draggable: true,
 	  icon: 'http://www.google.com/intl/en_us/mapfiles/ms/micons/'+$scope.ico(i)+'.png'
@@ -76,23 +78,23 @@ $scope.initialize = function() {
 	$scope.updateMarkerPosition($scope.positionsGeneral[id]);
 	$scope.geocodePosition($scope.positionsGeneral[id]);
 	google.maps.event.addListener($scope.markersGeneral[id], 'drag', function() {
-	  $scope.updateMarkerPosition($scope.markersGeneral[i].getPosition());
+	  $scope.updateMarkerPosition($scope.markersGeneral[id].getPosition());
 	});
 	google.maps.event.addListener($scope.markersGeneral[id], 'dragend', function() {
-	  $scope.pos=$scope.markersGeneral[i].getPosition();
-	  $scope.geocodePosition(pos);
-	  $scope.f[i].lat=pos.lat();
-	  $scope.f[i].lng=pos.lng();
+	  $scope.pos=$scope.markersGeneral[id].getPosition();
+	  $scope.geocodePosition($scope.pos);
+	  $scope.zone[$scope.getVar(i)].lat=$scope.pos.lat();
+	  $scope.zone[$scope.getVar(i)].lng=$scope.pos.lng();
 	});
   }
 
   //PISTAS SECUNDARIAS
   for(i=2; i<7; i++) {
 	id=i;
-	$scope.positionsClues[id] = new google.maps.LatLng(sprintf('%s,%s', $scope.getLat(i), $scope.getLng(i)));
+	$scope.positionsClues[id] = { lat: parseFloat($scope.getLat(i)), lng: parseFloat($scope.getLng(i)) };
 	$scope.markersClues[id] = new google.maps.Marker({
 	  position: $scope.positionsClues[id],
-	  title: 'Pista <?php echo i; ?>',
+	  title: 'Pista '+i,
 	  map: $scope.map,
 	  draggable: true,
 	  icon: 'http://www.google.com/intl/en_us/mapfiles/ms/micons/'+$scope.ico(6)+'.png'
@@ -100,17 +102,31 @@ $scope.initialize = function() {
 	$scope.updateMarkerPosition($scope.positionsClues[id]);
 	$scope.geocodePosition($scope.positionsClues[id]);
 	google.maps.event.addListener($scope.markersClues[id], 'drag', function() {
-	  $scope.updateMarkerPosition($scope.markersClues[i].getPosition());
+	  $scope.updateMarkerPosition($scope.markersClues[id].getPosition());
 	});
-	google.maps.event.addListener($scope.markersClues[id], 'dragend', function() {
-	  $scope.pos=$scope.markersClues[i].getPosition();
-	  $scope.geocodePosition(pos);
-	  $scope.f[i].lat=pos.lat();
-	  $scope.f[i].lng=pos.lng();
-	});
+	
+	(function(id, $scope){
+		google.maps.event.addListener($scope.markersClues[id], 'dragend', function() {
+	  	  $scope.$apply();
+		  pos=$scope.markersClues[id].getPosition();
+		  $scope.geocodePosition(pos);
+		  console.log(id, $scope.clues)
+		  $scope.clues[id].lat=pos.lat();
+		  $scope.clues[id].lng=pos.lng();
+		});
+		
+	})(id, $scope)
   }
 }
 
+$scope.getVar = function (i) {
+  switch(i) {
+	case 1: return 'latitude'; break;
+	case 2: return 'default_clue_latitude'; break;
+	case 3: return 'latitude_line'; break;
+	case 4: return 'latitude_wall_line'; break;
+  }
+}
 $scope.getLat = function (i) {
   switch(i) {
 	case 1: return $scope.zone.latitude; break;
@@ -152,7 +168,19 @@ $poster.getById(1).then(function(result){
 	var response = JSON.parse(JSON.stringify(result.data));
 	$scope.zone = response[0];
 	google.maps.event.addDomListener(window, 'load', $scope.initialize);
+
+	//guardar lista de posters
+	(function($scope){
+		$clue.getByPosterId($scope.zone.poster_id).then(function(result){
+			var response = JSON.parse(JSON.stringify(result.data));
+			console.log('finito',response);
+			$scope.clues = response;
+		});			
+	})($scope);
+
 });	
+
+
 
 
 
