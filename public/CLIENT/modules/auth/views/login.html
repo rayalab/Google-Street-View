@@ -1,31 +1,7 @@
-<div style="border:1px solid; background:#FFF700; padding:10px;text-align:center;display:none" id="errmsg">Error</div>
 <div class="row">
-	<div class="col s12" ng-if="!currentUser">
-		<h5>Inicio de sesión</h5>
-		<form id="login">
-			<div class="input-field">
-				<input type="text" id="username" name="username" ng-model="userData.username" class="validate">
-				<label for="username">Usuario</label>
-			</div>
-			<div class="input-field">
-				<input type="password" id="password" name="password" ng-model="userData.password" class="validate">
-				<label for="password">Contraseña</label>
-			</div>
-			<div class="input-field">
-				<!-- <input type="submit" value="Ingresar" class="btn waves-effect waves-light"> -->
-				<materialize-link ng-click="sendPost()" icon="" label="Ingresar" ></materialize-link>
-				<materialize-link href="/auth/google" icon="" label="Ingresar usando Google+" ></materialize-link>
-			</div>
-		</form>
-	</div>
-	<div class="col s12" ng-if="currentUser">
-		<br/>
-		<h5>User logged:</h5>
-		<pre>ID: {{currentUser}}</pre>
-		<pre>Token: {{currentToken}}</pre>
-		<hr/>
-		<div class="input-field">
-			<a class="btn waves-effect waves-light" href="#/auth/logout" >Salir</a>
-		</div>
-	</div>
+    <br/><br/><br/>
+    <div class="col-md-8 col-md-offset-2 text-center">
+        <img src="bundles/img/intro.png" class="img-responsive">
+        <a class="waves-effect waves-light btn facebook" href="#" ng-click="sendPost()"><i class="fa fa-facebook-official"></i> Facebook</a>
+    </div>
 </div>

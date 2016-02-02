@@ -1,10 +1,22 @@
+/** 
+* Configure app
+*/
+angular.module('config', [])
+.constant('config', {
+	developerMode: true,
+	appName: "Google Street View",
+	appVersion: "1.0",
+});
+
+
 /**
  * Initialize main layouts
  */
 angular.module('layouts', [
 	'ui.router',
 	'flashMessage',
-	'layoutHandler'
+	'layoutHandler',
+	'config'
 ]);
 
 /**
@@ -17,6 +29,7 @@ angular.module('ngEnter', []);
  */
 angular.module('app', [
 	'ngEnter',
+	'config',
 	'layouts',
 	'ngResource',
 	'lbServices',

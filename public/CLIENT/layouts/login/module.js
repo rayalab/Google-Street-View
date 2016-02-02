@@ -4,7 +4,7 @@ angular.module('layouts')
  
     function getLayoutHandler() {
  
-        var layoutName = 'default';
+        var layoutName = 'login';
  
         function checkIsIPV4(entry) {
             var blocks = entry.split(".");
@@ -31,7 +31,7 @@ angular.module('layouts')
  
     }
  
-    var urlRoute = '/';
+    var urlRoute = '/login';
     // var layoutName = $layoutHandlet.getLayout();
     var layoutName = getLayoutHandler();
  
@@ -49,11 +49,11 @@ angular.module('layouts')
                     value: layoutName
                 },
                 provider: {
-                    value: 'home',
+                    value: 'auth',
                     squash: true
                 },
                 methodName: {
-                    value: 'index',
+                    value: 'login',
                     squash: true
                 },
                 opt1: {
@@ -80,6 +80,6 @@ angular.module('layouts')
  
 }])
  
-.controller("layout.default", function layoutDefault($rootScope) {
-    $rootScope.layoutName = 'default';
+.controller("layout.login", function layoutDefault($rootScope) {
+    $rootScope.layoutName = 'login';
 });

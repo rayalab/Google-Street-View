@@ -365,7 +365,7 @@ angular.module('app')
 				l_markerDiv.style.display = $scope.distance_to_street_reference < $scope.maximumDistance ? "block" : "none";
 				// glog("distance = " + Math.floor(this.distance) + " m (" + l_markerDiv.style.display + ") distance scale = " + l_distanceScale + " l_adjustedZoom = " + l_adjustedZoom);
 
-				document.getElementById("markerInfo").innerHTML = "lat: " + $scope.formatFloat($scope.currentZone.posPersona.lat(), 6) + " lng: " + $scope.formatFloat($scope.currentZone.posPersona.lng(), 6) + " distance: " + Math.floor($scope.distance) + " m";
+				//document.getElementById("markerInfo").innerHTML = "lat: " + $scope.formatFloat($scope.currentZone.posPersona.lat(), 6) + " lng: " + $scope.formatFloat($scope.currentZone.posPersona.lng(), 6) + " distance: " + Math.floor($scope.distance) + " m";
 			}
 	}
 
