@@ -318,7 +318,7 @@
     overflow: hidden;
 }
 
-.googlemap #div_main_map {
+.googlemap iframe {
     position: absolute;
     top: 0;
     left: 0;
