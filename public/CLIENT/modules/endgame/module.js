@@ -12,7 +12,12 @@ angular.module('app')
 
 	 };
 
+ 	$scope.init = function() {
+ 		$('#squarespaceModal').openModal();
+	};
 
+	
+	$scope.init();
 
 	 
 })
