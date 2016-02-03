@@ -1,6 +1,6 @@
 angular.module('app')
 
-.controller('endgame.index', function endgameIndex($stateParams, $flash, $scope) {
+.controller('endgame.index', function endgameIndex($stateParams, $flash, $scope, $rootScope) {
 	 $scope.user = {
 	 	name : "",
 	 	last_name : "",
@@ -13,7 +13,9 @@ angular.module('app')
 	 };
 
  	$scope.init = function() {
- 		$('#squarespaceModal').openModal();
+ 		if($rootScope.reloadHeader()){
+ 			console.log("Hola");
+ 		}
 	};
 
 	
