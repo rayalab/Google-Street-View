@@ -6,10 +6,8 @@ use Illuminate\Http\Request;
 
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
-use App\UserPoster;
-use App\Poster;
 
-class UserPosterController extends Controller
+class PosterImage extends Controller
 {
 
     public function __construct(){
@@ -23,8 +21,7 @@ class UserPosterController extends Controller
      */
     public function index()
     {
-        $poster = Poster::where('poster_id', 1)->value('image_default');
-        return $poster;
+        //
     }
 
     /**
@@ -45,17 +42,7 @@ class UserPosterController extends Controller
      */
     public function store(Request $request)
     {
-        $req = $request->all();
-
-        $userPoster = new UserPoster();
-        $userPoster->user_id = $req["user_id"];
-        $userPoster->game_id = $req["game_id"];
-        $userPoster->poster_id = $req["poster_id"];
-        $userPoster->save();
-
-        $poster = Poster::where('poster_id', $req["poster_id"])->value('image_default');
-
-        return response()->json(array('userPoster' => $userPoster, 'poster' => $poster));
+        //
     }
 
     /**

@@ -8,7 +8,10 @@ angular.module("posterService", [])
         },
         getById: function(Obj) {
                 return $http.get('http://'+$location.$$host+':8000/poster/'+Obj+'').success(function(data) { return data; });
-        }
+        },
+        getAllImagesByPosterId: function() {
+                return $http.get('http://'+$location.$$host+':8000/posterImage', aryObj).success(function(data) { return data; });
+        },
       };
 
     }

@@ -15,7 +15,6 @@ angular.module('config', [])
 angular.module('layouts', [
 	'ui.router',
 	'flashMessage',
-	'layoutHandler',
 	'config'
 ]);
 
@@ -32,11 +31,11 @@ angular.module('app', [
 	'config',
 	'layouts',
 	'ngResource',
-	'lbServices',
 	'flashMessage',
 	'oauthFacebookService',
 	'posterService',
 	'clueService',
+	'gamePosterService',
 	'sprintfService',
 	'autoMenu',
 	'materialize'

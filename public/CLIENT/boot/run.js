@@ -1,8 +1,8 @@
 /**
  * First execution, looks for logged user to use in all modules
  */
-angular.module('app').run(['$rootScope', '$state', '$flash', 'User', '$location',
-    function($rootScope, $state, $flash, User, $location) {
+angular.module('app').run(['$rootScope', '$state', '$flash', '$location',
+    function($rootScope, $state, $flash, $location) {
    
         $rootScope.$on('$stateChangeError', function() {
             $state.transitionTo('error.number', { number: 404} );

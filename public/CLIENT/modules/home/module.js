@@ -73,13 +73,9 @@ angular.module('app')
 
 					newClue.mycategory = firtsCategory;
 
-					//$scope.gmarkers.push(newClue);
-
 					newClue.addListener('click', function() {
 						console.log('setting current zone to',$scope.currentZone);
 						$scope.m_initPanorama(item.latitude, item.longitude);
-						//$scope.clickClue(item, firtsCategory);
-						/*$scope.m_initPanorama();*/
 					});
 				});
 		});	
@@ -155,12 +151,8 @@ angular.module('app')
 				$scope.currentZone = item;
 				console.log(item);
 				$scope.clickClue(item, firtsCategory);
-				/*$scope.m_initPanorama();*/
 			});
 
-			newFlag.addListener($scope.map,'zoom_changed',function () {
-				// console.log($scope.map.getZoom());
-			});
 		});
 
 

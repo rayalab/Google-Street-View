@@ -8,7 +8,6 @@ angular.module("oauthFacebookService", [])
 				  if (response.authResponse) {
 				   console.log('Welcome!  Fetching your information.... ');
 				   FB.api('/me', 'get', {fields: 'last_name, name, email, id, gender, picture'}, function(response) {
-				   	console.log(response);
 						 var accessToken = FB.getAuthResponse();
 						 var aryObj = {
 						  full_name   : response.name,

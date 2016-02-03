@@ -22,4 +22,5 @@ Route::get('auth/facebook/callback', 'SocialController@handleProviderCallback');
 Route::resource('user', 'UserController', ['only' => ['index', 'store', 'update', 'destroy', 'show']]);
 Route::resource('poster', 'PosterController', ['only' => ['index', 'store', 'update', 'destroy', 'show']]);
 Route::resource('cluePoster', 'CluePosterController', ['only' => ['index', 'store', 'update', 'destroy', 'show']]);
-Route::resource('userPoster', 'UserPosterController', ['only' => ['index', 'store', 'update', 'destroy', 'show']]);
+Route::resource('gamePoster', 'GamePosterController', ['only' => ['index', 'store', 'update', 'destroy', 'show']]);
+Route::resource('posterImage', 'PosterImageController', ['only' => ['index', 'store', 'update', 'destroy', 'show']]);
