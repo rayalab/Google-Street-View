@@ -1,7 +1,7 @@
 angular.module('layouts')
  
 .config(['$stateProvider', 'config', function ($stateProvider, config) {
- 
+    
     function getLayoutHandler() {
  
         var layoutName = 'default';
@@ -39,7 +39,7 @@ angular.module('layouts')
         .state(layoutName, {
             abstract: true,
             url: urlRoute,
-            templateUrl: '/layouts/' + layoutName + '/layout.html',
+            templateUrl: 'layouts/' + layoutName + '/layout.html',
             controller: 'layout.' + layoutName
         })
         .state(layoutName + '.provider', {
@@ -79,7 +79,6 @@ angular.module('layouts')
         });
  
 }])
- 
 .controller("layout.default", function layoutDefault($rootScope) {
     $rootScope.layoutName = 'default';
 });

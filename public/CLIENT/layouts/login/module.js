@@ -39,7 +39,7 @@ angular.module('layouts')
         .state(layoutName, {
             abstract: true,
             url: urlRoute,
-            templateUrl: '/layouts/' + layoutName + '/layout.html',
+            templateUrl: 'layouts/' + layoutName + '/layout.html',
             controller: 'layout.' + layoutName
         })
         .state(layoutName + '.provider', {
