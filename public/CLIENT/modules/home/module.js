@@ -1,11 +1,16 @@
 angular.module('app')
 
-.controller('home.index', function homeIndex($stateParams, $flash, $scope, $poster, $clue) {
+.controller('home.index', function homeIndex($stateParams, $flash, $scope, $poster, $clue, $location, $oauth) {
 		
 	$scope.full_name = localStorage.full_name;
 	$scope.facebook_id = localStorage.facebook_id;
 	$scope.defaultImage = "http://vignette2.wikia.nocookie.net/guiltycrown/images/6/64/Ejemplo.png/revision/latest?cb=20120305205546&path-prefix=es";
 
+	if (!$scope.full_name) $location.path('/auth/login');
+
+	$scope.logout = function() {
+		$oauth.logout();
+	};
 
 	// calle  -33.39790772, -70.5823195
 	// cartel -33.39775097,-70.58235705

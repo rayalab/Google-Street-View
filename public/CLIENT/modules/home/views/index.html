@@ -29,6 +29,9 @@
                                 </a>
                             </li>
                         </ul>
+                        <div style="width:500px; margin:auto; float:right;padding-top: 15px;text-align: center;">
+                            <p style="color:white">¡Saludos, {{full_name}}! <a href="javascript:void(0)" ng-click="logout()" style="color:gray">(salir)</a></p>
+                        </div>
 
                     </div>
                 </div>
@@ -39,7 +42,7 @@
             <div class="col-md-12 no-pad">
                 <div class="col-md-11 no-pad">
                     <div class="googlemap">
-                        <div id="div_main_map" style="width:1000px; height:800px;" ng-show="mode=='map'" >
+                        <div id="div_main_map" ng-show="mode=='map'" >
                             <div id="trak" style="position:relative;top:0px;left:0px;z-index:1000;cursor:pointer"></div>
                         </div>
 
