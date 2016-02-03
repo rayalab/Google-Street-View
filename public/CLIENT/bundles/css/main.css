@@ -30,7 +30,7 @@
     animation-duration: 1s;
     -webkit-animation-fill-mode: both;
     animation-fill-mode: both;
-    -webkit-animation-name: fadeInDown;
+    -webkit-animation-name: fadeInDown;goo
     animation-name: fadeInDown;
     padding: 0!important;
     background: #500079 !important;
@@ -318,7 +318,7 @@
     overflow: hidden;
 }
 
-.googlemap iframe {
+.googlemap .iframe {
     position: absolute;
     top: 0;
     left: 0;
@@ -330,11 +330,12 @@
 .navbar-fixed-top,
 .navbar-inverse.navbar {
     padding: 7px 10px;
-    background: #000;
+    background: rgba(0, 0, 0, 0.8);
 }
 
 .sidebar-inner {
-    background-color: #500079;
+    background: url(../img/madera-side.png);
+    background-repeat: repeat-x;
     height: 100vh;
 }
 
@@ -365,12 +366,13 @@ body {
     background-size: cover;
 }
 
-.btn-primary.facebook {
-    background: url(../img/login.jpg) no-repeat center center fixed; 
+.facebook {
+    background: #1d39b1;
     border: none;
     border-radius: 0px;
     padding: 7px 30px;
     margin-top: 10px;
+    color: #fff;
 }
 
 .modal-form {
@@ -437,19 +439,25 @@ input[type="checkbox"] {
     border: none;
 }
 
-@font-face {
+
+ul li a {
     font-family: 'Conv_FuturaLT-CondensedBold';
-    src: url('fonts/FuturaLT-CondensedBold.eot');
-    src: local('☺'), url('fonts/FuturaLT-CondensedBold.woff') format('woff'), url('fonts/FuturaLT-CondensedBold.ttf') format('truetype'), url('fonts/FuturaLT-CondensedBold.svg') format('svg');
-    font-weight: normal;
-    font-style: normal;
 }
 
-@font-face {
-    font-family: 'Conv_FuturaLT-Condensed';
-    src: url('fonts/FuturaLT-Condensed.eot');
-    src: local('☺'), url('fonts/FuturaLT-Condensed.woff') format('woff'), url('fonts/FuturaLT-Condensed.ttf') format('truetype'), url('fonts/FuturaLT-Condensed.svg') format('svg');
-    font-weight: normal;
-    font-style: normal;
+.nav li {
+    margin:10px;    
 }
 
+.navbar-inverse .navbar-nav > .active > a, .navbar-inverse .navbar-nav > .active > a:focus, .navbar-inverse .navbar-nav > .active > a:hover {
+    background: transparent;
+    border-bottom: 2px solid #00a596;
+}
+.navbar-inverse {
+    border: none;
+}
+
+.icons {
+    font-family: 'Conv_FuturaLT-CondensedBold';
+    font-size: 14px;
+    text-transform: uppercase;
+}
