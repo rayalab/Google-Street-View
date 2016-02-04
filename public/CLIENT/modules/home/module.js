@@ -106,8 +106,10 @@ angular.module('app')
 	$scope.init = function() {
 
 		if($rootScope.reloadHeader()){
-			$poster.getAll().then(function(result){
+			$poster.getPosterRandom(localStorage.user_id).then(function(result){
+				console.log(result.data);
 				var response = JSON.parse(JSON.stringify(result.data));
+				console.log(response);
 				$scope.aryPoster = response;
 				$scope.main_map_init();
 			});	
