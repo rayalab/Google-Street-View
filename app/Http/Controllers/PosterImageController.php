@@ -6,57 +6,17 @@ use Illuminate\Http\Request;
 
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
-use App\Poster;
-use App\GamePoster;
-use DB;
-class PosterController extends Controller
-{
-    
-    public function __construct(){
 
-        $this->middleware('cors');
-    }
+class PosterImageController extends Controller
+{
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-
-    public function random($id)
-    {
-        $objInPoster = array();
-
-        $gamePoster = GamePoster::where('user_id', $id)->select('poster_id')->get();
-       
-        if($gamePoster->count() > 0){
-
-            foreach ($gamePoster as $key => $value) {
-                array_push($objInPoster, $value->poster_id); 
-            }
-
-            $poster = DB::table('poster')
-            ->whereNotIn('poster_id', $objInPoster)
-            ->orderByRaw('RAND()')
-            ->take(3)
-            ->get();
-
-        }else{
-
-            $poster = DB::table('poster')
-            ->orderByRaw('RAND()')
-            ->take(3)
-            ->get(); 
-        }
-
-      
-
-        return response()->json($poster);
-    }
-
     public function index()
     {
-
-
+        //
     }
 
     /**
@@ -88,8 +48,7 @@ class PosterController extends Controller
      */
     public function show($id)
     {
-        $Poster = Poster::Where('poster_id', $id)->get();
-        return response()->json($Poster);
+        //
     }
 
     /**

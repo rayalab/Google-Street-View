@@ -22,6 +22,7 @@ class CreatePostersTable extends Migration
             $table->string('longitude_wall_line');
             $table->string('latitude_wall_line');
             $table->longText('image_default');
+            $table->longText('pin_default');
             $table->longText('default_clue_latitude');
             $table->longText('default_clue_longitude');
             $table->longText('default_clue_title');
