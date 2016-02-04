@@ -1,0 +1,37 @@
+<!--Navigation -->
+<style>
+    .container {
+        padding-left: 240px;
+    }
+
+    @media only screen and (max-width : 992px) {
+        .container {
+            padding-left: 0;
+        }
+    }
+</style>
+
+<nav style="box-shadow: none;">
+    <a href="#" id="logo-container" class="brand-logo">
+        <img width="100" src="http://www.rayalab.cl/wp-content/uploads/2015/10/normal.png" />
+    </a>
+    <div class="top-nav nav-wrapper amber darken-4">
+        <a data-activates="slide-out" class="button-collapse">
+            <i class="mdi-navigation-menu"></i>
+        </a>
+        <ul class="right">
+            <li ng-if="currentUser"><a class="waves-effect waves-teal" href="/auth/logout">{{currentUserName}} (salir)</a></li>
+            <auto-menu></auto-menu>
+            <li ng-if="!currentUser"><a class="waves-effect waves-teal" href="#auth/signup">Registrarse</a></li>
+            <li ng-if="!currentUser"><a class="waves-effect waves-teal" href="#auth/login">Ingresar</a></li>
+        </ul>
+    </div>
+    <ul id="slide-out" class="side-nav fixed">
+        <li style="text-align: center;width: 240px; padding-top: 30px; padding-bottom: 0px;">
+            <img width="100" src="http://www.rayalab.cl/wp-content/uploads/2015/10/normal.png" />
+        </li>
+        <li ><a class="waves-effect waves-teal" href="/#/">Inicio</a></li>
+        <auto-menu></auto-menu>
+    </ul>
+</nav>
+

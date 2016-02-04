@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>StreetView!</title>
+    <link href="vendor/Materialize/dist/css/materialize.css" rel="stylesheet">
+    
+
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <script src="boot/facebook_sdk.js"></script>    
+    <script type="text/javascript" src="http://maps.google.com/maps/api/js?libraries=geometry"></script>
+
+    <link href="bundles/css/bootstrap.min.css" rel="stylesheet">
+    <link href="bundles/fonts/font-awesome.min.css" rel="stylesheet" type="text/css" media="screen">
+    <link href="bundles/css/ripples.min.css" rel="stylesheet">
+    <link href="bundles/css/responsive.css" rel="stylesheet">
+    <link href="bundles/css/animate.min.css" rel="stylesheet">
+    <link href="bundles/css/fonts.css" rel="stylesheet">
+    <link href="bundles/css/main.css" rel="stylesheet">
+  </head>
+  <body ng-app="app" id="top" class="scrollspy" ng-controller="main.controller">
+    <div ui-view=""></div>
+
+    <!-- Vendors -->
+    <script src="vendor/jquery/dist/jquery.js"></script>
+
+    <script src="vendor/Materialize/dist/js/materialize.js"></script>
+    <script src="vendor/angular/angular.js"></script>
+    <script src="vendor/angular-resource/angular-resource.js"></script>
+    <script src="vendor/angular-ui-router/release/angular-ui-router.js"></script>
+    <script src="vendor/pickadate/lib/compressed/picker.js"></script>
+    <script src="vendor/pickadate/lib/compressed/picker.time.js"></script>
+
+    <!-- inject:services:js -->
+    <script src="services/oauth-facebook-service.js"></script>
+    <script src="services/poster-service.js"></script>
+    <script src="services/clue-service.js"></script>
+    <script src="services/game-poster-service.js"></script>
+    <script src="services/sprintf.js"></script>
+    <!-- endinject -->
+
+    <!-- inject:app:js -->
+    <script src="app.js"></script>
+    <!-- endinject -->
+
+    <!-- inject:boot:js -->
+    <script src="boot/cache.js"></script>
+    <script src="boot/flash.js"></script>
+    <script src="boot/routing.js"></script>
+    <script src="boot/run.js"></script>
+    <!-- endinject -->
+
+    <!-- inject:layouts:js -->
+    <script src="layouts/error/module.js"></script>
+
+    <!-- endinject -->
+
+    <!-- inject:defaultLayout:js -->
+    <script src="layouts/login/module.js"></script>
+    <script src="layouts/default/module.js"></script>
+   
+    <!-- endinject -->
+
+    <!-- inject:modules:js -->
+    <script src="modules/auth/module.js"></script>
+    <script src="modules/endgame/module.js"></script>
+    <script src="modules/home/module.js"></script>
+    <!-- endinject -->
+
+    <!-- inject:components:js -->
+    <script src="components/auto-menu/auto-menu.js"></script>
+    <script src="components/materialize/materialize.js"></script>
+    <script src="components/ng-enter/ng-enter.js"></script>
+    <!-- endinject -->
+    
+  </body>
+</html>

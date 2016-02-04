@@ -1,0 +1,8 @@
+<br/>
+<div class="input-field">
+	<select ng-model="selected">
+	  <option value="" disabled selected >Selecciona</option>
+	  <option ng-repeat="(key,values) in options" value="{{key}}" ng-selected="selected == key">{{values}}</option>
+	</select>
+	<label>{{label}}</label>
+</div>
