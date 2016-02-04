@@ -289,13 +289,41 @@ angular.module('app')
 				var y = l_pixelPoint.y - Math.floor(ht / 2);
 
 
-				var angle_in_radians = $scope.find_angle({'x': $scope.currentZone.posPersona.lat(), 'y': $scope.currentZone.posPersona.lng()}, {'x': $scope.currentZone.latitude, 'y': $scope.currentZone.longitude}, {'x': $scope.currentZone.latitude_line, 'y': $scope.currentZone.longitude_line});
+				//ANGLE
+				var angle_in_radians = $scope.find_angle(
+					{
+						'x': $scope.currentZone.posPersona.lat(), 
+						'y': $scope.currentZone.posPersona.lng()}, 
+					{
+						'x': $scope.currentZone.latitude, 
+						'y': $scope.currentZone.longitude
+					}, 
+					{
+						'x': $scope.currentZone.latitude_line, 
+						'y': $scope.currentZone.longitude_line
+					}
+				);
 				var angle_in_degrees = angle_in_radians * (180/3.1415);
 				console.log('angle: ' + angle_in_degrees);
 
-				var angle_in_radians_wall = $scope.find_angle({'x': $scope.currentZone.posPersona.lat(), 'y': $scope.currentZone.posPersona.lng()}, {'x': $scope.currentZone.longitude, 'y': $scope.currentZone.latitude}, {'x': $scope.currentZone.latitude_wall_line, 'y': $scope.currentZone.longitude_wall_line});
+
+				//ANGLE WALL
+				var angle_in_radians_wall = $scope.find_angle(
+					{
+						'x': $scope.currentZone.posPersona.lat(), 
+						'y': $scope.currentZone.posPersona.lng()
+					},
+					{
+						'x': $scope.currentZone.longitude, 
+						'y': $scope.currentZone.latitude
+					}, 
+					{
+						'x': $scope.currentZone.latitude_wall_line, 
+						'y': $scope.currentZone.longitude_wall_line
+					}
+				);
 				var angle_in_degrees_wall = angle_in_radians_wall * (180/3.1415);
-				// console.log('angle wall: ' + angle_in_degrees_wall);
+				console.log('angle wall: ' + angle_in_degrees_wall);
 
 	   
 
