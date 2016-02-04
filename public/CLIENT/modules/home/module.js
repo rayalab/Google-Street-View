@@ -10,6 +10,11 @@ angular.module('app')
 	$scope.logout = function() {
 		$oauth.logout();
 	};
+
+	$scope.actionBackHome = function(){
+		console.log("Hola");
+	};
+
 	$rootScope.reloadHeader();
 
 	// calle  -33.39790772, -70.5823195
@@ -49,7 +54,7 @@ angular.module('app')
 		$scope.usingGogo = true;
 		$scope.currentZone = $scope.posters[id];
 		$scope.m_initPanorama($scope.posters[id].default_clue_latitude, $scope.posters[id].default_clue_longitude);
-	}
+	};
 
 
 	$scope.nextClue = function(category, obj) {
@@ -86,8 +91,6 @@ angular.module('app')
 					});
 				});
 		});	
-
-
 	};
 
 
@@ -97,7 +100,7 @@ angular.module('app')
 		$scope.category = firtsCategory;
 		$scope.obj      = item;
 		$scope.$apply();
-	   $('#modal1').openModal();
+	   $('#modalClue').openModal();
 		
 	};
 
@@ -117,6 +120,7 @@ angular.module('app')
 	};
 
 	$scope.main_map_init = function (){
+		$scope.mode='map';
 		var div_main_map = document.getElementById("div_main_map");
 	    $scope.map = new google.maps.LatLng(-33.44560, -70.66033);
 
@@ -163,9 +167,6 @@ angular.module('app')
 			});
 
 		});
-
-
-		// $scope.m_initPanorama();
 	};
 
 

@@ -111,7 +111,7 @@
                 </div>
                 <ul class="nav navbar-nav navbar-left">
                     <li>
-                        <p style="color:white; margin-top: 4%;">¡Bienvenido {{full_name}}! <a href="javascript:void(0)" ng-click="logout()" style="color:gray">(salir)</a></p>
+                        <p style="color:white; margin-top: 4%;">¡Bienvenido <a href="https://www.facebook.com/{{facebook_id}}" target="_blank">{{full_name}}!</a> <a href="javascript:void(0)" ng-click="logout()" style="color:gray">(salir)</a></p>
                     </li>
 
                 </ul>
@@ -174,7 +174,9 @@
             <div class="row" style="margin-top: 120px;">
 
                 <div class="col-md-12"  >
-                    <img ng-src="http://{{image_profile}}" class="img-circle center-block">
+                    <a href="https://www.facebook.com/{{facebook_id}}" target="_blank">
+                        <img ng-src="http://{{image_profile}}" class="img-circle center-block">
+                    </a>
                 </div>
 
 
@@ -189,7 +191,7 @@
             </div>
             <div class="row" style="margin-top: 40px;">
                 <div class="col-md-12 text-center" >
-                    <button class="menu-icon"  id="open-button" style="margin-top: 15px;">
+                    <button class="menu-icon"  id="open-button" style="margin-top: 15px;" ng-click="main_map_init()">
                         <img src="bundles/img/mostrar.png" class="img-circle center-block">
                     </button> 
                     <p class="white-label text-center icons">Mostrar mapa</p>
@@ -201,7 +203,7 @@
 </div>
 
 
-<div id="modal1" class="modal pista text-center">
+<div id="modalClue" class="modal pista text-center">
     <div class="modal-content">
         <h4>{{title}}</h4>
     </div>
