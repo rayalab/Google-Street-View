@@ -46,9 +46,27 @@ angular.module('app')
 	 * @return {[type]} [description]
 	 */
 	$scope.gogo = function(id) {
+		//ahora que es aleatorio, agarraremos el primero que obtuvimos nomas
+		var item = (function(){ for(var i in $scope.posters) return $scope.posters[i] })()
+		console.log(item);
 		$scope.usingGogo = true;
-		$scope.currentZone = $scope.posters[id];
-		$scope.m_initPanorama($scope.posters[id].default_clue_latitude, $scope.posters[id].default_clue_longitude);
+		$scope.currentZone = item;
+		$scope.m_initPanorama(item.default_clue_latitude, item.default_clue_longitude);
+	}
+
+
+	/**
+	 * Utilidad para debug: lleva directamente a las pistas un poster
+	 * 
+	 * @return {[type]} [description]
+	 */
+	$scope.goPistas = function(id) {
+		//tomar el primer item que obtuvimos del servidor
+		var item = (function(){ for(var i in $scope.posters) return $scope.posters[i] })()
+		$scope.usingGogo = true;
+		$scope.currentZone = item;
+		$scope.clickClue(item, 'firts_clue');
+
 	}
 
 
@@ -107,9 +125,7 @@ angular.module('app')
 
 		if($rootScope.reloadHeader()){
 			$poster.getPosterRandom(localStorage.user_id).then(function(result){
-				console.log(result.data);
 				var response = JSON.parse(JSON.stringify(result.data));
-				console.log(response);
 				$scope.aryPoster = response;
 				$scope.main_map_init();
 			});	
@@ -156,9 +172,8 @@ angular.module('app')
 			$scope.gmarkers.push(newFlag);
 
 			newFlag.addListener('click', function() {
-				console.log('setting current poster to ',$scope.posters, item);
+				console.log('setting current poster to ', item);
 				$scope.currentZone = item;
-				console.log(item);
 				$scope.clickClue(item, firtsCategory);
 			});
 

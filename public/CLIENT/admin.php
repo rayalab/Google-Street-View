@@ -9,8 +9,8 @@ $m = new mysqli("192.168.1.49","rayalab","rayalab2015","laravel");
 //LISTAR POSTERS
 $q = $m->query(sprintf("SELECT * from poster"));echo "<div style='right:0;top:0'>Posters:";
 while ( $r = $q->fetch_assoc() ) {
-  echo $_GET['zona'] == $r['poster_id'] ? $r['poster_id']." ": "<a href=?zona={$r['poster_id']} style='background:#ddd;padding:2px; text-decoration:none'>{$r['poster_id']}</a> ";
-} echo "</div>";
+  echo $_GET['zona'] == $r['poster_id'] ? $r['poster_id']." ": "<a href=?zona={$r['poster_id']} style='color: #9D50D7; background:#ddd;padding:2px; text-decoration:none'>{$r['poster_id']}</a> ";
+} echo "<button onclick='elform.submit()'>guardar</button></div>";
 
 if (!$_GET['zona']) die;
 if ($_POST) {
@@ -80,9 +80,10 @@ function verCiudad() {
 }
 var map;
 function initialize() {
-  var latLng = new google.maps.LatLng(<?php printf($r['default_clue_latitude']); ?>, <?php printf($r['default_clue_longitude']); ?>);
+  // var latLng = new google.maps.LatLng(<?php printf($r['default_clue_latitude']); ?>, <?php printf($r['default_clue_longitude']); ?>);
+  var latLng = new google.maps.LatLng(-33.44560, -70.66033);
   map = new google.maps.Map(document.getElementById('mapCanvas'), {
-    zoom: 19,
+    zoom: 11,
     center: latLng,
     mapTypeId: google.maps.MapTypeId.ROADMAP
   });
@@ -216,7 +217,7 @@ google.maps.event.addDomListener(window, 'load', initialize);
     <div id="address" style="font-size:10px"></div>
   </div>
   <div id="form">
-  <form method="post">
+  <form method="post" id="elform">
   <input type="hidden" name="id" value="<?php printf($r['poster_id']); ?>">
 
   <img style="float:left" width="20" src="http://www.google.com/intl/en_us/mapfiles/ms/micons/<?php printf(ico(1)); ?>.png">
