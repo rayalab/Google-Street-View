@@ -18,6 +18,8 @@ Route::get('/', function () {
 Route::resource('social', 'SocialController', ['only' => ['index', 'store', 'update', 'destroy', 'show']]);
 Route::resource('user', 'UserController', ['only' => ['index', 'store', 'update', 'destroy', 'show']]);
 Route::resource('poster', 'PosterController', ['only' => ['index', 'store', 'update', 'destroy', 'show']]);
+Route::get('poster/random/{id}', 'PosterController@random');
 Route::resource('cluePoster', 'CluePosterController', ['only' => ['index', 'store', 'update', 'destroy', 'show']]);
 Route::resource('gamePoster', 'GamePosterController', ['only' => ['index', 'store', 'update', 'destroy', 'show']]);
 Route::resource('posterImage', 'PosterImageController', ['only' => ['index', 'store', 'update', 'destroy', 'show']]);
+

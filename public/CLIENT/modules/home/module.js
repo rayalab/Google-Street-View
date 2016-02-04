@@ -145,7 +145,7 @@ angular.module('app')
 				position: new google.maps.LatLng(item.default_clue_latitude, item.default_clue_longitude),
 				map: $scope.map,
 				title : item.default_clue_title,
-				icon: 'bundles/img/beachflag.png',
+				icon: item.pin_default,
 				visible:true,
 				draggable: false
 			});
