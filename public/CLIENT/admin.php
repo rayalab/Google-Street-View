@@ -3,12 +3,15 @@
 <meta name="viewport" content="initial-scale=1.0, user-scalable=no" />
 <meta charset="utf8" />
 <script type="text/javascript" src="http://maps.google.com/maps/api/js"></script>
-
-<button onclick="location='?zona=3'">Las Condes</button>
-<button onclick="location='?zona=2'">Maipu</button>
-<button onclick="location='?zona=1'">La Florida</button>
 <?php
-$m = is_dir("/etc")?new mysqli("192.168.1.49","rayalab","rayalab2015","laravel"):new mysqli("localhost","RICHI","forge","forge");
+$m = new mysqli("192.168.1.49","rayalab","rayalab2015","laravel");
+
+//LISTAR POSTERS
+$q = $m->query(sprintf("SELECT * from poster"));echo "<div style='right:0;top:0'>Posters:";
+while ( $r = $q->fetch_assoc() ) {
+  echo $_GET['zona'] == $r['poster_id'] ? $r['poster_id']." ": "<a href=?zona={$r['poster_id']} style='background:#ddd;padding:2px; text-decoration:none'>{$r['poster_id']}</a> ";
+} echo "</div>";
+
 if (!$_GET['zona']) die;
 if ($_POST) {
 

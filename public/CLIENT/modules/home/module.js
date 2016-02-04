@@ -19,7 +19,7 @@ angular.module('app')
 	$scope.slat = localStorage.position_latitude;	
 	$scope.slng = localStorage.position_longitude;	
 	$scope.sheading = 69.58;
-	$scope.spitch = 0;
+	$scope.spitch = -20;
 	$scope.szoom = 1;
 	$scope.distance = 0;
 	$scope.maximumDistance = 40;
@@ -190,15 +190,15 @@ angular.module('app')
 		$scope.currentZone.posReference = new google.maps.LatLng($scope.currentZone.latitude_line, $scope.currentZone.longitude_line);
   		
 		$scope.currentZone.images = {
-			foto_001 : "bundles/img/posters/001.png",
-			foto_002 : "bundles/img/posters/002.png",
-			foto_003 : "bundles/img/posters/003.png",
-			foto_004 : "bundles/img/posters/004.png",
-			foto_005 : "bundles/img/posters/005.png",
-			foto_006 : "bundles/img/posters/006.png",
-			foto_007 : "bundles/img/posters/007.png",
-			foto_008 : "bundles/img/posters/008.png",
-			foto_009 : "bundles/img/posters/009.png"
+			foto_001 : "bundles/img/posters/1/001.png",
+			foto_002 : "bundles/img/posters/1/002.png",
+			foto_003 : "bundles/img/posters/1/003.png",
+			foto_004 : "bundles/img/posters/1/004.png",
+			foto_005 : "bundles/img/posters/1/005.png",
+			foto_006 : "bundles/img/posters/1/006.png",
+			foto_007 : "bundles/img/posters/1/007.png",
+			foto_008 : "bundles/img/posters/1/008.png",
+			foto_009 : "bundles/img/posters/1/009.png"
 		};
 		if (!$scope.usingGogo) $scope.$apply();
 
@@ -289,6 +289,9 @@ angular.module('app')
 
 				var x = l_pixelPoint.x - Math.floor(wd / 2);
 				var y = l_pixelPoint.y - Math.floor(ht / 2);
+
+
+				// angulos ahora: 28, 48, 60, 62, 67, 69   8   46, 65, 75, 81, 84, 85
 
 
 				//ANGLE
