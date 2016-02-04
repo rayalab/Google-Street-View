@@ -79,7 +79,7 @@ var map;
 function initialize() {
   var latLng = new google.maps.LatLng(<?php printf($r['default_clue_latitude']); ?>, <?php printf($r['default_clue_longitude']); ?>);
   map = new google.maps.Map(document.getElementById('mapCanvas'), {
-    zoom: 15,
+    zoom: 19,
     center: latLng,
     mapTypeId: google.maps.MapTypeId.ROADMAP
   });
