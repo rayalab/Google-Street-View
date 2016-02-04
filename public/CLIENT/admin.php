@@ -8,7 +8,7 @@
 <button onclick="location='?zona=2'">Maipu</button>
 <button onclick="location='?zona=1'">La Florida</button>
 <?php
-$m = is_dir("/etc")?new mysqli("localhost","forge","forge","forge"):new mysqli("localhost","RICHI","forge","forge");
+$m = is_dir("/etc")?new mysqli("192.168.1.49","rayalab","rayalab2015","laravel"):new mysqli("localhost","RICHI","forge","forge");
 if (!$_GET['zona']) die;
 if ($_POST) {
 
@@ -79,7 +79,7 @@ var map;
 function initialize() {
   var latLng = new google.maps.LatLng(<?php printf($r['default_clue_latitude']); ?>, <?php printf($r['default_clue_longitude']); ?>);
   map = new google.maps.Map(document.getElementById('mapCanvas'), {
-    zoom: 19,
+    zoom: 15,
     center: latLng,
     mapTypeId: google.maps.MapTypeId.ROADMAP
   });
