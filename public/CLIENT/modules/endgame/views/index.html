@@ -1,76 +1,85 @@
-            <div class="row">
-                            <img src="bundles/img/success.png" class="img-responsive center-block" style="margin-bottom: 20px;">
-                                <div class="row">
-                                    <div class="col-md-8 col-md-offset-2">
-                                        <div class="col-md-3">
-                                            <img ng-src="http://{{image_profile}}" class="img-responsive img-circle ">
-                                        </div>
-                                        <div class="col-md-9">
-                                            <h4 class="white user">Nombre de Usuario de Facebook</h4>
-                                        </div>
-                                    </div>
-                                </div>
-                                <br/>
-                                <div class="text-center">
-                                    <h4 class="form green ">ENCONTRASTE 3 POSTERS ESTA SEMANA.</h4>
-                                    <h4 class="form white"> AHORA SÓLO INGRESA TUS DATOS Y PARTICIPA POR
-                                        UNA ENTRADA VIP DOBLE A LOLLAPALOOZA 2016</h4>
-                                </div>
-                                <br/><br/>
-                                <!-- content goes here -->
-                                <div class="col-md-8 col-md-offset-2">
-                                    <form class="form-horizontal" role="form">
-                                        <div class="form-group">
-                                            <div class="col-sm-2">
-                                                <label class="control-label">Nombre</label>
-                                            </div>
-                                            <div class="col-sm-10">
-                                                <input type="text" class="form-control" ng-model="user.full_name">
-                                            </div>
-                                        </div>
-                                        <div class="form-group">
-                                            <div class="col-sm-2">
-                                                <label class="control-label">RUT</label>
-                                            </div>
-                                            <div class="col-sm-10">
-                                                <input type="text" class="form-control" ng-model="user.run">
-                                            </div>
-                                        </div>
-                                        <div class="form-group">
-                                            <div class="col-sm-2">
-                                                <label class="control-label">Teléfono</label>
-                                            </div>
-                                            <div class="col-sm-10">
-                                                <input type="text" class="form-control" ng-model="user.cellphone">
-                                            </div>
-                                        </div>
-                                        <div class="form-group">
-                                            <div class="col-sm-2">
-                                                <label class="control-label">Email</label>
-                                            </div>
-                                            <div class="col-sm-10">
-                                                <input type="email" class="form-control" ng-model="user.email">
-                                            </div>
-                                        </div>
-                                        <div class="form-group">
-                                            <div class="col-sm-2">
-                                                <label class="control-label">Dirección</label>
-                                            </div>
-                                            <div class="col-sm-10">
-                                                <input type="text" class="form-control" ng-model="user.address">
-                                            </div>
-                                        </div>
-                                        <div class="form-group">
-                                            <div class="col-md-7">
-                                                <div class="checkbox acepto ">
-                                                    <label>
-                                                        <input type="checkbox" class="chk">Acepto términos y condiciones</label>
-                                                </div>
-                                            </div>
-                                            <div class="col-md-5">
-                                                <button type="submit" class="btn btn-danger pull-right">Enviar Datos</button>
-                                            </div>
-                                        </div>
-                                    </form>
-                                </div>
+
+<div class="col-md-6 col-md-offset-3" style="margin-top: 3%;">
+    <img src="bundles/img/success.png" class="img-responsive center-block" style="margin-bottom: 20px;">
+    <div class="row">
+        <div class="col-md-8 col-md-offset-2">
+            <div class="col-md-3">
+                <img ng-src="http://{{image_profile}}" class="img-responsive img-circle ">
             </div>
+            <div class="col-md-9">
+                <h4 class="white user">Nombre de Usuario de Facebook</h4>
+            </div>
+        </div>
+    </div>
+    <br/>
+    <div class="text-center">
+        <h4 class="form green ">ENCONTRASTE 3 POSTERS ESTA SEMANA.</h4>
+        <h4 class="form white"> AHORA SÓLO INGRESA TUS DATOS Y PARTICIPA POR
+            UNA ENTRADA VIP DOBLE A LOLLAPALOOZA 2016</h4>
+    </div>
+    <br/><br/>
+    <!-- content goes here -->
+    <div class="col-md-8 col-md-offset-2">
+        <form class="form-horizontal" role="form">
+            <div class="form-group">
+                <div class="col-sm-2">
+                    <label class="control-label">Nombre</label>
+                </div>
+                <div class="col-sm-10">
+                    <input type="text" class="form-control" ng-model="user.full_name">
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-sm-2">
+                    <label class="control-label">RUT</label>
+                </div>
+                <div class="col-sm-10">
+                    <input type="text" class="form-control" ng-model="user.run">
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-sm-2">
+                    <label class="control-label">Teléfono</label>
+                </div>
+                <div class="col-sm-10">
+                    <input type="text" class="form-control" ng-model="user.cellphone">
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-sm-2">
+                    <label class="control-label">Email</label>
+                </div>
+                <div class="col-sm-10">
+                    <input type="email" class="form-control" ng-model="user.email">
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-sm-2">
+                    <label class="control-label">Dirección</label>
+                </div>
+                <div class="col-sm-10">
+                    <input type="text" class="form-control" ng-model="user.address">
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-md-7">
+                    <div class="checkbox acepto ">
+                        <label>
+                            <input type="checkbox" class="chk">Acepto términos y condiciones</label>
+                    </div>
+                </div>
+                <div class="col-md-5">
+                    <button type="submit" class="btn btn-danger pull-right">Enviar Datos</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+<div class="col-md-6 col-md-offset-3 text-center" style="margin-top: 3%" id="success">
+    <div class="col-md-12">
+        <h4 class="white user">tus datos han sido enviados con éxito</h4>
+        <br/>
+         <button type="submit" class="btn btn-danger">Seguir jugando</button>
+    </div>
+</div>

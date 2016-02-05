@@ -7,9 +7,39 @@ angular.module('app')
 	$scope.image_profile = localStorage.image;
 	$scope.defaultImage = "http://vignette2.wikia.nocookie.net/guiltycrown/images/6/64/Ejemplo.png/revision/latest?cb=20120305205546&path-prefix=es";
 
+
+
+	
+	$scope.actionMenu = function() {
+		if(!$scope.$parent.$parent.menu){
+			$scope.$parent.$parent.menu = true;
+		}else{
+			$scope.$parent.$parent.menu = false;
+		}
+
+	};
+
+	//SideNavMenu Var
+	
+	$scope.sizeBodyHtml = document.body;
+	$scope.actionOpen = document.getElementById('open-button');
+	$scope.actionClose = document.getElementById('close-button');
+	$scope.openToggle = false;
+
+
+	$scope.toggleMenu = function() {
+		$scope.openToggle = !$scope.openToggle;
+	}
+
+
 	$scope.logout = function() {
 		$oauth.logout();
 	};
+
+	$scope.actionBackHome = function(){
+		$("#modal3").openModal();
+	};
+
 	$rootScope.reloadHeader();
 
 	// calle  -33.39790772, -70.5823195
@@ -50,24 +80,9 @@ angular.module('app')
 		var item = (function(){ for(var i in $scope.posters) return $scope.posters[i] })()
 		console.log(item);
 		$scope.usingGogo = true;
-		$scope.currentZone = item;
-		$scope.m_initPanorama(item.default_clue_latitude, item.default_clue_longitude);
-	}
-
-
-	/**
-	 * Utilidad para debug: lleva directamente a las pistas un poster
-	 * 
-	 * @return {[type]} [description]
-	 */
-	$scope.goPistas = function(id) {
-		//tomar el primer item que obtuvimos del servidor
-		var item = (function(){ for(var i in $scope.posters) return $scope.posters[i] })()
-		$scope.usingGogo = true;
-		$scope.currentZone = item;
-		$scope.clickClue(item, 'firts_clue');
-
-	}
+		$scope.currentZone = $scope.posters[id];
+		$scope.m_initPanorama($scope.posters[id].default_clue_latitude, $scope.posters[id].default_clue_longitude);
+	};
 
 
 	$scope.nextClue = function(category, obj) {
@@ -104,8 +119,6 @@ angular.module('app')
 					});
 				});
 		});	
-
-
 	};
 
 
@@ -115,7 +128,7 @@ angular.module('app')
 		$scope.category = firtsCategory;
 		$scope.obj      = item;
 		$scope.$apply();
-	   $('#modal1').openModal();
+	   $('#modalClue').openModal();
 		
 	};
 
@@ -133,6 +146,7 @@ angular.module('app')
 	};
 
 	$scope.main_map_init = function (){
+		$scope.mode='map';
 		var div_main_map = document.getElementById("div_main_map");
 	    $scope.map = new google.maps.LatLng(-33.44560, -70.66033);
 
@@ -178,9 +192,6 @@ angular.module('app')
 			});
 
 		});
-
-
-		// $scope.m_initPanorama();
 	};
 
 
@@ -468,19 +479,19 @@ angular.module('app')
 		}
 
 		return a;
-	}
+	};
 
 	$scope.find_angle = function(A,B,C) {
 		var AB = Math.sqrt(Math.pow(B.x-A.x,2)+ Math.pow(B.y-A.y,2));    
 		var BC = Math.sqrt(Math.pow(B.x-C.x,2)+ Math.pow(B.y-C.y,2)); 
 		var AC = Math.sqrt(Math.pow(C.x-A.x,2)+ Math.pow(C.y-A.y,2));
 		return Math.acos((BC*BC+AB*AB-AC*AC)/(2*BC*AB));
-	}
+	};
 
 	$scope.formatFloat = function(n, d){
 		var m = Math.pow(10, d);
 		return Math.round(n * m, 10) / m;
-	}
+	};
 
 	$scope.findPoster = function(poster_id) {
 
@@ -489,8 +500,7 @@ angular.module('app')
 			game_id   	: game.game_id,
 			user_id     : usr.user_id
 		};
+	};
 
-	
-	}
 	$scope.init();
 });

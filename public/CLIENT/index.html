@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>StreetView!</title>
-    <link href="vendor/Materialize/dist/css/materialize.css" rel="stylesheet">
+    <link href="bundles/css/materialize.css" rel="stylesheet">
     
 
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
@@ -20,12 +20,12 @@
     <link href="bundles/css/fonts.css" rel="stylesheet">
     <link href="bundles/css/main.css" rel="stylesheet">
   </head>
-  <body ng-app="app" id="top" class="scrollspy" ng-controller="main.controller">
+  <body ng-app="app" id="top" ng-class="{'showmenu':menu}" class="scrollspy" ng-controller="main.controller">
     <div ui-view=""></div>
 
     <!-- Vendors -->
     <script src="vendor/jquery/dist/jquery.js"></script>
-
+    <script src="boot/classie.js"></script>
     <script src="vendor/Materialize/dist/js/materialize.js"></script>
     <script src="vendor/angular/angular.js"></script>
     <script src="vendor/angular-resource/angular-resource.js"></script>
