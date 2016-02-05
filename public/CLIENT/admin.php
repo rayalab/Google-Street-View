@@ -30,6 +30,10 @@ if ($_POST) {
     $m->query(sprintf("UPDATE clue_poster set latitude='%s' where clue_poster_id=%s", $_POST['p_'.$i.'_lat'], $_POST['clues_ids_'.$i]));
     $m->query(sprintf("UPDATE clue_poster set longitude='%s' where clue_poster_id=%s", $_POST['p_'.$i.'_lng'], $_POST['clues_ids_'.$i]));
   }
+
+  //GUARDAR OTROS
+  $m->query(sprintf("UPDATE x set zoom='%s'", $_POST['zoom']));
+  
 }
 
 //BUSCAR POSICIONES PRINCIPALES
@@ -46,6 +50,11 @@ while($pp=$q->fetch_assoc()) {
   $p[$i]['longitude'] = ($pp['longitude']);
   $i++;
 }
+
+//BUSCAR OTROS
+$q = $m->query(sprintf("SELECT * from x"));
+$x = $q->fetch_assoc();
+
 ?>
 
 
@@ -78,15 +87,32 @@ function updateMarkerAddress(str) {
 function verCiudad() {
   map.setCenter(new google.maps.LatLng(-33.44560, -70.66033));
 }
+
+function propagar (argument) {
+  for (var i=1;i<=4;i++) {
+    elform['f_'+i+'_lat'].value = elform['f_1_lat'].value;
+    elform['f_'+i+'_lng'].value = elform['f_1_lng'].value;
+  }
+  for (var i=2;i<=6;i++) {
+    elform['p_'+i+'_lat'].value = elform['f_1_lat'].value;
+    elform['p_'+i+'_lng'].value = elform['f_1_lng'].value;
+  }
+}
+
 var map;
 function initialize() {
-  // var latLng = new google.maps.LatLng(<?php printf($r['default_clue_latitude']); ?>, <?php printf($r['default_clue_longitude']); ?>);
-  var latLng = new google.maps.LatLng(-33.44560, -70.66033);
+  var latLng = new google.maps.LatLng(<?php printf($r['default_clue_latitude']); ?>, <?php printf($r['default_clue_longitude']); ?>);
+  // var latLng = new google.maps.LatLng(-33.44560, -70.66033);
   map = new google.maps.Map(document.getElementById('mapCanvas'), {
-    zoom: 11,
+    zoom: <?php printf('%s', $x['zoom']); ?>,
     center: latLng,
     mapTypeId: google.maps.MapTypeId.ROADMAP
   });
+
+  google.maps.event.addListener(map, 'zoom_changed', function(a,b) {
+    zoom.value=map.getZoom()
+  });
+
 
   var positionsGeneral=[];
   var positionsClues=[];
@@ -219,11 +245,13 @@ google.maps.event.addDomListener(window, 'load', initialize);
   <div id="form">
   <form method="post" id="elform">
   <input type="hidden" name="id" value="<?php printf($r['poster_id']); ?>">
-
+  
   <img style="float:left" width="20" src="http://www.google.com/intl/en_us/mapfiles/ms/micons/<?php printf(ico(1)); ?>.png">
   poster:
   <input name="f_1_lat" id="f_1_lat" value="<?php printf($r['latitude']); ?>">,
-  <input name="f_1_lng" id="f_1_lng" value="<?php printf($r['longitude']); ?>"><br><br>
+  <input name="f_1_lng" id="f_1_lng" value="<?php printf($r['longitude']); ?>">
+  <input size=2 length=2 id="zoom" name="zoom" value="<?php printf('%s', $x['zoom']); ?>">
+  <button onclick="propagar()">prop</button><br><br>
   
   <img style="float:left" width="20" src="http://www.google.com/intl/en_us/mapfiles/ms/micons/<?php printf(ico(2)); ?>.png">
   pista#1:
