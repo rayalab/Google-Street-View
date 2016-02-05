@@ -19,19 +19,6 @@ angular.module('app')
 
 	};
 
-	//SideNavMenu Var
-	
-	$scope.sizeBodyHtml = document.body;
-	$scope.actionOpen = document.getElementById('open-button');
-	$scope.actionClose = document.getElementById('close-button');
-	$scope.openToggle = false;
-
-
-	$scope.toggleMenu = function() {
-		$scope.openToggle = !$scope.openToggle;
-	}
-
-
 	$scope.logout = function() {
 		$oauth.logout();
 	};
