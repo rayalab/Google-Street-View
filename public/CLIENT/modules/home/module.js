@@ -40,7 +40,7 @@ angular.module('app')
 	$scope.slat = localStorage.position_latitude;	
 	$scope.slng = localStorage.position_longitude;	
 	$scope.sheading = 69.58;
-	$scope.spitch = -10;
+	$scope.spitch = -20;
 	$scope.szoom = 1;
 	$scope.distance = 0;
 	$scope.maximumDistance = 40;
