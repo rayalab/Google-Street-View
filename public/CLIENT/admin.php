@@ -251,7 +251,7 @@ google.maps.event.addDomListener(window, 'load', initialize);
   <input name="f_1_lat" id="f_1_lat" value="<?php printf($r['latitude']); ?>">,
   <input name="f_1_lng" id="f_1_lng" value="<?php printf($r['longitude']); ?>">
   <input size=2 length=2 id="zoom" name="zoom" value="<?php printf('%s', $x['zoom']); ?>">
-  <button onclick="propagar()">prop</button><br><br>
+  <a href="javascript:propagar()">prop</a><br><br>
   
   <img style="float:left" width="20" src="http://www.google.com/intl/en_us/mapfiles/ms/micons/<?php printf(ico(2)); ?>.png">
   pista#1:
