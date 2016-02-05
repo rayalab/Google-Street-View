@@ -7,12 +7,37 @@ angular.module('app')
 	$scope.image_profile = localStorage.image;
 	$scope.defaultImage = "http://vignette2.wikia.nocookie.net/guiltycrown/images/6/64/Ejemplo.png/revision/latest?cb=20120305205546&path-prefix=es";
 
+
+
+	
+	$scope.actionMenu = function() {
+		if(!$scope.$parent.$parent.menu){
+			$scope.$parent.$parent.menu = true;
+		}else{
+			$scope.$parent.$parent.menu = false;
+		}
+
+	};
+
+	//SideNavMenu Var
+	
+	$scope.sizeBodyHtml = document.body;
+	$scope.actionOpen = document.getElementById('open-button');
+	$scope.actionClose = document.getElementById('close-button');
+	$scope.openToggle = false;
+
+
+	$scope.toggleMenu = function() {
+		$scope.openToggle = !$scope.openToggle;
+	}
+
+
 	$scope.logout = function() {
 		$oauth.logout();
 	};
 
 	$scope.actionBackHome = function(){
-		console.log("Hola");
+		$("#modal3").openModal();
 	};
 
 	$rootScope.reloadHeader();
@@ -51,6 +76,9 @@ angular.module('app')
 	 * @return {[type]} [description]
 	 */
 	$scope.gogo = function(id) {
+		//ahora que es aleatorio, agarraremos el primero que obtuvimos nomas
+		var item = (function(){ for(var i in $scope.posters) return $scope.posters[i] })()
+		console.log(item);
 		$scope.usingGogo = true;
 		$scope.currentZone = $scope.posters[id];
 		$scope.m_initPanorama($scope.posters[id].default_clue_latitude, $scope.posters[id].default_clue_longitude);
@@ -110,9 +138,7 @@ angular.module('app')
 
 		if($rootScope.reloadHeader()){
 			$poster.getPosterRandom(localStorage.user_id).then(function(result){
-				console.log(result.data);
 				var response = JSON.parse(JSON.stringify(result.data));
-				console.log(response);
 				$scope.aryPoster = response;
 				$scope.main_map_init();
 			});	
@@ -160,9 +186,8 @@ angular.module('app')
 			$scope.gmarkers.push(newFlag);
 
 			newFlag.addListener('click', function() {
-				console.log('setting current poster to ',$scope.posters, item);
+				console.log('setting current poster to ', item);
 				$scope.currentZone = item;
-				console.log(item);
 				$scope.clickClue(item, firtsCategory);
 			});
 
@@ -454,19 +479,19 @@ angular.module('app')
 		}
 
 		return a;
-	}
+	};
 
 	$scope.find_angle = function(A,B,C) {
 		var AB = Math.sqrt(Math.pow(B.x-A.x,2)+ Math.pow(B.y-A.y,2));    
 		var BC = Math.sqrt(Math.pow(B.x-C.x,2)+ Math.pow(B.y-C.y,2)); 
 		var AC = Math.sqrt(Math.pow(C.x-A.x,2)+ Math.pow(C.y-A.y,2));
 		return Math.acos((BC*BC+AB*AB-AC*AC)/(2*BC*AB));
-	}
+	};
 
 	$scope.formatFloat = function(n, d){
 		var m = Math.pow(10, d);
 		return Math.round(n * m, 10) / m;
-	}
+	};
 
 	$scope.findPoster = function(poster_id) {
 
@@ -475,8 +500,7 @@ angular.module('app')
 			game_id   	: game.game_id,
 			user_id     : usr.user_id
 		};
+	};
 
-	
-	}
 	$scope.init();
 });

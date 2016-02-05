@@ -4,7 +4,7 @@
     -webkit-transition-timing-function: cubic-bezier(0.7, 0, 0.3, 1);
     transition-timing-function: cubic-bezier(0.7, 0, 0.3, 1);
 }
-.show-menu .content-wrap {
+.showmenu .content-wrap {
     -webkit-transition-delay: 0.1s;
     transition-delay: 0.1s;
     -webkit-transform: translate3d(-600px, 0, 0);
@@ -53,7 +53,7 @@
 .navbar .navbar-nav li .active a {
     background: rgba(255, 255, 255, 0.1);
 }
-.show-menu .navbar.menu-wrap {
+.showmenu .navbar.menu-wrap {
     -webkit-transform: translate3d(0, 0, 0);
     transform: translate3d(0, 0, 0);
     -webkit-transition: -webkit-transform 0.8s;
