@@ -49,7 +49,7 @@ angular.module('app')
 	$scope.slat = localStorage.position_latitude;	
 	$scope.slng = localStorage.position_longitude;	
 	$scope.sheading = 69.58;
-	$scope.spitch = -20;
+	$scope.spitch = -10;
 	$scope.szoom = 1;
 	$scope.distance = 0;
 	$scope.maximumDistance = 40;
@@ -176,7 +176,7 @@ angular.module('app')
 			newFlag = new google.maps.Marker({
 				position: new google.maps.LatLng(item.default_clue_latitude, item.default_clue_longitude),
 				map: $scope.map,
-				title : item.default_clue_title,
+				title : 'Pista '+item.poster_id,
 				icon: item.pin_default,
 				visible:true,
 				draggable: false
