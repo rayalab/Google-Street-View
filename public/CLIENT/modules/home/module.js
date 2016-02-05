@@ -9,7 +9,11 @@ angular.module('app')
 
 
 
-	
+	/**
+	 * Tira el menu hacia la izquierda
+	 * 
+	 * @return {[type]} [description]
+	 */
 	$scope.actionMenu = function() {
 		if(!$scope.$parent.$parent.menu){
 			$scope.$parent.$parent.menu = true;
@@ -85,6 +89,13 @@ angular.module('app')
 	};
 
 
+	/**
+	 * Te lleva desde la primera pista a la segunda, esconde las pistas principales, muestra siguientes 5 pistas
+	 * 
+	 * @param  {[type]} category [description]
+	 * @param  {[type]} obj      [description]
+	 * @return {[type]}          [description]
+	 */
 	$scope.nextClue = function(category, obj) {
 
 		for (var i=0; i<$scope.gmarkers.length; i++) {
@@ -122,6 +133,13 @@ angular.module('app')
 	};
 
 
+	/**
+	 * Evento de los markers de pistas principales que levanta el modal con boton "siguiente"
+	 * 
+	 * @param  {[type]} item          [description]
+	 * @param  {[type]} firtsCategory [description]
+	 * @return {[type]}               [description]
+	 */
 	$scope.clickClue = function(item, firtsCategory) {
 		$scope.title = item.default_clue_title;
 		$scope.description = item.default_clue_description;
