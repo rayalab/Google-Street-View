@@ -9,7 +9,7 @@ use App\Http\Controllers\Controller;
 use App\User;
 use App\Game;
 use Illuminate\Support\Collection;
-
+use DateTime;
 class SocialController extends Controller
 {
 
@@ -45,8 +45,11 @@ class SocialController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
-    {
+    {   
+        $dt = new DateTime;
         $req = $request->all();
+        $User = [];
+        $Game = [];     
 
         $User = User::where('facebook_id', $req["facebook_id"])->get();
 
@@ -63,7 +66,19 @@ class SocialController extends Controller
             $User = $User[0];
         }
 
-        return response()->json(array('user' => $User));
+        $Game = Game::where('user_id', $User->user_id)->where('finish', '0000-00-00 00:00:00')->get();
+
+        if(!$Game->count() > 0){
+            $Game = new Game();
+            $Game->user_id = $User->user_id;
+            $Game->start = $dt->format('y-d-m H:i:s');
+            $Game->save();
+        }else{
+            $Game = $Game[0];
+        }
+
+
+        return response()->json(array('user' => $User, 'game' => $Game));
     }
 
     /**

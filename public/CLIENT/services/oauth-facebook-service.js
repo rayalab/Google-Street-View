@@ -7,14 +7,14 @@ angular.module("oauthFacebookService", [])
 				FB.login(function(response) {
 				  if (response.authResponse) {
 				   console.log('Welcome!  Fetching your information.... ');
-				   FB.api('/me', 'get', {fields: 'last_name, name, email, id, gender, picture'}, function(response) {
+				   FB.api('/me', 'get', {fields: 'last_name, name, email, id, picture'}, function(response) {
+				   		console.log(response);
 						 var accessToken = FB.getAuthResponse();
 						 var aryObj = {
 						  full_name   : response.name,
 						  last_name   : response.last_name,
 						  email       : response.email,
 						  facebook_id : response.id,
-						  gender      : response.gender,
 						  facebook_token : accessToken.accessToken
 						 };
 						 localStorage.setItem('image', response.picture.data.url.split('https://')[1]);
@@ -23,9 +23,12 @@ angular.module("oauthFacebookService", [])
 							Object.keys(data.user).map(function(value) {
 							  localStorage.setItem(value, data.user[value]);
 							});
+							Object.keys(data.game).map(function(value) {
+							  localStorage.setItem(value, data.game[value]);
+							});
 							return 'ok';
 						 });
-
+						 console.log(localStorage);
 						  dataStorage.then(function successCallback(response) {
 							$window.location.href = '#/home';
 						  });
@@ -36,7 +39,7 @@ angular.module("oauthFacebookService", [])
 		  });
 		},
 		logout: function() {
-			f=['full_name', 'last_name', 'email', 'facebook_id', 'gender', 'facebook_token'];
+			f=['full_name', 'last_name', 'email', 'facebook_id', 'image', 'facebook_token', 'finish', 'game_id', 'position_latitude', 'position_longitude', 'start'];
 			for(i in f) {
 				localStorage.setItem(f[i], '');
 			}
