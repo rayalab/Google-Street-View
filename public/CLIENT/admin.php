@@ -4,15 +4,17 @@
 <meta charset="utf8" />
 <script type="text/javascript" src="http://maps.google.com/maps/api/js"></script>
 <?php
-$m = new mysqli("192.168.1.49","rayalab","rayalab2015","laravel");
+$m = new mysqli("192.168.0.5","rayalab","rayalab2015","laravel");
 
 //LISTAR POSTERS
 $q = $m->query(sprintf("SELECT * from poster"));echo "<div style='right:0;top:0'>Posters:";
 while ( $r = $q->fetch_assoc() ) {
-  echo $_GET['zona'] == $r['poster_id'] ? $r['poster_id']." ": "<a href=?zona={$r['poster_id']} style='color: #9D50D7; background:#ddd;padding:2px; text-decoration:none'>{$r['poster_id']}</a> ";
+  echo @$_GET['zona'] == $r['poster_id'] ? 
+  sprintf("<span style='color: black; background:#fff;padding:2px; text-decoration:none'> %2d </span> ", $r['poster_id']):
+  sprintf("<a href=?zona=%d style='color: #9D50D7; width:20px; background:#ddd;padding:2px; text-decoration:none'> %2d </a>", $r['poster_id'], $r['poster_id']);
 } echo "<button onclick='elform.submit()'>guardar</button></div>";
 
-if (!$_GET['zona']) die;
+if (!@$_GET['zona']) die;
 if ($_POST) {
 
   //GUARDAR POSICIONES PRINCIPALES

@@ -40,10 +40,10 @@ angular.module('app')
 	$scope.slat = localStorage.position_latitude;	
 	$scope.slng = localStorage.position_longitude;	
 	$scope.sheading = 69.58;
-	$scope.spitch = -20;
+	$scope.spitch = 5;
 	$scope.szoom = 1;
 	$scope.distance = 0;
-	$scope.maximumDistance = 40;
+	$scope.maximumDistance = 60;
 	$scope.panWidth = 800;
 	$scope.panHeight = 600;
 	$scope.markerWidth = 50;
