@@ -1,3 +1,9 @@
+.img-default {
+    height: 200px;
+    display: block;
+    max-width: 100%
+}
+
 .content-wrap {
     -webkit-transition: -webkit-transform 0.4s;
     transition: transform 0.4s;

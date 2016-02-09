@@ -5,8 +5,48 @@ angular.module('app')
 	$scope.full_name = localStorage.full_name;
 	$scope.facebook_id = localStorage.facebook_id;
 	$scope.image_profile = localStorage.image;
-	$scope.defaultImage = "http://vignette2.wikia.nocookie.net/guiltycrown/images/6/64/Ejemplo.png/revision/latest?cb=20120305205546&path-prefix=es";
+	$scope.gmarkers = [];
 
+	// calle  -33.39790772, -70.5823195
+	// cartel -33.39775097,-70.58235705
+
+	$scope.zoom = 12;
+	$scope.slat = localStorage.position_latitude;	
+	$scope.slng = localStorage.position_longitude;	
+	$scope.sheading = 69.58;
+	$scope.spitch = 5;
+	$scope.szoom = 1;
+	$scope.distance = 0;
+	$scope.maximumDistance = 60;
+	$scope.panWidth = 800;
+	$scope.panHeight = 600;
+	$scope.markerWidth = 50;
+	$scope.markerHeight = 62;
+	$scope.lat =  0;
+	$scope.lng =  0;
+	$scope.lat_line =  0;
+	$scope.lng_line =  0;
+	$scope.lat_wall_line =  0;
+	$scope.lng_wall_line =  0;
+	$scope.currentZone = {};
+	$scope.mode='map';
+	$scope.testField = "";
+	$scope.obj = [];
+	$scope.posPersona = new google.maps.LatLng(-33.44560, -70.66033);
+
+	$scope.aryMyPosterId = [];
+
+	$scope.aryMyPosters = {
+			1 : "bundles/img/default.png",
+			2 : "bundles/img/default.png",
+			3 : "bundles/img/default.png",
+			4 : "bundles/img/default.png",
+			5 : "bundles/img/default.png",
+			6 : "bundles/img/default.png",
+			7 : "bundles/img/default.png",
+			8 : "bundles/img/default.png",
+			9 : "bundles/img/default.png"
+	};
 
 
 	/**
@@ -33,33 +73,6 @@ angular.module('app')
 
 	$rootScope.reloadHeader();
 
-	// calle  -33.39790772, -70.5823195
-	// cartel -33.39775097,-70.58235705
-	$scope.gmarkers = [];
-	$scope.zoom = 12;
-	$scope.slat = localStorage.position_latitude;	
-	$scope.slng = localStorage.position_longitude;	
-	$scope.sheading = 69.58;
-	$scope.spitch = 5;
-	$scope.szoom = 1;
-	$scope.distance = 0;
-	$scope.maximumDistance = 60;
-	$scope.panWidth = 800;
-	$scope.panHeight = 600;
-	$scope.markerWidth = 50;
-	$scope.markerHeight = 62;
-	$scope.lat =  0;
-	$scope.lng =  0;
-	$scope.lat_line =  0;
-	$scope.lng_line =  0;
-	$scope.lat_wall_line =  0;
-	$scope.lng_wall_line =  0;
-	$scope.currentZone = {};
-	$scope.mode='map';
-	$scope.testField = "";
-	$scope.obj = [];
-	$scope.posPersona = new google.maps.LatLng(-33.44560, -70.66033);
-
 
 	/**
 	 * Utilidad para debug: lleva directamente a un poster
@@ -77,6 +90,15 @@ angular.module('app')
 
 
 	/**
+	 * Te devuelve a las pistas secundarias del poster.
+	*/
+	$scope.backMapSecondClue = function() {
+			$scope.mode='map';
+			$scope.map.setCenter(new google.maps.LatLng($scope.currentZone.default_clue_latitude, $scope.currentZone.default_clue_longitude));
+			$scope.map.setZoom($scope.zoom + 4);
+	};
+
+	/**
 	 * Te lleva desde la primera pista a la segunda, esconde las pistas principales, muestra siguientes 5 pistas
 	 * 
 	 * @param  {[type]} category [description]
@@ -85,7 +107,9 @@ angular.module('app')
 	 */
 	$scope.nextClue = function(category, obj) {
 
-		for (var i=0; i<$scope.gmarkers.length; i++) {
+		console.log($scope.gmarkers);
+		console.log(category);
+		for (var i=0; i< $scope.gmarkers.length; i++) {
           if ($scope.gmarkers[i].mycategory == category) {
             $scope.gmarkers[i].setVisible(false);
           }
@@ -130,13 +154,12 @@ angular.module('app')
 	$scope.clickClue = function(item, firtsCategory) {
 		$scope.title = item.default_clue_title;
 		$scope.description = item.default_clue_description;
+		$scope.default_avatar = item.image_default;
 		$scope.category = firtsCategory;
-		$scope.obj      = item;
+		$scope.obj = item;
 		$scope.$apply();
 	   $('#modalClue').openModal();
-		
 	};
-
 
 	//cachear ubicaciones de banderas y posters
 	$scope.init = function() {
@@ -498,13 +521,12 @@ angular.module('app')
 		return Math.round(n * m, 10) / m;
 	};
 
-	$scope.findPoster = function(poster_id) {
+	$scope.posterFound = function() {
 
-		var aryObj = {
-			poster_id   : poster_id,
-			game_id   	: game.game_id,
-			user_id     : usr.user_id
-		};
+		if($scope.aryMyPosterId.indexOf($scope.currentZone.poster_id) == -1){
+			$scope.aryMyPosterId.push($scope.currentZone.poster_id);
+		}
+
 	};
 
 	$scope.init();
