@@ -23,14 +23,59 @@
         <div class="row" style="overflow-y: auto; height: 80vh;">
             <div class="col-md-12">
                 <div>
-                    <h4>Mis Poster</h4>
-                    <div class="col-md-4 col-sm-4 col-xs-4" ng-repeat="(key, value) in aryFirstWeek" >
+                    <h4>Semana 1</h4>
+                    <div class="col-md-4 col-sm-4 col-xs-4">
                         <div class="thumbnail">
-                            <img ng-src="{{value}}" class="img-responsive">
+                            <img src="http://lorempixel.com/130/160" class="img-responsive">
+                        </div>
+                    </div>
+                    <div class="col-md-4 col-sm-4 col-xs-4">
+                        <div class="thumbnail">
+                            <img src="http://lorempixel.com/130/160" class="img-responsive">
+                        </div>
+                    </div>
+                    <div class="col-md-4 col-sm-4 col-xs-4">
+                        <div class="thumbnail">
+                            <img src="http://lorempixel.com/130/160"class="img-responsive">
                         </div>
                     </div>
                 </div>
-
+                <div>
+                    <h4>Semana 2</h4>
+                    <div class="col-md-4 col-sm-4 col-xs-4">
+                        <div class="thumbnail">
+                            <img src="http://lorempixel.com/130/160" class="img-responsive">
+                        </div>
+                    </div>
+                    <div class="col-md-4 col-sm-4 col-xs-4">
+                        <div class="thumbnail">
+                            <img src="http://lorempixel.com/130/160" class="img-responsive">
+                        </div>
+                    </div>
+                    <div class="col-md-4 col-sm-4 col-xs-4">
+                        <div class="thumbnail">
+                            <img src="http://lorempixel.com/130/160"class="img-responsive">
+                        </div>
+                    </div>
+                </div>
+                <div>
+                    <h4>Semana 3</h4>
+                    <div class="col-md-4 col-sm-4 col-xs-4">
+                        <div class="thumbnail">
+                            <img src="http://lorempixel.com/130/160" class="img-responsive">
+                        </div>
+                    </div>
+                    <div class="col-md-4 col-sm-4 col-xs-4">
+                        <div class="thumbnail">
+                            <img src="http://lorempixel.com/130/160" class="img-responsive">
+                        </div>
+                    </div>
+                    <div class="col-md-4 col-sm-4 col-xs-4">
+                        <div class="thumbnail">
+                            <img src="http://lorempixel.com/130/160"class="img-responsive">
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
 
@@ -53,7 +98,7 @@
                 </ul>
                 <ul class="nav navbar-nav navbar-right">
                     <li>
-                        <a href="javascript:void(0)" ng-click="gogo(15)">GoGo!</a>
+                        <a href="javascript:void(0)" ng-click="gogo(21)">GoGo!</a>
                     </li>
                     <li class="active">
                         <a href="javascript:void(0)" >Como Concursar</a>
@@ -98,21 +143,24 @@
                 </div>
 
 
-                <div id="panFrame" style="position:relative; width:100%; height:100vh; overflow:hidden;" ng-show="mode == 'street'">
+                <div id="panFrame" style="position:relative; width:100%; height:100vh; overflow:hidden;" ng-show="mode == 'street'">xd
                     <div id="panDiv" style="position:absolute;top:0px;left:0px; width:100%; height:100vh;"></div>
-                    <div id="markerDiv" style="position:relative;top:0px;left:0px;z-index:1000;cursor:pointer" ng-click="posterFound()">
+                    <div id="markerDiv" style="position:relative;top:0px;left:0px;z-index:1000;cursor:pointer" ng-click="findPoster(currentPoster.posterId)">
                         <img ng-repeat="(key, value) in currentZone.images" id="{{key}}" ng-src="{{value}}" width='100%' height='100%' alt='' style="display:none"/>
                     </div>
                 </div>
             </div>
         </div> 
-        <div class="col-md-1 hidden-sm hidden-xs sidebar-inner">
+        <div class="col-md-1 hidden-sm hidden-xs sidebar-inner" >
             <div class="row" style="margin-top: 120px;">
-                <div class="col-md-12">
+
+                <div class="col-md-12"  >
                     <a href="https://www.facebook.com/{{facebook_id}}" target="_blank">
                         <img ng-src="http://{{image_profile}}" class="img-circle center-block">
                     </a>
                 </div>
+
+
             </div>
             <div class="row" style="margin-top: 40px;">
                 <div class="col-md-12 text-center" >
@@ -124,7 +172,7 @@
             </div>
             <div class="row" style="margin-top: 40px;">
                 <div class="col-md-12 text-center" >
-                    <button class="menu-icon"  id="open-button" style="margin-top: 15px;" ng-click="main_map_init()">
+                    <button class="menu-icon"  id="open-button" style="margin-top: 15px;" ng-click="actionBackHome()">
                         <img src="bundles/img/mostrar.png" class="img-circle center-block">
                     </button> 
                     <p class="white-label text-center icons">Mostrar mapa</p>
@@ -147,7 +195,7 @@
         <h5> ¡Atención! ¡Firmes! llega hasta la entrada de una escuela muy particular, que le dio el nombre a un metro.
         ¡Vamos que se enfría la Pizza!.</h5>
         
-        <img ng-src="{{default_avatar}}" class="img-default center-block">
+        <img src="bundles/img/pizza.png" class="img-circle center-block">
         <p>{{description}}</p>
     </div>
 
@@ -157,9 +205,13 @@
 
 <div id="modal3" class="modal alert-modal">
     <div class="modal-body text-center">
+
         <h5 class="lost"> Por aquí no es... estas más perdido que pizza en hamburguesería.</h5>
+        
     </div>
     <div class="col-md-12 text-center">
-        <a ng-click="backMapSecondClue()" class=" modal-action modal-close btn btn-warning siguiente text-center">Volver al mapa</a>
+        <a ng-click="nextClue(category, obj)" class=" modal-action modal-close btn btn-warning siguiente text-center">Volver al mapa</a>
     </div>
+    
+
 </div>

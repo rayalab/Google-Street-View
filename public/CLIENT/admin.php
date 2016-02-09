@@ -4,7 +4,7 @@
 <meta charset="utf8" />
 <script type="text/javascript" src="http://maps.google.com/maps/api/js"></script>
 <?php
-$m = new mysqli("192.168.0.5","rayalab","rayalab2015","laravel");
+$m = new mysqli("127.0.0.1","forge","forge","forge");
 
 //LISTAR POSTERS
 $q = $m->query(sprintf("SELECT * from poster"));echo "<div style='right:0;top:0'>Posters:";
