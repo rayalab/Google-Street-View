@@ -4,7 +4,13 @@
 <meta charset="utf8" />
 <script type="text/javascript" src="http://maps.google.com/maps/api/js"></script>
 <?php
-$m = new mysqli("127.0.0.1","forge","forge","forge");
+$f = file("../../.env");
+$host = trim(explode("=",$f[4])[1]);
+$db   = trim(explode("=",$f[5])[1]);
+$user = trim(explode("=",$f[6])[1]);
+$pass = trim(explode("=",$f[7])[1]);
+printf("%s:%s@%s/%s", $user, $pass, $host, $db);
+$m = new mysqli($host, $user, $pass, $db);
 
 //LISTAR POSTERS
 $q = $m->query(sprintf("SELECT * from poster"));echo "<div style='right:0;top:0'>Posters:";
