@@ -70,6 +70,18 @@ angular.module('app')
 	$scope.actionBackHome = function(){
 		$("#modal3").openModal();
 	};
+	
+    $scope.actionEndGame = function () {
+        $("#fin-game").openModal();
+    };
+
+    $scope.actionComoConcursar = function () {
+        $("#como").openModal();
+    };
+
+    $scope.actionPremios = function () {
+        $("#premios").openModal();
+    };
 
 	$rootScope.reloadHeader();
 
@@ -128,9 +140,10 @@ angular.module('app')
 					newClue = new google.maps.Marker({
 						position: new google.maps.LatLng(item.latitude, item.longitude),
 						map: $scope.map,
-						icon: 'bundles/img/beachflag.png',
+						icon: 'bundles/img/pines/pines-clue/'+$scope.currentZone.poster_id+'.png',
 						visible:true,
 						draggable: false
+
 					});
 
 					newClue.mycategory = firtsCategory;
@@ -205,7 +218,7 @@ angular.module('app')
 				position: new google.maps.LatLng(item.default_clue_latitude, item.default_clue_longitude),
 				map: $scope.map,
 				title : 'Pista '+item.poster_id,
-				icon: item.pin_default,
+				icon: 'bundles/img/pines/'+item.poster_id+'.png',
 				visible:true,
 				draggable: false
 			});
