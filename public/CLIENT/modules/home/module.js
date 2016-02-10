@@ -244,15 +244,15 @@ angular.module('app')
 		$scope.currentZone.posReference = new google.maps.LatLng($scope.currentZone.latitude_line, $scope.currentZone.longitude_line);
   		
 		$scope.currentZone.images = {
-			foto_001 : "bundles/img/posters/1/001.png",
-			foto_002 : "bundles/img/posters/1/002.png",
-			foto_003 : "bundles/img/posters/1/003.png",
-			foto_004 : "bundles/img/posters/1/004.png",
-			foto_005 : "bundles/img/posters/1/005.png",
-			foto_006 : "bundles/img/posters/1/006.png",
-			foto_007 : "bundles/img/posters/1/007.png",
-			foto_008 : "bundles/img/posters/1/008.png",
-			foto_009 : "bundles/img/posters/1/009.png"
+			foto_001 : "https://s3-us-west-2.amazonaws.com/gsv.rayalab.cl/"+$scope.currentZone.poster_id+"/001.png",
+			foto_002 : "https://s3-us-west-2.amazonaws.com/gsv.rayalab.cl/"+$scope.currentZone.poster_id+"/002.png",
+			foto_003 : "https://s3-us-west-2.amazonaws.com/gsv.rayalab.cl/"+$scope.currentZone.poster_id+"/003.png",
+			foto_004 : "https://s3-us-west-2.amazonaws.com/gsv.rayalab.cl/"+$scope.currentZone.poster_id+"/004.png",
+			foto_005 : "https://s3-us-west-2.amazonaws.com/gsv.rayalab.cl/"+$scope.currentZone.poster_id+"/005.png",
+			foto_006 : "https://s3-us-west-2.amazonaws.com/gsv.rayalab.cl/"+$scope.currentZone.poster_id+"/006.png",
+			foto_007 : "https://s3-us-west-2.amazonaws.com/gsv.rayalab.cl/"+$scope.currentZone.poster_id+"/007.png",
+			foto_008 : "https://s3-us-west-2.amazonaws.com/gsv.rayalab.cl/"+$scope.currentZone.poster_id+"/008.png",
+			foto_009 : "https://s3-us-west-2.amazonaws.com/gsv.rayalab.cl/"+$scope.currentZone.poster_id+"/009.png"
 		};
 		if (!$scope.usingGogo) $scope.$apply();
 
