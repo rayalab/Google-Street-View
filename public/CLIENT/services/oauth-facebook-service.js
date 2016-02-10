@@ -30,7 +30,7 @@ angular.module("oauthFacebookService", [])
 						 });
 						 console.log(localStorage);
 						  dataStorage.then(function successCallback(response) {
-							$window.location.href = '#/home';
+							$window.location.href = '#/';
 						  });
 					});
 				  } else {
