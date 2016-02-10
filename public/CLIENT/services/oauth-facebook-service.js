@@ -43,7 +43,7 @@ angular.module("oauthFacebookService", [])
 			for(i in f) {
 				localStorage.setItem(f[i], '');
 			}
-			$location.path('/auth/login');
+			$location.path('/login');
 
 		},
 

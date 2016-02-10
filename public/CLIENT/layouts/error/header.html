@@ -20,7 +20,7 @@
             <i class="mdi-navigation-menu"></i>
         </a>
         <ul class="right">
-            <li ng-if="currentUser"><a class="waves-effect waves-teal" href="/auth/logout">{{currentUserName}} (salir)</a></li>
+            <li ng-if="currentUser"><a class="waves-effect waves-teal" href="/logout">{{currentUserName}} (salir)</a></li>
             <auto-menu></auto-menu>
             <li ng-if="!currentUser"><a class="waves-effect waves-teal" href="#auth/signup">Registrarse</a></li>
             <li ng-if="!currentUser"><a class="waves-effect waves-teal" href="#auth/login">Ingresar</a></li>
