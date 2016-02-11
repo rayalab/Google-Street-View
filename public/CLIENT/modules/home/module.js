@@ -140,7 +140,7 @@ angular.module('app')
 					newClue = new google.maps.Marker({
 						position: new google.maps.LatLng(item.latitude, item.longitude),
 						map: $scope.map,
-						icon: 'bundles/img/pines/pines-clue/'+$scope.currentZone.poster_id+'.png',
+						icon: 'https://s3-us-west-2.amazonaws.com/gsv.rayalab.cl/pines/pines-clue/'+$scope.currentZone.poster_id+'.png',
 						visible:true,
 						draggable: false
 
@@ -218,7 +218,7 @@ angular.module('app')
 				position: new google.maps.LatLng(item.default_clue_latitude, item.default_clue_longitude),
 				map: $scope.map,
 				title : 'Pista '+item.poster_id,
-				icon: 'bundles/img/pines/'+item.poster_id+'.png',
+				icon: 'https://s3-us-west-2.amazonaws.com/gsv.rayalab.cl/pines/'+item.poster_id+'.png',
 				visible:true,
 				draggable: false
 			});
