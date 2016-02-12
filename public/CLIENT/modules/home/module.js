@@ -67,8 +67,14 @@ angular.module('app')
 		$oauth.logout();
 	};
 
-	$scope.actionBackHome = function(){
+	$scope.actionWrong = function(){
 		$("#modal3").openModal();
+	};
+	
+	$scope.actionBackHome = function(){
+		$scope.mode='map';
+		$scope.map.setCenter(new google.maps.LatLng($scope.currentZone.default_clue_latitude, $scope.currentZone.default_clue_longitude));
+		$scope.map.setZoom($scope.zoom + 4);
 	};
 	
     $scope.actionEndGame = function () {
@@ -197,8 +203,8 @@ angular.module('app')
 			zoom: $scope.zoom,
 			mapTypeId: google.maps.MapTypeId.HYBRID,
 			scaleControl: false,
-			scrollwheel: false,
-			draggable: false,
+			// scrollwheel: false,
+			// draggable: false,
 			disableDefaultUI: true,
 			mapTypeControl: false
 		};
