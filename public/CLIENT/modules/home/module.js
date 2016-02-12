@@ -71,7 +71,7 @@ angular.module('app')
 		$("#modal3").openModal();
 	};
 	
-	$scope.actionBackHome = function(){
+	$scope.actionBackHome = function() {
 		$scope.mode='map';
 		$scope.map.setCenter(new google.maps.LatLng($scope.currentZone.default_clue_latitude, $scope.currentZone.default_clue_longitude));
 		$scope.map.setZoom($scope.zoom + 4);
@@ -105,6 +105,21 @@ angular.module('app')
 		$scope.currentZone = $scope.posters[id];
 		$scope.m_initPanorama($scope.posters[id].default_clue_latitude, $scope.posters[id].default_clue_longitude);
 	};
+
+	/**
+	 * Temporal, para ir a una pista sin pasar por el cartelito
+	 * @return {[type]} [description]
+	 */
+	$scope.aer = function() {
+		var item = $scope.posters[3];
+		$scope.title = item.default_clue_title;
+		$scope.description = item.default_clue_description;
+		$scope.default_avatar = item.image_default;
+		$scope.category = 'firts_clue';
+		$scope.obj = item;
+		$scope.usingGogo = true;
+		$scope.nextClue('firts_clue', item);
+	}
 
 
 	/**
@@ -176,7 +191,7 @@ angular.module('app')
 		$scope.default_avatar = item.image_default;
 		$scope.category = firtsCategory;
 		$scope.obj = item;
-		$scope.$apply();
+		if (!$scope.usingGogo) $scope.$apply();
 	   $('#modalClue').openModal();
 	};
 
@@ -318,8 +333,8 @@ angular.module('app')
 		{
 		    $scope.currentZone.posPersona = $scope.pan.getPosition();
 		    $scope.map.setCenter($scope.currentZone.posPersona);
-
 		    $scope.m_updateMarker();
+			if ($scope.distance_to_street_reference > 150) $scope.actionWrong();
 		});
 	}
 
@@ -382,7 +397,7 @@ angular.module('app')
 					}
 				);
 				var angle_in_degrees = angle_in_radians * (180/3.1415);
-				console.log('angle: ' + angle_in_degrees);
+				// console.log('[seb] angle: ' + angle_in_degrees);
 
 
 				//ANGLE WALL
@@ -401,7 +416,7 @@ angular.module('app')
 					}
 				);
 				var angle_in_degrees_wall = angle_in_radians_wall * (180/3.1415);
-				console.log('angle wall: ' + angle_in_degrees_wall);
+				// console.log('[seb] angle wall: ' + angle_in_degrees_wall);
 
 	   
 
