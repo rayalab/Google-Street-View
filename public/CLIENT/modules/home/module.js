@@ -6,6 +6,7 @@ angular.module('app')
 	$scope.facebook_id = localStorage.facebook_id;
 	$scope.image_profile = localStorage.image;
 	$scope.gmarkers = [];
+	$scope.clicksDone = 0;
 
 	// calle  -33.39790772, -70.5823195
 	// cartel -33.39775097,-70.58235705
@@ -20,8 +21,8 @@ angular.module('app')
 	$scope.maximumDistance = 60;
 	$scope.panWidth = 800;
 	$scope.panHeight = 600;
-	$scope.markerWidth = 50;
-	$scope.markerHeight = 62;
+	$scope.markerWidth = 80;
+	$scope.markerHeight = 100;
 	$scope.lat =  0;
 	$scope.lng =  0;
 	$scope.lat_line =  0;
@@ -70,11 +71,20 @@ angular.module('app')
 	$scope.actionWrong = function(){
 		$("#modal3").openModal();
 	};
+
+	$scope.actionClose = function(){
+		$("#modal33").openModal();
+	};
 	
 	$scope.actionBackHome = function() {
 		$scope.mode='map';
 		$scope.map.setCenter(new google.maps.LatLng($scope.currentZone.default_clue_latitude, $scope.currentZone.default_clue_longitude));
 		$scope.map.setZoom($scope.zoom + 4);
+		$scope.clicksDone=0;
+	};
+
+	$scope.actionDismiss = function() {
+		$scope.clicksDone=0;
 	};
 	
     $scope.actionEndGame = function () {
@@ -131,6 +141,34 @@ angular.module('app')
 			$scope.map.setZoom($scope.zoom + 4);
 	};
 
+
+
+	/**
+	 * Añade un marcador al mapa, representando una pista
+	 * 
+	 * @param {[type]} item [description]
+	 */
+	$scope.addClueMarker = function(item, cat) {
+		//PONER PISTA
+		var newClue = {};
+		newClue.mycategory = cat;
+
+		newClue = new google.maps.Marker({
+			position: new google.maps.LatLng(item.latitude, item.longitude),
+			map: $scope.map,
+			icon: 'http://d3g8amkxnw6wed.cloudfront.net/pines/pines-clue/'+$scope.currentZone.poster_id+'.png',
+			visible:true,
+			draggable: false
+
+		});
+
+		newClue.addListener('click', function() {
+			console.log('setting current zone to',$scope.currentZone);
+			$scope.m_initPanorama(item.latitude, item.longitude);
+		});
+	}
+
+
 	/**
 	 * Te lleva desde la primera pista a la segunda, esconde las pistas principales, muestra siguientes 5 pistas
 	 * 
@@ -152,27 +190,10 @@ angular.module('app')
 			var response = JSON.parse(JSON.stringify(result.data));
 			$scope.map.setCenter(new google.maps.LatLng(obj.default_clue_latitude, obj.default_clue_longitude));
 			$scope.map.setZoom($scope.zoom + 4);
+			$scope.addClueMarker({latitude:obj.default_clue_latitude, longitude:obj.default_clue_longitude});
 			angular.forEach(response, function(item) {
 
-					var newClue;
-					var firtsCategory = "second_clue";
-
-					//PONER PISTA
-					newClue = new google.maps.Marker({
-						position: new google.maps.LatLng(item.latitude, item.longitude),
-						map: $scope.map,
-						icon: 'http://d3g8amkxnw6wed.cloudfront.net/pines/pines-clue/'+$scope.currentZone.poster_id+'.png',
-						visible:true,
-						draggable: false
-
-					});
-
-					newClue.mycategory = firtsCategory;
-
-					newClue.addListener('click', function() {
-						console.log('setting current zone to',$scope.currentZone);
-						$scope.m_initPanorama(item.latitude, item.longitude);
-					});
+					$scope.addClueMarker(item, "second_clue");
 				});
 		});	
 	};
@@ -334,7 +355,9 @@ angular.module('app')
 		    $scope.currentZone.posPersona = $scope.pan.getPosition();
 		    $scope.map.setCenter($scope.currentZone.posPersona);
 		    $scope.m_updateMarker();
-			if ($scope.distance_to_street_reference > 80) $scope.actionWrong();
+		    $scope.clicksDone++;
+			if ($scope.distance_to_street_reference > 300 && $scope.clicksDone > 2) $scope.actionWrong();
+			else if ($scope.distance_to_street_reference > 80 && $scope.clicksDone > 2) $scope.actionClose();
 		});
 	}
 
@@ -346,6 +369,9 @@ angular.module('app')
 	 * @return {[type]} [description]
 	 */
 	$scope.m_updateMarker = function () {
+			$scope.panWidth = angular.element('#panDiv').width();
+			$scope.panHeight = angular.element('#panDiv').height();
+
 			var l_pov = $scope.pan.getPov();
 			if (l_pov)
 			{
@@ -397,7 +423,7 @@ angular.module('app')
 					}
 				);
 				var angle_in_degrees = angle_in_radians * (180/3.1415);
-				// console.log('[seb] angle: ' + angle_in_degrees);
+				//console.log('[seb] angle: ' + angle_in_degrees);
 
 
 				//ANGLE WALL
@@ -406,19 +432,22 @@ angular.module('app')
 						'x': $scope.currentZone.posPersona.lat(), 
 						'y': $scope.currentZone.posPersona.lng()
 					},
+					
+					
 					{
-						'x': $scope.currentZone.longitude, 
-						'y': $scope.currentZone.latitude
+						'x': $scope.currentZone.latitude, 
+						'y': $scope.currentZone.longitude
 					}, 
+
 					{
 						'x': $scope.currentZone.latitude_wall_line, 
 						'y': $scope.currentZone.longitude_wall_line
 					}
+
+					
 				);
 				var angle_in_degrees_wall = angle_in_radians_wall * (180/3.1415);
-				// console.log('[seb] angle wall: ' + angle_in_degrees_wall);
-
-	   
+				//console.log('[seb] angle wall: ' + angle_in_degrees_wall);
 
 				var posters_id = [
 					document.getElementById("foto_001"),
