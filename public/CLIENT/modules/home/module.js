@@ -161,7 +161,7 @@ angular.module('app')
 					newClue = new google.maps.Marker({
 						position: new google.maps.LatLng(item.latitude, item.longitude),
 						map: $scope.map,
-						icon: 'https://s3-us-west-2.amazonaws.com/gsv.rayalab.cl/pines/pines-clue/'+$scope.currentZone.poster_id+'.png',
+						icon: 'http://d3g8amkxnw6wed.cloudfront.net/pines/pines-clue/'+$scope.currentZone.poster_id+'.png',
 						visible:true,
 						draggable: false
 
@@ -238,8 +238,8 @@ angular.module('app')
 			newFlag = new google.maps.Marker({
 				position: new google.maps.LatLng(item.default_clue_latitude, item.default_clue_longitude),
 				map: $scope.map,
-				title : 'Pista '+item.poster_id,
-				icon: 'https://s3-us-west-2.amazonaws.com/gsv.rayalab.cl/pines/'+item.poster_id+'.png',
+				title : item.default_clue_title,
+				icon: 'http://d3g8amkxnw6wed.cloudfront.net/pines/'+item.poster_id+'.png',
 				visible:true,
 				draggable: false
 			});
@@ -278,15 +278,15 @@ angular.module('app')
 		$scope.currentZone.posReference = new google.maps.LatLng($scope.currentZone.latitude_line, $scope.currentZone.longitude_line);
   		
 		$scope.currentZone.images = {
-			foto_001 : "https://s3-us-west-2.amazonaws.com/gsv.rayalab.cl/"+$scope.currentZone.poster_id+"/001.png",
-			foto_002 : "https://s3-us-west-2.amazonaws.com/gsv.rayalab.cl/"+$scope.currentZone.poster_id+"/002.png",
-			foto_003 : "https://s3-us-west-2.amazonaws.com/gsv.rayalab.cl/"+$scope.currentZone.poster_id+"/003.png",
-			foto_004 : "https://s3-us-west-2.amazonaws.com/gsv.rayalab.cl/"+$scope.currentZone.poster_id+"/004.png",
-			foto_005 : "https://s3-us-west-2.amazonaws.com/gsv.rayalab.cl/"+$scope.currentZone.poster_id+"/005.png",
-			foto_006 : "https://s3-us-west-2.amazonaws.com/gsv.rayalab.cl/"+$scope.currentZone.poster_id+"/006.png",
-			foto_007 : "https://s3-us-west-2.amazonaws.com/gsv.rayalab.cl/"+$scope.currentZone.poster_id+"/007.png",
-			foto_008 : "https://s3-us-west-2.amazonaws.com/gsv.rayalab.cl/"+$scope.currentZone.poster_id+"/008.png",
-			foto_009 : "https://s3-us-west-2.amazonaws.com/gsv.rayalab.cl/"+$scope.currentZone.poster_id+"/009.png"
+			foto_001 : "http://d3g8amkxnw6wed.cloudfront.net/"+$scope.currentZone.poster_id+"/001.png",
+			foto_002 : "http://d3g8amkxnw6wed.cloudfront.net/"+$scope.currentZone.poster_id+"/002.png",
+			foto_003 : "http://d3g8amkxnw6wed.cloudfront.net/"+$scope.currentZone.poster_id+"/003.png",
+			foto_004 : "http://d3g8amkxnw6wed.cloudfront.net/"+$scope.currentZone.poster_id+"/004.png",
+			foto_005 : "http://d3g8amkxnw6wed.cloudfront.net/"+$scope.currentZone.poster_id+"/005.png",
+			foto_006 : "http://d3g8amkxnw6wed.cloudfront.net/"+$scope.currentZone.poster_id+"/006.png",
+			foto_007 : "http://d3g8amkxnw6wed.cloudfront.net/"+$scope.currentZone.poster_id+"/007.png",
+			foto_008 : "http://d3g8amkxnw6wed.cloudfront.net/"+$scope.currentZone.poster_id+"/008.png",
+			foto_009 : "http://d3g8amkxnw6wed.cloudfront.net/"+$scope.currentZone.poster_id+"/009.png"
 		};
 		if (!$scope.usingGogo) $scope.$apply();
 
@@ -334,7 +334,7 @@ angular.module('app')
 		    $scope.currentZone.posPersona = $scope.pan.getPosition();
 		    $scope.map.setCenter($scope.currentZone.posPersona);
 		    $scope.m_updateMarker();
-			if ($scope.distance_to_street_reference > 150) $scope.actionWrong();
+			if ($scope.distance_to_street_reference > 80) $scope.actionWrong();
 		});
 	}
 
