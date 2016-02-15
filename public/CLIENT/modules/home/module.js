@@ -30,7 +30,7 @@ angular.module('app')
 	$scope.lat_wall_line =  0;
 	$scope.lng_wall_line =  0;
 	$scope.currentZone = {};
-	$scope.mode='map';
+	$scope.mode=true;
 	$scope.init = true;
 	$scope.testField = "";
 	$scope.obj = [];
@@ -97,15 +97,23 @@ angular.module('app')
 		$oauth.logout();
 	};
 	
-	$scope.actionViewMap = function(){
 	
 	$scope.actionClose = function(){
 		$("#modal33").openModal();
+		$scope.clicksDone=0;
 	};
 	
-		$scope.mode='map';
-		$scope.main_map_init();
-		$scope.clicksDone=0;
+	$scope.actionViewMap = function(){
+
+		if($scope.mode){
+			$scope.main_map_init();
+		}else{
+			$scope.mode=true;
+			$scope.map.setCenter(new google.maps.LatLng($scope.currentZone.default_clue_latitude, $scope.currentZone.default_clue_longitude));
+			$scope.map.setZoom($scope.zoom + 4);
+		}
+
+
 	};
 
 	$scope.actionDismiss = function() {
@@ -142,7 +150,7 @@ angular.module('app')
 	 * Te devuelve a las pistas secundarias del poster.
 	*/
 	$scope.backMapSecondClue = function() {
-			$scope.mode='map';
+			$scope.mode=true;
 			$scope.map.setCenter(new google.maps.LatLng($scope.currentZone.default_clue_latitude, $scope.currentZone.default_clue_longitude));
 			$scope.map.setZoom($scope.zoom + 4);
 	};
@@ -184,8 +192,6 @@ angular.module('app')
 	 */
 	$scope.nextClue = function(category, obj) {
 
-		console.log($scope.gmarkers);
-		console.log(category);
 		for (var i=0; i< $scope.gmarkers.length; i++) {
           if ($scope.gmarkers[i].mycategory == category) {
             $scope.gmarkers[i].setVisible(false);
@@ -198,7 +204,6 @@ angular.module('app')
 			$scope.map.setZoom($scope.zoom + 4);
 			$scope.addClueMarker({latitude:obj.default_clue_latitude, longitude:obj.default_clue_longitude});
 			angular.forEach(response, function(item) {
-
 					$scope.addClueMarker(item, "second_clue");
 				});
 		});	
@@ -236,7 +241,8 @@ angular.module('app')
 
 	
 	$scope.main_map_init = function (){
-		$scope.mode='map';
+
+		$scope.mode=true;
 		var div_main_map = document.getElementById("div_main_map");
 	    $scope.map = new google.maps.LatLng(-33.44560, -70.66033);
 
@@ -262,16 +268,16 @@ angular.module('app')
 				var newFlag;
 				var firtsCategory = "firts_clue";
 
-			//PONER BANDERA
-			newFlag = new google.maps.Marker({
-				position: new google.maps.LatLng(item.default_clue_latitude, item.default_clue_longitude),
-				map: $scope.map,
-				title : item.default_clue_title,
-				icon: 'http://d3g8amkxnw6wed.cloudfront.net/pines/'+item.poster_id+'.png',
-				visible:true,
-				draggable: false
-			});
-			newFlag.mycategory = firtsCategory;
+				//PONER BANDERA
+				newFlag = new google.maps.Marker({
+					position: new google.maps.LatLng(item.default_clue_latitude, item.default_clue_longitude),
+					map: $scope.map,
+					title : item.default_clue_title,
+					icon: 'http://d3g8amkxnw6wed.cloudfront.net/pines/'+item.poster_id+'.png',
+					visible:true,
+					draggable: false
+				});
+				newFlag.mycategory = firtsCategory;
 
 				$scope.gmarkers.push(newFlag);
 
@@ -282,7 +288,7 @@ angular.module('app')
 			});	
 			if($scope.init){
 				$gamePoster.getByUser(localStorage.user_id).then(function(result){
-					if(!result == "empty"){
+					if(result !== "empty"){
 						$scope.init = false;	
 						var response = JSON.parse(JSON.stringify(result.data));
 						$scope.aryDefaultPosters.splice(0, response.length)
@@ -306,7 +312,7 @@ angular.module('app')
 	$scope.m_initPanorama = function (clue_latitude, clue_longitude){
 		var visible = false;
 		var l_panDiv = document.getElementById("panDiv");
-		$scope.mode = 'street';
+		$scope.mode = false;
 		$scope.currentZone.default_clue_latitude = clue_latitude;
 		$scope.currentZone.default_clue_longitude = clue_longitude;
 
