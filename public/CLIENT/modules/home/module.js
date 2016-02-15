@@ -282,7 +282,7 @@ angular.module('app')
 			});	
 			if($scope.init){
 				$gamePoster.getByUser(localStorage.user_id).then(function(result){
-					if(result){
+					if(!result == "empty"){
 						$scope.init = false;	
 						var response = JSON.parse(JSON.stringify(result.data));
 						$scope.aryDefaultPosters.splice(0, response.length)
