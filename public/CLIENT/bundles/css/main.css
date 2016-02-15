@@ -365,7 +365,7 @@ body {
     border: none;
     border-radius: 0px;
     padding: 7px 30px;
-    margin-top: 10px;
+    /*margin-top: 10px;*/
     color: #fff;
 }
 
@@ -454,4 +454,58 @@ ul li a {
     font-family: 'Conv_FuturaLT-CondensedBold';
     font-size: 14px;
     text-transform: uppercase;
+}
+
+.back-modal {
+    background-color: transparent;
+    background-repeat: no-repeat;
+    background-image: url("../img/madera-modal.png");
+    width: 29%;
+    height: 100%;
+    box-shadow: none;
+    
+}
+
+h4.excelente {
+    color: #fcec00;
+    text-align: center;
+    margin-top: 20px;
+    text-transform: uppercase;
+    font-size: 24px;
+}
+
+.modal-content p {
+    color: #fff;
+    text-align: center;
+    font-size: 14px;
+    padding: 10px 80px;
+}
+
+.facebook {
+    background: #1d39b1;
+    border: 1px solid #fff;
+    border-radius: 0px;
+    font-size: 10px;
+}
+
+.facebook:hover {
+    background: #18214b;
+    border: 1px solid #fff;
+}
+
+.continuar {
+    background: #fc4a2c;
+    border: 1px solid #fff;
+    border-radius: 0px;
+    font-size: 10px;
+}
+
+.continuar:hover {
+    background: #ad2c16;
+    border: 1px solid #fff;
+}
+
+.aqua {
+
+    color: #00cc99 !important;
 }

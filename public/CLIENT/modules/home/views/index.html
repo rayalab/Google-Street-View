@@ -24,65 +24,15 @@
         <div class="row" style="overflow-y: scroll; height: 380px;">
             <div class="col-md-12" >
                
-                <div >
-                    <div class="col-md-4 col-sm-4 col-xs-4">
+                <div>
+                    <div ng-repeat="(key, value) in aryMyPosters" class="col-md-4 col-sm-4 col-xs-4">
                         <div class="thumbnail">
-                            <img src="http://lorempixel.com/130/160" class="img-responsive">
+                            <img ng-src="{{value.img}}" class="img-responsive" style="height: 171px; width: 132px;">
                         </div>
                     </div>
-                    <div class="col-md-4 col-sm-4 col-xs-4">
+                    <div ng-repeat="(key, value) in aryDefaultPosters" class="col-md-4 col-sm-4 col-xs-4">
                         <div class="thumbnail">
-                            <img src="http://lorempixel.com/130/160" class="img-responsive">
-                        </div>
-                    </div>
-                    <div class="col-md-4 col-sm-4 col-xs-4">
-                        <div class="thumbnail">
-                            <img src="http://lorempixel.com/130/160" class="img-responsive">
-                        </div>
-                    </div>
-                    <div class="col-md-4 col-sm-4 col-xs-4">
-                        <div class="thumbnail">
-                            <img src="http://lorempixel.com/130/160" class="img-responsive">
-                        </div>
-                    </div>
-                    <div class="col-md-4 col-sm-4 col-xs-4">
-                        <div class="thumbnail">
-                            <img src="http://lorempixel.com/130/160" class="img-responsive">
-                        </div>
-                    </div>
-                    <div class="col-md-4 col-sm-4 col-xs-4">
-                        <div class="thumbnail">
-                            <img src="http://lorempixel.com/130/160" class="img-responsive">
-                        </div>
-                    </div>
-                    <div class="col-md-4 col-sm-4 col-xs-4">
-                        <div class="thumbnail">
-                            <img src="http://lorempixel.com/130/160" class="img-responsive">
-                        </div>
-                    </div>
-                    <div class="col-md-4 col-sm-4 col-xs-4">
-                        <div class="thumbnail">
-                            <img src="http://lorempixel.com/130/160" class="img-responsive">
-                        </div>
-                    </div>
-                    <div class="col-md-4 col-sm-4 col-xs-4">
-                        <div class="thumbnail">
-                            <img src="http://lorempixel.com/130/160" class="img-responsive">
-                        </div>
-                    </div>
-                    <div class="col-md-4 col-sm-4 col-xs-4">
-                        <div class="thumbnail">
-                            <img src="http://lorempixel.com/130/160" class="img-responsive">
-                        </div>
-                    </div>
-                    <div class="col-md-4 col-sm-4 col-xs-4">
-                        <div class="thumbnail">
-                            <img src="http://lorempixel.com/130/160" class="img-responsive">
-                        </div>
-                    </div>
-                    <div class="col-md-4 col-sm-4 col-xs-4">
-                        <div class="thumbnail">
-                            <img src="http://lorempixel.com/130/160" class="img-responsive">
+                            <img ng-src="{{value.img}}" class="img-responsive" style="height: 171px; width: 132px;">
                         </div>
                     </div>
                 </div>
@@ -113,11 +63,11 @@
                     <li>
                         <a href="javascript:void(0)" ng-click="gogo(4)">GoGo!</a>
                     </li>
-                    <li class="active">
-                        <a ng-click="actionComoConcursar()">Como Concursar</a>
+                    <li>
+                        <a href="javascript:void(0)" ng-click="actionModalOpen('concurso')">Como Concursar</a>
                     </li>
                     <li>
-                        <a href="javascript:void(0)" ng-click="actionPremios()" >Premios</a>
+                        <a href="javascript:void(0)" ng-click="actionModalOpen('premio')" >Premios</a>
                     </li>
                     <li>
                         <a target="_blank" href="http://d3g8amkxnw6wed.cloudfront.net/pdf/BASES-CONCURSO-GOOGLE-STREET-VIEW.pdf" >Bases del Concurso</a>
@@ -158,7 +108,7 @@
 
                 <div id="panFrame" style="position:relative; width:100%; height:100vh; overflow:hidden;" ng-show="mode == 'street'">
                     <div id="panDiv" style="position:absolute;top:0px;left:0px; width:100%; height:100vh;"></div>
-                    <div id="markerDiv" style="position:relative;top:0px;left:0px;z-index:1000;cursor:pointer" ng-click="findPoster(currentPoster.posterId)">
+                    <div id="markerDiv" style="position:relative;top:0px;left:0px;z-index:1000;cursor:pointer" ng-click="posterFound()">
                         <img ng-repeat="(key, value) in currentZone.images" id="{{key}}" ng-src="{{value}}" width='100%' height='100%' alt='' style="display:none"/>
                     </div>
                 </div>
@@ -185,13 +135,12 @@
             </div>
             <div class="row" style="margin-top: 40px;">
                 <div class="col-md-12 text-center" >
-                    <button class="menu-icon"  id="open-button" style="margin-top: 15px;" ng-click="actionBackHome()">
+                    <button class="menu-icon"  id="open-button" style="margin-top: 15px;" ng-click="actionViewMap()">
                         <img src="bundles/img/mostrar.png" class="img-circle center-block">
                     </button> 
                     <p class="white-label text-center icons">Mostrar mapa</p>
                 </div>
             </div>
-
         </div>
     </div>
 </div>
@@ -208,7 +157,7 @@
         <h5> ¡Atención! ¡Firmes! llega hasta la entrada de una escuela muy particular, que le dio el nombre a un metro.
         ¡Vamos que se enfría la Pizza!.</h5>
         
-        <img src="bundles/img/pizza.png" class="img-circle center-block">
+        <img ng-src="{{default_avatar}}" class="center-block" style="height: 200px;">
         <p>{{description}}</p>
     </div>
 
@@ -216,7 +165,7 @@
 </div>
 
 
-<div id="modal3" class="modal alert-modal">
+<div id="error" class="modal alert-modal">
     <div class="modal-body text-center">
 
         <h5 class="lost"> Por aquí no es... estas más perdido que pizza en hamburguesería.</h5>
@@ -251,23 +200,37 @@
     </div>
 </div>
 
-<div id="fin-game" class="modal pista">
-    <div class="modal-body text-center">
-        <img src="bundles/img/fin-modal.png" class="img-responsive center-block">
-    </div>
-    <div class="col-md-12 text-center">
-        <a ng-click="backMapSecondClue()" class=" modal-action modal-close btn facebook-btn text-center">Compartir</a>
-    </div>
-</div>
-
-<div id="como" class="modal pista" style="height: 400px !important;">
+<div id="concurso" class="modal pista" style="height: 400px !important;">
     <div class="modal-body text-center" >
         <img src="bundles/img/como.png" class="img-responsive center-block">
     </div>
 </div>
 
-<div id="premios" class="modal pista" style="height: 400px !important;">
+<div id="premio" class="modal pista" style="height: 400px !important;">
     <div class="modal-body text-center">
         <img src="bundles/img/premio.png" class="img-responsive center-block">
+    </div>
+</div>
+
+<div id="posterFind" class="modal back-modal">
+    <div class="modal-content">
+        <img class="center-block" src="bundles/img/excelente.png"/>
+        <br/>
+        <h4 class="control-label aqua">Encontraste tu primer poster.</h4>
+
+        <p class="control-label">Aún te quedan dos por descubrir esta semana y así participar por dos entradas VIP a Lollapalooza 2016.</p>
+
+        <div class="valign-wrapper" style="margin-bottom: 30px;">
+            <img ng-src="{{currentZone.image_default}}" class="img-responsive img-thumbnail center-block" style="height: 400px;">
+        </div>
+        <div class="row">
+            <div class="col-md-offset-2 col-md-4">
+                <a class="btn facebook"><i class="fa fa-facebook-square"></i> Compartir</a>
+            </div>
+            <div class="col-md-4">
+
+                <a class="btn continuar modal-action modal-close" ng-click="actionViewMap()">Seguir jugando</a>
+            </div>
+        </div>
     </div>
 </div>
