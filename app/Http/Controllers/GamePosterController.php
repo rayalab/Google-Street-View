@@ -66,7 +66,21 @@ class GamePosterController extends Controller
      */
     public function show($id)
     {
-        //
+        $objImgPoster = array();
+        $gamePoster = GamePoster::where('user_id', $id)->select('poster_id')->get();
+
+        if($gamePoster->count() > 0){
+
+            foreach ($gamePoster as $value) {
+                $find = Poster::where('poster_id', $value->poster_id)->select('image_default', 'poster_id')->get();
+                array_push($objImgPoster, $find[0]); 
+            }
+            return response()->json($objImgPoster);
+        }else{
+
+            return false;
+        }
+
     }
 
     /**

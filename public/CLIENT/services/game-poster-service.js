@@ -4,11 +4,15 @@ angular.module("gamePosterService", [])
 
       return {
         create: function(aryObj) {
-                return $http.get('http://'+$location.$$host+':8000/gamePoster', aryObj).success(function(data) { return data; });
+                return $http.post('http://'+$location.$$host+':8000/gamePoster', aryObj).success(function(data) { return data; });
         },
         getAll: function() {
                 return $http.get('http://'+$location.$$host+':8000/gamePoster').success(function(data) { return data; });
+        },
+        getByUser: function(userId) {
+                return $http.get('http://'+$location.$$host+':8000/gamePoster/'+userId+'').success(function(data) { return data; });
         }
+
       };
 
     }

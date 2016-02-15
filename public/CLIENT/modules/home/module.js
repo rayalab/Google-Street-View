@@ -1,6 +1,6 @@
 angular.module('app')
 
-.controller('home.index', function homeIndex($stateParams, $flash, $scope, $poster, $clue, $location, $oauth, $rootScope) {
+.controller('home.index', function homeIndex($stateParams, $flash, $scope, $poster, $clue, $location, $oauth, $rootScope, $gamePoster) {
 		
 	$scope.full_name = localStorage.full_name;
 	$scope.facebook_id = localStorage.facebook_id;
@@ -30,23 +30,52 @@ angular.module('app')
 	$scope.lng_wall_line =  0;
 	$scope.currentZone = {};
 	$scope.mode='map';
+	$scope.init = true;
 	$scope.testField = "";
 	$scope.obj = [];
 	$scope.posPersona = new google.maps.LatLng(-33.44560, -70.66033);
 
 	$scope.aryMyPosterId = [];
+	$scope.aryMyPosters = [];
 
-	$scope.aryMyPosters = {
-			1 : "bundles/img/default.png",
-			2 : "bundles/img/default.png",
-			3 : "bundles/img/default.png",
-			4 : "bundles/img/default.png",
-			5 : "bundles/img/default.png",
-			6 : "bundles/img/default.png",
-			7 : "bundles/img/default.png",
-			8 : "bundles/img/default.png",
-			9 : "bundles/img/default.png"
-	};
+	$scope.aryDefaultPosters = [
+		{
+			'img' : "bundles/img/default.png"
+		},
+		{
+			'img' : "bundles/img/default.png"
+		},
+		{
+			'img' : "bundles/img/default.png"
+		},
+		{
+			'img' : "bundles/img/default.png"
+		},
+		{
+			'img' : "bundles/img/default.png"
+		},
+		{
+			'img' : "bundles/img/default.png"
+		},
+		{
+			'img' : "bundles/img/default.png"
+		},
+		{
+			'img' : "bundles/img/default.png"
+		},
+		{
+			'img' : "bundles/img/default.png"
+		},
+		{
+			'img' : "bundles/img/default.png"
+		},
+		{
+			'img' : "bundles/img/default.png"
+		},
+		{
+			'img' : "bundles/img/default.png"
+		}
+	];
 
 
 	/**
@@ -66,27 +95,19 @@ angular.module('app')
 	$scope.logout = function() {
 		$oauth.logout();
 	};
-
-	$scope.actionWrong = function(){
-		$("#modal3").openModal();
-	};
 	
-	$scope.actionBackHome = function(){
+	$scope.actionViewMap = function(){
 		$scope.mode='map';
-		$scope.map.setCenter(new google.maps.LatLng($scope.currentZone.default_clue_latitude, $scope.currentZone.default_clue_longitude));
-		$scope.map.setZoom($scope.zoom + 4);
+		$scope.main_map_init();
 	};
-	
-    $scope.actionEndGame = function () {
-        $("#fin-game").openModal();
-    };
 
-    $scope.actionComoConcursar = function () {
-        $("#como").openModal();
-    };
+    $scope.actionModalOpen = function(id){
 
-    $scope.actionPremios = function () {
-        $("#premios").openModal();
+    	if($("#"+id+"").is(':visible')){
+    		$("#"+id+"").closeModal();
+    	}else{
+	    	$("#"+id+"").openModal();
+    	}
     };
 
 	$rootScope.reloadHeader();
@@ -100,7 +121,6 @@ angular.module('app')
 	$scope.gogo = function(id) {
 		//ahora que es aleatorio, agarraremos el primero que obtuvimos nomas
 		var item = (function(){ for(var i in $scope.posters) return $scope.posters[i] })()
-		console.log(item);
 		$scope.usingGogo = true;
 		$scope.currentZone = $scope.posters[id];
 		$scope.m_initPanorama($scope.posters[id].default_clue_latitude, $scope.posters[id].default_clue_longitude);
@@ -155,13 +175,11 @@ angular.module('app')
 					newClue.mycategory = firtsCategory;
 
 					newClue.addListener('click', function() {
-						console.log('setting current zone to',$scope.currentZone);
 						$scope.m_initPanorama(item.latitude, item.longitude);
 					});
 				});
 		});	
 	};
-
 
 	/**
 	 * Evento de los markers de pistas principales que levanta el modal con boton "siguiente"
@@ -171,6 +189,7 @@ angular.module('app')
 	 * @return {[type]}               [description]
 	 */
 	$scope.clickClue = function(item, firtsCategory) {
+		$scope.default_avatar = "";
 		$scope.title = item.default_clue_title;
 		$scope.description = item.default_clue_description;
 		$scope.default_avatar = item.image_default;
@@ -192,56 +211,69 @@ angular.module('app')
 		}	
 	};
 
+	
 	$scope.main_map_init = function (){
-		$scope.mode='map';
-		var div_main_map = document.getElementById("div_main_map");
-	    $scope.map = new google.maps.LatLng(-33.44560, -70.66033);
+			
+			var div_main_map = document.getElementById("div_main_map");
+		    $scope.map = new google.maps.LatLng(-33.44560, -70.66033);
 
-		var mapOptions =
-		{
-			center: $scope.map,
-			zoom: $scope.zoom,
-			mapTypeId: google.maps.MapTypeId.HYBRID,
-			scaleControl: false,
-			// scrollwheel: false,
-			// draggable: false,
-			disableDefaultUI: true,
-			mapTypeControl: false
-		};
+			var mapOptions =
+			{
+				center: $scope.map,
+				zoom: $scope.zoom,
+				mapTypeId: google.maps.MapTypeId.HYBRID,
+				scaleControl: false,
+				// scrollwheel: false,
+				// draggable: false,
+				disableDefaultUI: true,
+				mapTypeControl: false
+			};
 
-		$scope.map = new google.maps.Map(div_main_map, mapOptions);
+			$scope.map = new google.maps.Map(div_main_map, mapOptions);
 
 
-		//colocar banderas y posters
-		$scope.posters = [];
-		angular.forEach($scope.aryPoster, function(item) {
-			$scope.posters[item.poster_id] = item;
-			var newFlag;
-			var firtsCategory = "firts_clue";
+			//colocar banderas y posters
+			$scope.posters = [];
+			angular.forEach($scope.aryPoster, function(item) {
+				$scope.posters[item.poster_id] = item;
+				var newFlag;
+				var firtsCategory = "firts_clue";
 
-			//PONER BANDERA
-			newFlag = new google.maps.Marker({
-				position: new google.maps.LatLng(item.default_clue_latitude, item.default_clue_longitude),
-				map: $scope.map,
-				title : 'Pista '+item.poster_id,
-				icon: 'https://s3-us-west-2.amazonaws.com/gsv.rayalab.cl/pines/'+item.poster_id+'.png',
-				visible:true,
-				draggable: false
-			});
-			newFlag.mycategory = firtsCategory;
+				//PONER BANDERA
+				newFlag = new google.maps.Marker({
+					position: new google.maps.LatLng(item.default_clue_latitude, item.default_clue_longitude),
+					map: $scope.map,
+					title : 'Pista '+item.poster_id,
+					icon: 'https://s3-us-west-2.amazonaws.com/gsv.rayalab.cl/pines/'+item.poster_id+'.png',
+					visible:true,
+					draggable: false
+				});
+				newFlag.mycategory = firtsCategory;
 
-			$scope.gmarkers.push(newFlag);
+				$scope.gmarkers.push(newFlag);
 
-			newFlag.addListener('click', function() {
-				console.log('setting current poster to ', item);
-				$scope.currentZone = item;
-				$scope.clickClue(item, firtsCategory);
-			});
-
-		});
+				newFlag.addListener('click', function() {
+					$scope.currentZone = item;
+					$scope.clickClue(item, firtsCategory);
+				});
+			});	
+			if($scope.init){
+				$gamePoster.getByUser(localStorage.user_id).then(function(result){
+					if(result){
+						$scope.init = false;	
+						var response = JSON.parse(JSON.stringify(result.data));
+						$scope.aryDefaultPosters.splice(0, response.length)
+						angular.forEach(response, function(item) {
+							var newAry = {
+								'img' : item.image_default
+							};
+							$scope.aryMyPosterId.push(item.poster_id);
+							$scope.aryMyPosters.push(newAry);
+						});	
+					}
+				});	
+			}
 	};
-
-
 
 	/**
 	 * Start a StreetView in the #panDiv element
@@ -252,7 +284,6 @@ angular.module('app')
 		var visible = false;
 		var l_panDiv = document.getElementById("panDiv");
 		$scope.mode = 'street';
-
 		$scope.currentZone.default_clue_latitude = clue_latitude;
 		$scope.currentZone.default_clue_longitude = clue_longitude;
 
@@ -322,9 +353,6 @@ angular.module('app')
 		    $scope.m_updateMarker();
 		});
 	}
-
-
-
 
 	/**
 	 * Show and/or move posters accordingly with camera position
@@ -543,7 +571,25 @@ angular.module('app')
 	$scope.posterFound = function() {
 
 		if($scope.aryMyPosterId.indexOf($scope.currentZone.poster_id) == -1){
-			$scope.aryMyPosterId.push($scope.currentZone.poster_id);
+
+			
+
+			var AryObj = {
+				user_id   : localStorage.user_id,
+				game_id   : localStorage.game_id,
+				poster_id : $scope.currentZone.poster_id
+			};
+
+			$gamePoster.create(AryObj).then(function(result){
+				$scope.aryMyPosterId.push($scope.currentZone.poster_id);
+				var newAry = {
+					'img' : $scope.currentZone.image_default
+				};
+				$scope.aryDefaultPosters.splice(0, 1)
+				$scope.aryMyPosters.push(newAry);
+				$scope.actionModalOpen('posterFind');
+			});	
+
 		}
 
 	};
