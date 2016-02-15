@@ -1,6 +1,8 @@
 angular.module("oauthFacebookService", [])
   .factory("$oauth", ['$window', '$http', '$location',
 	function($window, $http, $location) {
+	prod = 1;
+	api  = 'api.vo.gt';
 
 	  return {
 		login: function() {
@@ -19,7 +21,7 @@ angular.module("oauthFacebookService", [])
 						 };
 						 localStorage.setItem('image', response.picture.data.url.split('https://')[1]);
 
-						 var dataStorage = $http.post('http://'+$location.$$host+':8000/social', aryObj).success(function(data) { 
+						 var dataStorage = $http.post('http://'+(!prod?$location.$$host:api)+':8000/social', aryObj).success(function(data) { 
 						 	console.log("Hola");
 							Object.keys(data.user).map(function(value) {
 							  localStorage.setItem(value, data.user[value]);
