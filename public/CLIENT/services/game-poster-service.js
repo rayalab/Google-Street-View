@@ -1,9 +1,9 @@
 angular.module("gamePosterService", [])
   .factory("$gamePoster", ['$window', '$http', '$location',
     function($window, $http, $location) {
-      prod = 0;
+      prod = 1;
       api  = 'api.vo.gt';
-
+      
       return {
         create: function(aryObj) {
                 return $http.post('http://'+(!prod?$location.$$host:api)+':8000/gamePoster', aryObj).success(function(data) { return data; });
