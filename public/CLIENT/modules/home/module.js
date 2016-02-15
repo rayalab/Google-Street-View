@@ -375,11 +375,11 @@ angular.module('app')
 		    $scope.m_updateMarker();
 		    $scope.clicksDone++;
 			if ($scope.distance_to_street_reference > 300 && $scope.clicksDone > 2) {
-				$scope.actionModalOpen(3);
+				$scope.actionModalOpen('modal3');
 				$scope.clicksDone=0;
 			}
 			else if ($scope.distance_to_street_reference > 80 && $scope.clicksDone > 2) {
-				$scope.actionModalOpen(33);
+				$scope.actionModalOpen('modal33');
 				$scope.clicksDone=0;
 			}
 		});
