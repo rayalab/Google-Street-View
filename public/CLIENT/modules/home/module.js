@@ -10,7 +10,7 @@ angular.module('app')
 	// calle  -33.39790772, -70.5823195
 	// cartel -33.39775097,-70.58235705
 
-	$scope.zoom = 12;
+	$scope.zoom = 11;
 	$scope.slat = localStorage.position_latitude;	
 	$scope.slng = localStorage.position_longitude;	
 	$scope.sheading = 69.58;
