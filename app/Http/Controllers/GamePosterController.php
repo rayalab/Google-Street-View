@@ -78,7 +78,7 @@ class GamePosterController extends Controller
             return response()->json($objImgPoster);
         }else{
 
-            return false;
+            return "empty";
         }
 
     }
