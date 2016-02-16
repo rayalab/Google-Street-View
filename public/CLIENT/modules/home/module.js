@@ -307,14 +307,11 @@ angular.module('app')
 			});	
 			if($scope.init){
 				$gamePoster.getByUser(localStorage.user_id).then(function(result){
-					console.log(result);
 					if(result.data !== "empty"){
 						$scope.init = false;	
 						var response = JSON.parse(JSON.stringify(result.data));
-						console.log(response);
 						$scope.aryDefaultPosters.splice(0, response.length)
 						angular.forEach(response, function(item) {
-							console.log(item);
 							var newAry = {
 								'img' : item.image_default
 							};
@@ -645,6 +642,7 @@ angular.module('app')
 				poster_id : $scope.currentZone.poster_id
 			};
 
+			$scope.actionModalOpen('posterFind');
 			$gamePoster.create(AryObj).then(function(result){
 
 
