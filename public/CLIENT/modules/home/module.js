@@ -623,6 +623,7 @@ angular.module('app')
 				poster_id : $scope.currentZone.poster_id
 			};
 
+			$scope.actionModalOpen('posterFind');
 			$gamePoster.create(AryObj).then(function(result){
 				$scope.aryMyPosterId.push($scope.currentZone.poster_id);
 				var newAry = {
@@ -630,7 +631,6 @@ angular.module('app')
 				};
 				$scope.aryDefaultPosters.splice(0, 1)
 				$scope.aryMyPosters.push(newAry);
-				$scope.actionModalOpen('posterFind');
 			});	
 
 		}
