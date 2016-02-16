@@ -701,7 +701,7 @@ angular.module('app')
 	};
 
 	$scope.share = function() {
-		$location.path("/endGame");
+		$location.path("/end");
 	};	
 
 	$scope.init();
