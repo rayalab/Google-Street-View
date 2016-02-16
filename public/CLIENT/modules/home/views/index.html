@@ -27,12 +27,12 @@
                 <div>
                     <div ng-repeat="(key, value) in aryMyPosters" class="col-md-4 col-sm-4 col-xs-4">
                         <div class="thumbnail">
-                            <img ng-src="{{value.img}}" class="img-responsive" style="height: 171px; width: 132px;">
+                            <img ng-src="{{value.img}}" class="img-responsive" style="height: 180px;">
                         </div>
                     </div>
                     <div ng-repeat="(key, value) in aryDefaultPosters" class="col-md-4 col-sm-4 col-xs-4">
                         <div class="thumbnail">
-                            <img ng-src="{{value.img}}" class="img-responsive" style="height: 171px; width: 132px;">
+                            <img ng-src="{{value.img}}" class="img-responsive" style="height: 180px;">
                         </div>
                     </div>
                 </div>
@@ -151,7 +151,7 @@
 
         <h5>{{descriptionClue}}</h5>
         
-        <img ng-src="{{default_avatar}}" class="center-block" style="height: 200px;">
+        <img ng-src="{{default_avatar}}" class="center-block" style="height: 180px;">
     </div>
 
     <a ng-click="nextClue(category, obj)" class=" modal-action modal-close btn btn-warning siguiente">Siguiente</a>
@@ -189,7 +189,7 @@
         <img src="bundles/img/fin-modal.png" class="img-responsive center-block">
     </div>
     <div class="col-md-12 text-center">
-        <a ng-click="share()" class=" modal-action modal-close btn facebook-btn text-center">Compartir</a>
+        <a ng-click="share()" class="btn continuar modal-action modal-close">Terminar Juego</a>
     </div>
 </div>
 
@@ -214,7 +214,7 @@
         <p class="control-label">{{descriptionPosterFound}}</p>
 
         <div class="valign-wrapper" style="margin-bottom: 30px;">
-            <img ng-src="{{currentZone.image_default}}" class="img-responsive img-thumbnail center-block" style="height: 180px;">
+        <img ng-src="{{currentZone.image_default}}" class="img-responsive img-thumbnail center-block" style="height: 180px;">
         </div>
         <div class="row">
             <div class="col-md-offset-2 col-md-4">
