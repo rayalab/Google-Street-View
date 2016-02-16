@@ -403,7 +403,7 @@ angular.module('app')
 				$scope.actionModalOpen('error');
 				$scope.clicksDone=0;
 			}
-			else if ($scope.distance_to_street_reference > 80 && $scope.clicksDone > 2) {
+			else if ($scope.distance_to_street_reference > 50 && $scope.clicksDone > 2) {
 				$scope.actionModalOpen('modal33');
 				$scope.clicksDone=0;
 			}
