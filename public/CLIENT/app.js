@@ -38,7 +38,8 @@ angular.module('app', [
 	'gamePosterService',
 	'sprintfService',
 	'autoMenu',
-	'materialize'
+	'materialize',
+	'userService',
 ])
 
 /**

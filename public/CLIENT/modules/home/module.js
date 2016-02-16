@@ -35,9 +35,29 @@ angular.module('app')
 	$scope.testField = "";
 	$scope.obj = [];
 	$scope.posPersona = new google.maps.LatLng(-33.44560, -70.66033);
-
+	$scope.titlePosterFound = "";
+	$scope.descriptionPosterFound = "";
 	$scope.aryMyPosterId = [];
 	$scope.aryMyPosters = [];
+
+	$scope.aryTextFindPoster = [
+		{
+			'title' : "Encontraste tu primer poster",
+			'description' : "Aún te quedan dos por descubrir esta semana y así participar en el sorteo por entradas VIP dobles a Lollapalooza 2016."
+		},
+		{
+			'title' : "Encontraste tu segundo poster",
+			'description' : "Estas a sólo un poster de poder participar en el sorteo por entradas  VIP dobles a Lollapalooza 2016. ¡Sigue buscando!"
+		},
+		{
+			'title' : "Encontraste tu tercer poster",
+			'description' : "Ya estás participando en el sorteo por entradas VIP dobles para Lollapalooza 2016. Sigue completando tu álbum y aumenta tus posibilidades de ganar."
+		},
+		{
+			'title' : "Ya eres un experimentado",
+			'description' : "Sigue completando tu álbum y aumenta aún más tus posibilidades de ganar una entrada VIP doble para Lollapalooza 2016."
+		}
+	];
 
 	$scope.aryDefaultPosters = [
 		{
@@ -112,7 +132,6 @@ angular.module('app')
 			$scope.map.setCenter(new google.maps.LatLng($scope.currentZone.default_clue_latitude, $scope.currentZone.default_clue_longitude));
 			$scope.map.setZoom($scope.zoom + 4);
 		}
-
 
 	};
 
@@ -288,11 +307,14 @@ angular.module('app')
 			});	
 			if($scope.init){
 				$gamePoster.getByUser(localStorage.user_id).then(function(result){
-					if(result !== "empty"){
+					console.log(result);
+					if(result.data !== "empty"){
 						$scope.init = false;	
 						var response = JSON.parse(JSON.stringify(result.data));
+						console.log(response);
 						$scope.aryDefaultPosters.splice(0, response.length)
 						angular.forEach(response, function(item) {
+							console.log(item);
 							var newAry = {
 								'img' : item.image_default
 							};
@@ -624,18 +646,56 @@ angular.module('app')
 			};
 
 			$gamePoster.create(AryObj).then(function(result){
+
+
 				$scope.aryMyPosterId.push($scope.currentZone.poster_id);
+
 				var newAry = {
 					'img' : $scope.currentZone.image_default
 				};
-				$scope.aryDefaultPosters.splice(0, 1)
-				$scope.aryMyPosters.push(newAry);
-				$scope.actionModalOpen('posterFind');
+				switch($scope.aryMyPosterId.length) {
+				    case 1:
+				        $scope.posterFoundSetValues($scope.aryTextFindPoster[0], newAry);
+				        break;
+				    case 2:
+				       	$scope.posterFoundSetValues($scope.aryTextFindPoster[1], newAry);
+				        break;
+			        case 3:
+			       		$scope.endGame($scope.aryTextFindPoster[2], newAry);
+			        break;
+				    default:
+				    	$scope.posterFoundSetValues($scope.aryTextFindPoster[3], newAry);
+	
+				};
+
 			});	
 
 		}
 
 	};
+
+	$scope.posterFoundSetValues = function(aryFound, aryPush) {
+				$scope.titlePosterFound = aryFound.title;
+				$scope.descriptionPosterFound = aryFound.description;
+
+				$scope.aryDefaultPosters.splice(0, 1)
+				$scope.aryMyPosters.push(aryPush);
+
+				$scope.actionModalOpen('posterFind');
+	};
+
+	$scope.endGame = function(aryFound, aryPush) {
+				$scope.titlePosterFound = aryFound.title;
+				$scope.descriptionPosterFound = aryFound.description;
+
+				$scope.aryDefaultPosters.splice(0, 1)
+				$scope.aryMyPosters.push(aryPush);
+				$scope.actionModalOpen('fin-game');
+	};
+
+	$scope.share = function() {
+		$location.path("/endGame");
+	};	
 
 	$scope.init();
 });

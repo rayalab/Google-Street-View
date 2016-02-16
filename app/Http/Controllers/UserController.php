@@ -7,7 +7,7 @@ use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use App\User;
-
+use DB;
 class UserController extends Controller
 {
 
@@ -80,12 +80,16 @@ class UserController extends Controller
     {
 
         $req = $request->all();
-        $User = User::firstOrNew([
-            'user_id' => $id
-        ]);
-        $User->run = $req["run"];
-        $User->email_contact = $req["email_contact"];
-        $User->save();
+
+        $User = DB::table('users')
+            ->where('user_id', $id)
+            ->update([
+                'run' => $req["run"],
+                'cellphone' => $req["cellphone"],
+                'address' => $req["address"],
+                'email' => $req["email"]
+         ]);
+
 
         return response()->json($User);
     }

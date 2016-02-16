@@ -466,6 +466,16 @@ ul li a {
     
 }
 
+
+.back-end-modal {
+    background-color: transparent;
+    background-repeat: no-repeat;
+    background-image: url("../img/fin-wood.jpg");
+    width: 500px;
+    height: 100%;
+    box-shadow: none;
+}
+
 h4.excelente {
     color: #fcec00;
     text-align: center;
@@ -508,4 +518,8 @@ h4.excelente {
 .aqua {
 
     color: #00cc99 !important;
+}
+
+.warning {
+    color: #F33;
 }

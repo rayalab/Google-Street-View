@@ -7,13 +7,13 @@
                 <img ng-src="http://{{image_profile}}" class="img-responsive img-circle ">
             </div>
             <div class="col-md-9">
-                <h4 class="white user">Nombre de Usuario de Facebook</h4>
+                <h4 class="white user">{{user.full_name}}</h4>
             </div>
         </div>
     </div>
     <br/>
     <div class="text-center">
-        <h4 class="form green ">ENCONTRASTE 3 POSTERS ESTA SEMANA.</h4>
+        <h4 class="form green ">ENCONTRASTE 3 POSTERS.</h4>
         <h4 class="form white"> AHORA SÓLO INGRESA TUS DATOS Y PARTICIPA POR
             UNA ENTRADA VIP DOBLE A LOLLAPALOOZA 2016</h4>
     </div>
@@ -31,7 +31,7 @@
             </div>
             <div class="form-group">
                 <div class="col-sm-2">
-                    <label class="control-label">RUT</label>
+                    <label ng-class="{'warning':run}" class="control-label">RUT</label>
                 </div>
                 <div class="col-sm-10">
                     <input type="text" class="form-control" ng-model="user.run">
@@ -39,7 +39,7 @@
             </div>
             <div class="form-group">
                 <div class="col-sm-2">
-                    <label class="control-label">Teléfono</label>
+                    <label ng-class="{'warning':cellphone}" class="control-label">Teléfono</label>
                 </div>
                 <div class="col-sm-10">
                     <input type="text" class="form-control" ng-model="user.cellphone">
@@ -47,7 +47,7 @@
             </div>
             <div class="form-group">
                 <div class="col-sm-2">
-                    <label class="control-label">Email</label>
+                    <label ng-class="{'warning':email}" class="control-label">Email</label>
                 </div>
                 <div class="col-sm-10">
                     <input type="email" class="form-control" ng-model="user.email">
@@ -55,7 +55,7 @@
             </div>
             <div class="form-group">
                 <div class="col-sm-2">
-                    <label class="control-label">Dirección</label>
+                    <label ng-class="{'warning':address}" class="control-label">Dirección</label>
                 </div>
                 <div class="col-sm-10">
                     <input type="text" class="form-control" ng-model="user.address">
@@ -69,17 +69,24 @@
                     </div>
                 </div>
                 <div class="col-md-5">
-                    <button type="submit" class="btn btn-danger pull-right">Enviar Datos</button>
+                    <button ng-click="sendInformation()" class="btn btn-danger pull-right">Enviar Datos</button>
                 </div>
             </div>
         </form>
     </div>
 </div>
 
-<div class="col-md-6 col-md-offset-3 text-center" style="margin-top: 3%" id="success">
-    <div class="col-md-12">
+
+<div id="success" class="modal back-end-modal">
+    <div class="modal-content">
+       
+        <br/>
         <h4 class="white user">tus datos han sido enviados con éxito</h4>
         <br/>
-         <button type="submit" class="btn btn-danger">Seguir jugando</button>
+        <br/>
+        <br/>
+        <br/>
+        <br/>
+        <button ng-click="backHome()" class="btn btn-danger center-block">Seguir jugando</button>
     </div>
 </div>

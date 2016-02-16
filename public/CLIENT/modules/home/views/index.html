@@ -171,8 +171,8 @@
         <h5 class="lost"> Por aquí no es... estas más perdido que pizza en hamburguesería.</h5>
         
     </div>
-    <div class="col-md-12 text-center">
-        <a ng-click="actionBackHome()" class=" modal-action modal-close btn btn-warning siguiente text-center">Volver al mapa</a>
+    <div class="col-md-4 col-md-offset-4">
+        <a ng-click="actionViewMap()" class=" modal-action modal-close btn btn-warning siguiente">Volver al mapa</a>
     </div>
 </div>
 
@@ -184,8 +184,8 @@
         <h5 class="lost"> Vas bien... pero para el otro lado.</h5>
         
     </div>
-    <div class="col-md-12 text-center">
-        <a ng-click="actionDismiss()" class=" modal-action modal-close btn btn-warning siguiente text-center">OK</a>
+    <div class="col-md-4 col-md-offset-4">
+        <a ng-click="actionDismiss()" class=" modal-action modal-close btn btn-warning siguiente">OK</a>
     </div>
 </div>
 
@@ -196,7 +196,7 @@
         <img src="bundles/img/fin-modal.png" class="img-responsive center-block">
     </div>
     <div class="col-md-12 text-center">
-        <a ng-click="backMapSecondClue()" class=" modal-action modal-close btn facebook-btn text-center">Compartir</a>
+        <a ng-click="share()" class=" modal-action modal-close btn facebook-btn text-center">Compartir</a>
     </div>
 </div>
 
@@ -216,9 +216,9 @@
     <div class="modal-content">
         <img class="center-block" src="bundles/img/excelente.png"/>
         <br/>
-        <h4 class="control-label aqua">Encontraste tu primer poster.</h4>
+        <h4 class="control-label aqua">{{titlePosterFound}}</h4>
 
-        <p class="control-label">Aún te quedan dos por descubrir esta semana y así participar por dos entradas VIP a Lollapalooza 2016.</p>
+        <p class="control-label">{{descriptionPosterFound}}</p>
 
         <div class="valign-wrapper" style="margin-bottom: 30px;">
             <img ng-src="{{currentZone.image_default}}" class="img-responsive img-thumbnail center-block" style="height: 400px;">
