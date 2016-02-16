@@ -148,17 +148,16 @@
 
 <div id="modalClue" class="modal pista text-center">
     <div class="modal-content">
-        <h4>{{title}}</h4>
+        <h4>{{titleClue}}</h4>
     </div>
     <div class="modal-body">
         <h4>
-            Busca el poster “pizza rising crust” </h4>
+            Busca el poster "{{titlePoster}}" 
+        </h4>
 
-        <h5> ¡Atención! ¡Firmes! llega hasta la entrada de una escuela muy particular, que le dio el nombre a un metro.
-        ¡Vamos que se enfría la Pizza!.</h5>
+        <h5>{{descriptionClue}}</h5>
         
         <img ng-src="{{default_avatar}}" class="center-block" style="height: 200px;">
-        <p>{{description}}</p>
     </div>
 
     <a ng-click="nextClue(category, obj)" class=" modal-action modal-close btn btn-warning siguiente">Siguiente</a>
@@ -228,8 +227,7 @@
                 <a class="btn facebook"><i class="fa fa-facebook-square"></i> Compartir</a>
             </div>
             <div class="col-md-4">
-
-                <a class="btn continuar modal-action modal-close" ng-click="actionViewMap()">Seguir jugando</a>
+                <a class="btn continuar modal-action modal-close" ng-click="actionViewMapNextPoster()">Seguir jugando</a>
             </div>
         </div>
     </div>
