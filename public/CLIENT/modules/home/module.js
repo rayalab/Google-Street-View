@@ -1,6 +1,6 @@
 angular.module('app')
 
-.controller('home.index', function homeIndex($stateParams, $flash, $scope, $poster, $clue, $location, $oauth, $rootScope, $gamePoster) {
+.controller('home.index', function homeIndex($stateParams, $flash, $scope, $poster, $clue, $location, $oauth, $rootScope, $gamePoster, $timeout) {
 		
 	$scope.full_name = localStorage.full_name;
 	$scope.facebook_id = localStorage.facebook_id;
@@ -130,9 +130,18 @@ angular.module('app')
 		}else{
 			$scope.mode=true;
 			$scope.map.setCenter(new google.maps.LatLng($scope.currentZone.default_clue_latitude, $scope.currentZone.default_clue_longitude));
-			$scope.map.setZoom($scope.zoom + 4);
+			$scope.map.setZoom($scope.zoom + 3);
 		}
+	};
 
+	$scope.actionViewMapNextPoster = function(){
+			$scope.mode=true;
+			$scope.map.setCenter(new google.maps.LatLng($scope.currentZone.default_clue_latitude, $scope.currentZone.default_clue_longitude));
+			$scope.map.setZoom($scope.zoom + 1);
+			var delay = $timeout(function() {
+				$timeout.cancel(delay);
+		    	$scope.main_map_init();
+		    },500);
 	};
 
 	$scope.actionDismiss = function() {
@@ -237,8 +246,9 @@ angular.module('app')
 	 */
 	$scope.clickClue = function(item, firtsCategory) {
 		$scope.default_avatar = "";
-		$scope.title = item.default_clue_title;
-		$scope.description = item.default_clue_description;
+		$scope.titlePoster = item.poster_title;
+		$scope.titleClue = item.default_clue_title;
+		$scope.descriptionClue = item.default_clue_description;
 		$scope.default_avatar = item.image_default;
 		$scope.category = firtsCategory;
 		$scope.obj = item;
@@ -260,7 +270,7 @@ angular.module('app')
 
 	
 	$scope.main_map_init = function (){
-
+		console.log("Hola");
 		$scope.mode=true;
 		var div_main_map = document.getElementById("div_main_map");
 	    $scope.map = new google.maps.LatLng(-33.44560, -70.66033);
@@ -642,7 +652,6 @@ angular.module('app')
 				poster_id : $scope.currentZone.poster_id
 			};
 
-			$scope.actionModalOpen('posterFind');
 			$gamePoster.create(AryObj).then(function(result){
 
 
