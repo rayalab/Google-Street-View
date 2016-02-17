@@ -160,6 +160,9 @@ angular.module('app')
 	$rootScope.reloadHeader();
 
 
+	$scope.aer = function(a) {
+		if (a == 13) $scope.gogo($scope.whereGogo);
+	}
 	/**
 	 * Utilidad para debug: lleva directamente a un poster
 	 * 
@@ -410,11 +413,11 @@ angular.module('app')
 		    $scope.map.setCenter($scope.currentZone.posPersona);
 		    $scope.m_updateMarker();
 		    $scope.clicksDone++;
-			if ($scope.distance_to_street_reference > 300 && $scope.clicksDone > 2) {
+			if ($scope.distance_to_street_reference > 300 && $scope.clicksDone > 5) {
 				$scope.actionModalOpen('error');
 				$scope.clicksDone=0;
 			}
-			else if ($scope.distance_to_street_reference > 50 && $scope.clicksDone > 2) {
+			else if ($scope.distance_to_street_reference > 50 && $scope.clicksDone > 5) {
 				$scope.actionModalOpen('modal33');
 				$scope.clicksDone=0;
 			}
@@ -480,7 +483,7 @@ angular.module('app')
 					}
 				);
 				var angle_in_degrees = angle_in_radians * (180/3.1415);
-				//console.log('[seb] angle: ' + angle_in_degrees);
+				console.log('[seb] angle: ' + angle_in_degrees);
 
 
 				//ANGLE WALL
@@ -504,7 +507,7 @@ angular.module('app')
 					
 				);
 				var angle_in_degrees_wall = angle_in_radians_wall * (180/3.1415);
-				//console.log('[seb] angle wall: ' + angle_in_degrees_wall);
+				console.log('[seb] angle wall: ' + angle_in_degrees_wall);
 
 				var posters_id = [
 					document.getElementById("foto_001"),
