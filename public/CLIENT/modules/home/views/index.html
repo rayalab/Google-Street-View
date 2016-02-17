@@ -192,7 +192,7 @@
         <img src="bundles/img/fin-modal.png" class="img-responsive center-block">
     </div>
     <div class="col-md-12 text-center">
-        <a ng-click="share()" class="btn continuar modal-action modal-close">Terminar Juego</a>
+        <a ng-click="endgame()" class="btn continuar modal-action modal-close">Terminar Juego</a>
     </div>
 </div>
 
@@ -221,7 +221,7 @@
         </div>
         <div class="row">
             <div class="col-md-offset-2 col-md-4">
-                <a class="btn facebook"><i class="fa fa-facebook-square"></i> Compartir</a>
+                <a class="btn facebook"><i class="fa fa-facebook-square" ng-click="shared()"></i> Compartir</a>
             </div>
             <div class="col-md-4">
                 <a class="btn continuar modal-action modal-close" ng-click="actionViewMapNextPoster()">Seguir jugando</a>
