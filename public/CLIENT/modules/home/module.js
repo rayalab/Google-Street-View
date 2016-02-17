@@ -199,7 +199,7 @@ angular.module('app')
 			position: new google.maps.LatLng(item.latitude, item.longitude),
 			map: $scope.map,
 			//icon: 'http://d3g8amkxnw6wed.cloudfront.net/pines/pines-clue/'+$scope.currentZone.poster_id+'.png',
-			icon: 'https://s3-us-west-2.amazonaws.com/gsv.rayalab.cl/'+$scope.currentZone.poster_id+'.png',
+			icon: 'https://s3-us-west-2.amazonaws.com/gsv.rayalab.cl/pines/pines-clue/'+$scope.currentZone.poster_id+'.png',
 			visible:true,
 			draggable: false
 
@@ -303,7 +303,7 @@ angular.module('app')
 					position: new google.maps.LatLng(item.default_clue_latitude, item.default_clue_longitude),
 					map: $scope.map,
 					title : item.default_clue_title,
-					icon: 'https://s3-us-west-2.amazonaws.com/gsv.rayalab.cl/'+item.poster_id+'.png',
+					icon: 'https://s3-us-west-2.amazonaws.com/gsv.rayalab.cl/pines/'+item.poster_id+'.png',
 					visible:true,
 					draggable: false
 				});
