@@ -655,28 +655,30 @@ angular.module('app')
 				poster_id : $scope.currentZone.poster_id
 			};
 
+
+			$scope.aryMyPosterId.push($scope.currentZone.poster_id);
+
+			var newAry = {
+				'img' : $scope.currentZone.image_default
+			};
+			switch($scope.aryMyPosterId.length) {
+			    case 1:
+			        $scope.posterFoundSetValues($scope.aryTextFindPoster[0], newAry);
+			        break;
+			    case 2:
+			       	$scope.posterFoundSetValues($scope.aryTextFindPoster[1], newAry);
+			        break;
+		        case 3:
+		       		$scope.endGame($scope.aryTextFindPoster[2], newAry);
+		        break;
+			    default:
+			    	$scope.posterFoundSetValues($scope.aryTextFindPoster[3], newAry);
+
+			};
+
 			$gamePoster.create(AryObj).then(function(result){
 
 
-				$scope.aryMyPosterId.push($scope.currentZone.poster_id);
-
-				var newAry = {
-					'img' : $scope.currentZone.image_default
-				};
-				switch($scope.aryMyPosterId.length) {
-				    case 1:
-				        $scope.posterFoundSetValues($scope.aryTextFindPoster[0], newAry);
-				        break;
-				    case 2:
-				       	$scope.posterFoundSetValues($scope.aryTextFindPoster[1], newAry);
-				        break;
-			        case 3:
-			       		$scope.endGame($scope.aryTextFindPoster[2], newAry);
-			        break;
-				    default:
-				    	$scope.posterFoundSetValues($scope.aryTextFindPoster[3], newAry);
-	
-				};
 
 			});	
 
