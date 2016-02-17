@@ -304,7 +304,7 @@ angular.module('app')
 				newFlag = new google.maps.Marker({
 					position: new google.maps.LatLng(item.default_clue_latitude, item.default_clue_longitude),
 					map: $scope.map,
-					title : item.default_clue_title,
+					title : 'poster '+item.poster_id+': '+item.default_clue_title,
 					icon: 'http://d3g8amkxnw6wed.cloudfront.net/pines/'+item.poster_id+'.png',
 					visible:true,
 					draggable: false
@@ -347,7 +347,7 @@ angular.module('app')
 		$scope.mode = false;
 		$scope.currentZone.default_clue_latitude = clue_latitude;
 		$scope.currentZone.default_clue_longitude = clue_longitude;
-
+		$scope.clicksDone=0;
 
 		//SITUAR PERSONA Y COLOCAR POSTER
 		$scope.currentZone.posPersona = new google.maps.LatLng($scope.currentZone.default_clue_latitude, $scope.currentZone.default_clue_longitude);
