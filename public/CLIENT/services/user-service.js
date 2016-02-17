@@ -1,7 +1,7 @@
 angular.module("userService", [])
   .factory("$user", ['$window', '$http', '$location',
     function($window, $http, $location) {
-      prod = 0;
+      prod = 1;
       api  = 'api.vo.gt';
       
       return {

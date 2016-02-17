@@ -1,7 +1,7 @@
 angular.module("gamePosterService", [])
   .factory("$gamePoster", ['$window', '$http', '$location',
     function($window, $http, $location) {
-      prod = 0;
+      prod = 1;
       api  = 'api.vo.gt';
       
       return {
