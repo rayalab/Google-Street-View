@@ -412,11 +412,11 @@ angular.module('app')
 		    $scope.map.setCenter($scope.currentZone.posPersona);
 		    $scope.m_updateMarker();
 		    $scope.clicksDone++;
-			if ($scope.distance_to_street_reference > 300 && $scope.clicksDone > 2) {
+			if ($scope.distance_to_street_reference > 300 && $scope.clicksDone > 3) {
 				$scope.actionModalOpen('error');
 				$scope.clicksDone=0;
 			}
-			else if ($scope.distance_to_street_reference > 50 && $scope.clicksDone > 2) {
+			else if ($scope.distance_to_street_reference > 50 && $scope.clicksDone > 3) {
 				$scope.actionModalOpen('modal33');
 				$scope.clicksDone=0;
 			}
