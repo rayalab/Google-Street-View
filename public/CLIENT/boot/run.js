@@ -18,7 +18,7 @@ angular.module('app').run(['$rootScope', '$state', '$flash', '$location',
             //sets the user var that displays logged user's name in the menu
 
             if (!localStorage.full_name) {
-                $location.path('/login');
+                $state.go('oauth');
             }else{
                 return true;
             }

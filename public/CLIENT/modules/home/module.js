@@ -1,6 +1,6 @@
 angular.module('app')
 
-.controller('home.index', function homeIndex($stateParams, $flash, $scope, $poster, $clue, $location, $oauth, $rootScope, $gamePoster, $timeout) {
+.controller('home.index', function homeIndex($stateParams, $flash, $scope, $poster, $clue, $location, $oauth, $rootScope, $gamePoster, $timeout, $state) {
 		
 	$scope.full_name = localStorage.full_name;
 	$scope.facebook_id = localStorage.facebook_id;
@@ -701,7 +701,10 @@ angular.module('app')
 	};
 
 	$scope.share = function() {
-		$location.path("/end");
+		$state.go('end');
+		/*FB.login(function(){
+		  FB.api('/me/feed', 'post', {message: 'Ya estoy participando en Hambre de Lolla Street View Lollapalooza 2016', 'source': 'http://www.hambredelolla.cl/'});
+		}, {scope: 'publish_actions'});*/
 	};	
 
 	$scope.init();

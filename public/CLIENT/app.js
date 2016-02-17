@@ -41,7 +41,6 @@ angular.module('app', [
 	'materialize',
 	'userService',
 ])
-
 /**
  * Main controller
  */
