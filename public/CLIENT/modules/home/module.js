@@ -122,7 +122,7 @@ angular.module('app')
 	
 	$scope.actionClose = function(){
 		$("#modal33").openModal();
-		$scope.clicksDone=0;
+		$scope.clicksDone=-4;
 	};
 	
 	$scope.actionViewMap = function(){
