@@ -21,5 +21,6 @@ Route::resource('poster', 'PosterController', ['only' => ['index', 'store', 'upd
 Route::get('poster/random/{id}', 'PosterController@random');
 Route::resource('cluePoster', 'CluePosterController', ['only' => ['index', 'store', 'update', 'destroy', 'show']]);
 Route::resource('gamePoster', 'GamePosterController', ['only' => ['index', 'store', 'update', 'destroy', 'show']]);
+Route::get('gamePoster/userposter/{id}', 'GamePosterController@userposter');
 Route::resource('posterImage', 'PosterImageController', ['only' => ['index', 'store', 'update', 'destroy', 'show']]);
 

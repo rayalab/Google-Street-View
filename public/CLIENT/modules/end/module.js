@@ -1,6 +1,6 @@
 angular.module('app')
 
-.controller('end.index', function endgameIndex($stateParams, $flash, $scope, $rootScope, $user, $location) {
+.controller('end.index', function endgameIndex($stateParams, $flash, $scope, $rootScope, $user, $location, $gamePoster, $state) {
 	 $scope.user = {
 	 	full_name : localStorage.full_name,
 	 	last_name : "",
@@ -18,11 +18,15 @@ angular.module('app')
  	$scope.email = false;
 
  	$scope.init = function() {
- 		$rootScope.reloadHeader();
+ 		if($rootScope.reloadHeader()){
+        	$gamePoster.getCountByUser(localStorage.user_id).then(function(result){
+            	console.log(result);
+	 			if(result.data !== 3){
+	 				$state.go("home")
+	 			}
+			});	
+ 		}
 	};
-
-
-
 
  	$scope.sendInformation = function() {
  		if($scope.user.run != ""){

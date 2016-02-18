@@ -1,12 +1,22 @@
 angular.module('app')
 
-.controller('home.index', function homeIndex($stateParams, $flash, $scope, $poster, $clue, $location, $oauth, $rootScope, $gamePoster, $timeout, $state) {
+.controller('home.index', function homeIndex($stateParams, $flash, $scope, $poster, $clue, $location, $oauth, $rootScope, $gamePoster, $timeout, $state, $user, $window) {
 		
 	$scope.full_name = localStorage.full_name;
 	$scope.facebook_id = localStorage.facebook_id;
 	$scope.image_profile = localStorage.image;
 	$scope.gmarkers = [];
 	$scope.clicksDone = 0;
+
+	$scope.user = {
+	 	full_name : localStorage.full_name,
+	 	last_name : "",
+	 	cellphone : "",
+	 	email : "",
+	 	run : "",
+	 	address : ""
+	 };
+
 
 	// calle  -33.39790772, -70.5823195
 	// cartel -33.39775097,-70.58235705
@@ -671,7 +681,10 @@ angular.module('app')
 			       	$scope.posterFoundSetValues($scope.aryTextFindPoster[1], newAry);
 			        break;
 		        case 3:
-		       		$scope.endGame($scope.aryTextFindPoster[2], newAry);
+		       		$scope.posterFoundCompleteInformation($scope.aryTextFindPoster[2], newAry);
+		        break;
+		        case 12:
+		       		$scope.posterFoundComplete(newAry);
 		        break;
 			    default:
 			    	$scope.posterFoundSetValues($scope.aryTextFindPoster[3], newAry);
@@ -698,18 +711,38 @@ angular.module('app')
 				$scope.actionModalOpen('posterFind');
 	};
 
-	$scope.endGame = function(aryFound, aryPush) {
-				$scope.titlePosterFound = aryFound.title;
-				$scope.descriptionPosterFound = aryFound.description;
+	$scope.posterFoundCompleteInformation = function(aryFound, aryPush) {
+				$scope.aryDefaultPosters.splice(0, 1)
+				$scope.aryMyPosters.push(aryPush);
 
+				$scope.actionModalOpen('completeformation');
+	};
+
+	$scope.posterFoundComplete = function(aryPush) {
 				$scope.aryDefaultPosters.splice(0, 1)
 				$scope.aryMyPosters.push(aryPush);
 				$scope.actionModalOpen('fin-game');
 	};
 
-	$scope.endgame = function() {
-		$state.go('end');
+	$scope.actionCompleteInformation = function() {
+			$("#completeformation").openModal();
 	};	
+
+
+	$scope.endgame = function() {
+		$scope.actionModalOpen('fin-game');
+	};	
+
+	$scope.sharedEndGame = function() {
+		FB.login(function(){
+		  FB.api('/me/feed', 'post', 
+		  	{message: 'Ya estoy participando en Hambre de Lolla Street View Lollapalooza 2016', 'source': 'http://www.hambredelolla.cl/'}, function(response){
+		  		$window.location.reload();
+		  	}
+		   );
+
+		}, {scope: 'publish_actions'});
+	};
 
 	$scope.shared = function() {
 		FB.login(function(){
@@ -719,6 +752,38 @@ angular.module('app')
 
 		}, {scope: 'publish_actions'});
 	};	
+
+	$scope.sendInformation = function() {
+ 		if($scope.user.run != ""){
+ 			if($scope.user.email != ""){
+ 				if($scope.user.cellphone != ""){
+ 					if($scope.user.address != ""){
+ 						$user.update(localStorage.user_id, $scope.user).then(function(result){
+ 							$("#completeformation").closeModal();
+							$("#success").openModal();
+						});	
+ 					}else{
+ 						$scope.address = true;
+ 					}
+ 				}else{
+ 					$scope.cellphone = true;
+ 				}
+ 			}else{
+ 					$scope.email = true;
+ 			}
+ 		}else{
+ 				$scope.run = true;
+ 		}	
+	};
+
+	$scope.backToPlayHome = function() {
+    	if($("#success").is(':visible')){
+    		$("#success").closeModal();
+    		$window.location.reload();
+    	}else{
+	    	$window.location.reload();
+    	}
+	};
 	
 	$scope.init();
 });

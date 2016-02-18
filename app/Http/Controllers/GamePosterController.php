@@ -21,6 +21,13 @@ class GamePosterController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+
+    public function userposter($id)
+    {
+        $gamePoster = GamePoster::where('user_id', $id)->select('poster_id')->get();
+        return response()->json($gamePoster->count());
+    }
+
     public function index()
     {
         $poster = Poster::where('poster_id', 1)->value('image_default');

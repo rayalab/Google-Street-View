@@ -13,8 +13,10 @@ angular.module("gamePosterService", [])
         },
         getByUser: function(userId) {
                 return $http.get('http://'+(!prod?$location.$$host:api)+':8000/gamePoster/'+userId+'').success(function(data) { return data; });
+        },
+        getCountByUser: function(userId) {
+                return $http.get('http://'+(!prod?$location.$$host:api)+':8000/gamePoster/userposter/'+userId+'').success(function(data) { return data; });
         }
-
       };
 
     }
