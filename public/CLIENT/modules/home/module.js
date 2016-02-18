@@ -39,6 +39,8 @@ angular.module('app')
 	$scope.descriptionPosterFound = "";
 	$scope.aryMyPosterId = [];
 	$scope.aryMyPosters = [];
+	//$scope.imgBaseURL = "http://d3g8amkxnw6wed.cloudfront.net/";
+	$scope.imgBaseURL = "http://s3-us-west-2.amazonaws.com/gsv.rayalab.cl/";
 
 	$scope.aryTextFindPoster = [
 		{
@@ -201,7 +203,7 @@ angular.module('app')
 		newClue = new google.maps.Marker({
 			position: new google.maps.LatLng(item.latitude, item.longitude),
 			map: $scope.map,
-			icon: 'http://d3g8amkxnw6wed.cloudfront.net/pines/pines-clue/'+$scope.currentZone.poster_id+'.png',
+			icon: $scope.imgBaseURL + 'pines/pines-clue/'+$scope.currentZone.poster_id+'.png',
 			visible:true,
 			draggable: false
 
@@ -305,7 +307,7 @@ angular.module('app')
 					position: new google.maps.LatLng(item.default_clue_latitude, item.default_clue_longitude),
 					map: $scope.map,
 					title : 'poster '+item.poster_id+': '+item.default_clue_title,
-					icon: 'http://d3g8amkxnw6wed.cloudfront.net/pines/'+item.poster_id+'.png',
+					icon: $scope.imgBaseURL + 'pines/'+item.poster_id+'.png',
 					visible:true,
 					draggable: false
 				});
@@ -355,15 +357,15 @@ angular.module('app')
 		$scope.currentZone.posReference = new google.maps.LatLng($scope.currentZone.latitude_line, $scope.currentZone.longitude_line);
   		
 		$scope.currentZone.images = {
-			foto_001 : "http://d3g8amkxnw6wed.cloudfront.net/"+$scope.currentZone.poster_id+"/001.png",
-			foto_002 : "http://d3g8amkxnw6wed.cloudfront.net/"+$scope.currentZone.poster_id+"/002.png",
-			foto_003 : "http://d3g8amkxnw6wed.cloudfront.net/"+$scope.currentZone.poster_id+"/003.png",
-			foto_004 : "http://d3g8amkxnw6wed.cloudfront.net/"+$scope.currentZone.poster_id+"/004.png",
-			foto_005 : "http://d3g8amkxnw6wed.cloudfront.net/"+$scope.currentZone.poster_id+"/005.png",
-			foto_006 : "http://d3g8amkxnw6wed.cloudfront.net/"+$scope.currentZone.poster_id+"/006.png",
-			foto_007 : "http://d3g8amkxnw6wed.cloudfront.net/"+$scope.currentZone.poster_id+"/007.png",
-			foto_008 : "http://d3g8amkxnw6wed.cloudfront.net/"+$scope.currentZone.poster_id+"/008.png",
-			foto_009 : "http://d3g8amkxnw6wed.cloudfront.net/"+$scope.currentZone.poster_id+"/009.png"
+			foto_001 : $scope.imgBaseURL+$scope.currentZone.poster_id+"/001.png",
+			foto_002 : $scope.imgBaseURL+$scope.currentZone.poster_id+"/002.png",
+			foto_003 : $scope.imgBaseURL+$scope.currentZone.poster_id+"/003.png",
+			foto_004 : $scope.imgBaseURL+$scope.currentZone.poster_id+"/004.png",
+			foto_005 : $scope.imgBaseURL+$scope.currentZone.poster_id+"/005.png",
+			foto_006 : $scope.imgBaseURL+$scope.currentZone.poster_id+"/006.png",
+			foto_007 : $scope.imgBaseURL+$scope.currentZone.poster_id+"/007.png",
+			foto_008 : $scope.imgBaseURL+$scope.currentZone.poster_id+"/008.png",
+			foto_009 : $scope.imgBaseURL+$scope.currentZone.poster_id+"/009.png"
 		};
 		if (!$scope.usingGogo) $scope.$apply();
 
