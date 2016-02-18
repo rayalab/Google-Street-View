@@ -25,7 +25,7 @@ class PosterController extends Controller
     public function random($id)
     {
         $objInPoster = array();
-
+        $find = 0;
         $gamePoster = GamePoster::where('user_id', $id)->select('poster_id')->get();
        
         if($gamePoster->count() > 0){
@@ -33,12 +33,24 @@ class PosterController extends Controller
             foreach ($gamePoster as $key => $value) {
                 array_push($objInPoster, $value->poster_id); 
             }
-
-            $poster = DB::table('poster')
-            ->whereNotIn('poster_id', $objInPoster)
-            ->orderByRaw('RAND()')
-            ->take(3)
-            ->get();
+            $find = 12 - $gamePoster->count();
+            if($find > 3){
+                $poster = DB::table('poster')
+                ->whereNotIn('poster_id', $objInPoster)
+                ->orderByRaw('RAND()')
+                ->take(3)
+                ->get();
+            }else{
+                if($find > 0){
+                    $poster = DB::table('poster')
+                    ->whereNotIn('poster_id', $objInPoster)
+                    ->orderByRaw('RAND()')
+                    ->take($find)
+                    ->get();
+                }else{
+                    $poster = [];
+                }
+            }
 
         }else{
 

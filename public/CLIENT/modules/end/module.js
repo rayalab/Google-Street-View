@@ -22,8 +22,29 @@ angular.module('app')
 	};
 
 
+
+
  	$scope.sendInformation = function() {
- 		$("#success").openModal();
+ 		if($scope.user.run != ""){
+ 			if($scope.user.email != ""){
+ 				if($scope.user.cellphone != ""){
+ 					if($scope.user.address != ""){
+ 						$user.update(localStorage.user_id, $scope.user).then(function(result){
+							console.log(result);
+							$("#success").openModal();
+						});	
+ 					}else{
+ 						$scope.address = true;
+ 					}
+ 				}else{
+ 					$scope.cellphone = true;
+ 				}
+ 			}else{
+ 					$scope.email = true;
+ 			}
+ 		}else{
+ 				$scope.run = true;
+ 		}	
 	};
 
 	$scope.backHome = function() {
