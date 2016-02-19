@@ -428,7 +428,7 @@ angular.module('app')
 		    //resetear avisos de distancia si se acerca al poster
 		    if ($scope.lastDistance == 0) $scope.lastDistance = $scope.distance_to_street_reference;
 		    else if ($scope.distance_to_street_reference < $scope.lastDistance) $scope.clicksDone=0;
-		    console.log(($scope.distance_to_street_reference < $scope.lastDistance ? 'mas cerca':'mas lejos')
+		    console.log($scope.distance_to_street_reference < $scope.lastDistance ? 'mas cerca':'mas lejos')
 
 		    $scope.clicksDone++;
 			if ($scope.distance_to_street_reference > 300 && $scope.clicksDone > 3) {
