@@ -49,6 +49,7 @@ angular.module('app')
 	$scope.descriptionPosterFound = "";
 	$scope.aryMyPosterId = [];
 	$scope.aryMyPosters = [];
+	$scope.lastDistance = 0;
 	//$scope.imgBaseURL = "http://d3g8amkxnw6wed.cloudfront.net/";
 	$scope.imgBaseURL = "http://s3-us-west-2.amazonaws.com/gsv.rayalab.cl/";
 
@@ -423,6 +424,12 @@ angular.module('app')
 		    $scope.currentZone.posPersona = $scope.pan.getPosition();
 		    $scope.map.setCenter($scope.currentZone.posPersona);
 		    $scope.m_updateMarker();
+
+		    //resetear avisos de distancia si se acerca al poster
+		    if ($scope.lastDistance == 0) $scope.lastDistance = $scope.distance_to_street_reference;
+		    else if ($scope.distance_to_street_reference < $scope.lastDistance) $scope.clicksDone=0;
+		    console.log(($scope.distance_to_street_reference < $scope.lastDistance ? 'mas cerca':'mas lejos')
+
 		    $scope.clicksDone++;
 			if ($scope.distance_to_street_reference > 300 && $scope.clicksDone > 3) {
 				$scope.actionModalOpen('error');
