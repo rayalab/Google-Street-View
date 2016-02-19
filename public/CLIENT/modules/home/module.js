@@ -169,7 +169,7 @@ angular.module('app')
     	}
     };
 
-	$rootScope.reloadHeader();
+	//$rootScope.reloadHeader();
 
 
 	$scope.aer = function(a) {
@@ -715,7 +715,8 @@ angular.module('app')
 				$scope.aryDefaultPosters.splice(0, 1)
 				$scope.aryMyPosters.push(aryPush);
 
-				$scope.actionModalOpen('completeformation');
+				//$scope.actionModalOpen('completeformation');
+				$state.go('end');
 	};
 
 	$scope.posterFoundComplete = function(aryPush) {

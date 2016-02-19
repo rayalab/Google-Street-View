@@ -83,14 +83,15 @@
 .close-button {
     width: 24px;
     height: 24px;
-    position: absolute;
-    left: 15px;
-    top: 30px;
+    position: relative;
+    /*left: 15px;
+    top: 30px;*/
     overflow: hidden;
     text-indent: 10px;
     border: none;
     background: transparent;
     color: transparent;
+    text-align: center;
 }
 .close-button::before,
 .close-button::after {
@@ -410,6 +411,10 @@ h4.user {
     border-radius: 0px;
     border: 1px solid #fff;
     letter-spacing: 1px;
+}
+
+.btn-warning {
+    font-family: 'Conv_FuturaLT-CondensedBold';
 }
 
 .acepto {

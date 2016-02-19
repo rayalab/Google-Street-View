@@ -35,5 +35,19 @@ angular.module('layouts')
       templateUrl: 'modules/end/views/index.html',
       controller: 'end.index'
     })
- 
+    .state('mobile-oauth', {
+      url: "/mobile-oauth",
+      templateUrl: 'modules/auth/views/login-mobile.html',
+      controller: "auth.login"
+    })
+    .state('mobile-home', {
+      url: '/mobile-home',
+      templateUrl: 'modules/home/views/index-mobile.html',
+      controller: 'home.index'
+    })
+    .state('mobile-end', {
+      url: '/mobile-end',
+      templateUrl: 'modules/end/views/index-mobile.html',
+      controller: 'end.index'
+    }) 
 }]);

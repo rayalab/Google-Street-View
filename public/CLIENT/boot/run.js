@@ -18,13 +18,37 @@ angular.module('app').run(['$rootScope', '$state', '$flash', '$location',
             //sets the user var that displays logged user's name in the menu
 
             if (!localStorage.full_name) {
-                $state.go('oauth');
+                if($rootScope.mobile()){
+                    console.log($rootScope.mobile());
+                    return'oauth-mobile';
+                }else{
+                    console.log($rootScope.mobile());
+                    return 'oauth';
+                }
             }else{
-                return true;
+                if($rootScope.mobile()){
+                    console.log($rootScope.mobile());
+                    return'home-mobile';
+                }else{
+                    console.log($rootScope.mobile());
+                    return 'home';
+                }
             }
         };
 
+
+        $rootScope.mobile = function (){
+            var isMobile = (/iphone|ipod|android|ie|blackberry|fennec/).test
+                 (navigator.userAgent.toLowerCase());
+            return isMobile;
+        };
+
+        $rootScope.init = function (){
+            var where = $rootScope.reloadHeader();
+            $state.go(where);
+        };
+
         $rootScope.flash = $flash;
-        $rootScope.reloadHeader();
+        $rootScope.init();
     }
 ]);
