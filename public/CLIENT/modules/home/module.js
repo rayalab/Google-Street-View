@@ -427,8 +427,9 @@ angular.module('app')
 
 		    //resetear avisos de distancia si se acerca al poster
 		    if ($scope.lastDistance != 0 && $scope.distance_to_street_reference < $scope.lastDistance) $scope.clicksDone=0;
-			$scope.lastDistance = $scope.distance_to_street_reference;
+		    console.log($scope.lastDistance, $scope.distance_to_street_reference);
 		    console.log($scope.distance_to_street_reference < $scope.lastDistance ? 'mas cerca':'mas lejos')
+			$scope.lastDistance = $scope.distance_to_street_reference;
 
 		    $scope.clicksDone++;
 			if ($scope.distance_to_street_reference > 300 && $scope.clicksDone > 3) {
@@ -501,7 +502,7 @@ angular.module('app')
 					}
 				);
 				var angle_in_degrees = angle_in_radians * (180/3.1415);
-				console.log('[seb] angle: ' + angle_in_degrees);
+				//console.log('[seb] angle: ' + angle_in_degrees);
 
 
 				//ANGLE WALL
@@ -525,7 +526,7 @@ angular.module('app')
 					
 				);
 				var angle_in_degrees_wall = angle_in_radians_wall * (180/3.1415);
-				console.log('[seb] angle wall: ' + angle_in_degrees_wall);
+				//console.log('[seb] angle wall: ' + angle_in_degrees_wall);
 
 				var posters_id = [
 					document.getElementById("foto_001"),
