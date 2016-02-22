@@ -9,7 +9,7 @@ angular.module('app')
 	 	run : "",
 	 	address : ""
 	 };
-	 console.log(localStorage);
+
  	$scope.image_profile = localStorage.image;
 
  	$scope.run = false;
@@ -20,7 +20,7 @@ angular.module('app')
  	$scope.init = function() {
  		if($rootScope.reloadHeader()){
         	$gamePoster.getCountByUser(localStorage.user_id).then(function(result){
-            	console.log(result);
+        		console.log(result);
 	 			if(result.data !== 3){
 	 				$state.go("home")
 	 			}

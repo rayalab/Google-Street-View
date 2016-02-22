@@ -1,0 +1,118 @@
+@font-face {
+    font-family: 'Conv_FuturaLT-Condensed';
+    src: url('fonts/FuturaLT-Condensed.eot');
+    src: local('☺'), url('fonts/FuturaLT-Condensed.woff') format('woff'), url('fonts/FuturaLT-Condensed.ttf') format('truetype'), url('fonts/FuturaLT-Condensed.svg') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+	font-family: 'Conv_FuturaLT-CondensedBold';
+	src: url('fonts/FuturaLT-CondensedBold.eot');
+	src: local('☺'), url('fonts/FuturaLT-CondensedBold.woff') format('woff'), url('fonts/FuturaLT-CondensedBold.ttf') format('truetype'), url('fonts/FuturaLT-CondensedBold.svg') format('svg');
+	font-weight: normal;
+	font-style: normal;
+}
+
+.modal {
+    top: 15% !important;
+}
+
+.modal-sm.mod-400 {
+    width: 400px;
+}
+
+.modal-content.wood {
+    background: url('../img/wood-mod.png') center right; 
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+    border-radius: 0px;
+    border: none;
+}
+
+.modal-body.wood {
+    background: url('../img/wood-mod.png') center right; 
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+    border-radius: 0px;
+    border: none;
+}
+
+.modal-body {
+    padding-top: 0px;
+}
+
+.modal-header {
+    border-bottom: none;
+    padding-bottom: 0px;
+}
+
+.modal-header .close {
+    color: #fff;
+    margin-right: 10px;
+}
+
+.modal-footer {
+    border-top: none;   
+}
+
+.modal-footer .compartir {
+    font-family: 'Conv_FuturaLT-Condensed';
+    background: #1d39b1;
+    color: #fff;
+    text-transform: uppercase;
+    border-radius: 0px;
+    font-size: 14px;
+}
+
+.modal-footer .continuar {
+    font-family: 'Conv_FuturaLT-Condensed';
+    background: #ff004f;
+    color: #fff;
+    text-transform: uppercase;
+    border-radius: 0px;
+    font-size: 14px;
+}
+
+.modal-body h3.titulo {
+    font-family: 'Conv_FuturaLT-CondensedBold';
+    font-size: 17px;
+    color: #00cc99;
+    text-align: center;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    text-shadow: 2px 2px 4px #000000;
+}
+
+.modal-body h3.pista {
+    font-family: 'Conv_FuturaLT-CondensedBold';
+    font-size: 17px;
+    color: #fbea00;
+    text-align: center;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    text-shadow: 2px 2px 4px #000000;
+}
+
+.modal-body p.bajada {
+     font-family: 'Conv_FuturaLT-CondensedBold';
+    font-size: 13px;
+    color: #fff;
+    text-align: center;
+    text-transform: uppercase;
+    text-shadow: 2px 2px 4px #000000;
+    padding: 0px 20px;
+}
+
+.col-md-8 img {
+    margin-bottom: 20px;
+}
+
+.modal-dialog {
+    margin: 130px auto;
+}
+

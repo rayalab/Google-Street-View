@@ -361,20 +361,7 @@ body {
     background-size: cover;
 }
 
-.facebook {
-    background: #1d39b1;
-    border: none;
-    border-radius: 0px;
-    padding: 7px 30px;
-    /*margin-top: 10px;*/
-    color: #fff;
-}
 
-.modal-form {
-    background: url(../img/madera-modal.png) no-repeat; 
-    height: 728px;
-    widows: 594px;
-}
 
 h4.form {
     font-family: 'Conv_FuturaLT-CondensedBold';
@@ -444,7 +431,8 @@ ul li a {
 }
 
 .nav li {
-    margin:10px;    
+    margin:10px;  
+    margin-left: 22px;  
 }
 
 .navbar-inverse .navbar-nav > .active > a, .navbar-inverse .navbar-nav > .active > a:focus, .navbar-inverse .navbar-nav > .active > a:hover {
@@ -461,25 +449,7 @@ ul li a {
     text-transform: uppercase;
 }
 
-.back-modal {
-    background-color: transparent;
-    background-repeat: no-repeat;
-    background-image: url("../img/madera-modal.png");
-    width: 29%;
-    height: 100%;
-    box-shadow: none;
-    
-}
 
-
-.back-end-modal {
-    background-color: transparent;
-    background-repeat: no-repeat;
-    background-image: url("../img/fin-wood.jpg");
-    width: 500px;
-    height: 100%;
-    box-shadow: none;
-}
 
 h4.excelente {
     color: #fcec00;
@@ -489,18 +459,16 @@ h4.excelente {
     font-size: 24px;
 }
 
-.modal-content p {
-    color: #fff;
-    text-align: center;
-    /*font-size: 14px;
-    padding: 10px 80px;*/
-}
+
 
 .facebook {
+    font-family: 'prater';
+    font-size: 12px !important;
     background: #1d39b1;
-    border: 1px solid #fff;
     border-radius: 0px;
     font-size: 10px;
+    border: 1px solid #fff !important;
+    color: #fff;
 }
 
 .facebook:hover {
@@ -509,10 +477,11 @@ h4.excelente {
 }
 
 .continuar {
+    font-family: 'Conv_FuturaLT-Condensed';
     background: #fc4a2c;
     border: 1px solid #fff;
     border-radius: 0px;
-    font-size: 10px;
+    font-size: 13px;
 }
 
 .continuar:hover {
@@ -527,4 +496,20 @@ h4.excelente {
 
 .warning {
     color: #F33;
+
 }
+
+.prater {
+    font-family: 'prater';
+}
+
+.navbar .navbar-nav li a:hover {
+    background-color: transparent;
+    border-bottom: 2px solid #00a596;
+}
+
+.scroll-altura {
+    max-height: calc(100vh - 310px);
+   overflow-y: auto;
+}
+

@@ -1,7 +1,12 @@
 angular.module('app')
 
 .controller('home.index', function homeIndex($stateParams, $flash, $scope, $poster, $clue, $location, $oauth, $rootScope, $gamePoster, $timeout, $state, $user, $window) {
-		
+	
+	if(!localStorage.bienvenida){
+		localStorage.bienvenida = true;
+		$("#bienvenida_moises").modal();
+	};
+
 	$scope.full_name = localStorage.full_name;
 	$scope.facebook_id = localStorage.facebook_id;
 	$scope.image_profile = localStorage.image;
@@ -21,7 +26,7 @@ angular.module('app')
 	// calle  -33.39790772, -70.5823195
 	// cartel -33.39775097,-70.58235705
 
-	$scope.zoom = 11;
+	$scope.zoom = 12;
 	$scope.slat = localStorage.position_latitude;	
 	$scope.slng = localStorage.position_longitude;	
 	$scope.sheading = 69.58;
@@ -73,40 +78,40 @@ angular.module('app')
 
 	$scope.aryDefaultPosters = [
 		{
-			'img' : "bundles/img/default.png"
+			'img' : "bundles/img/01def.jpg"
 		},
 		{
-			'img' : "bundles/img/default.png"
+			'img' : "bundles/img/02def.jpg"
 		},
 		{
-			'img' : "bundles/img/default.png"
+			'img' : "bundles/img/03def.jpg"
 		},
 		{
-			'img' : "bundles/img/default.png"
+			'img' : "bundles/img/04def.jpg"
 		},
 		{
-			'img' : "bundles/img/default.png"
+			'img' : "bundles/img/05def.jpg"
 		},
 		{
-			'img' : "bundles/img/default.png"
+			'img' : "bundles/img/06def.jpg"
 		},
 		{
-			'img' : "bundles/img/default.png"
+			'img' : "bundles/img/07def.jpg"
 		},
 		{
-			'img' : "bundles/img/default.png"
+			'img' : "bundles/img/08def.jpg"
 		},
 		{
-			'img' : "bundles/img/default.png"
+			'img' : "bundles/img/09def.jpg"
 		},
 		{
-			'img' : "bundles/img/default.png"
+			'img' : "bundles/img/10def.jpg"
 		},
 		{
-			'img' : "bundles/img/default.png"
+			'img' : "bundles/img/11def.jpg"
 		},
 		{
-			'img' : "bundles/img/default.png"
+			'img' : "bundles/img/12def.jpg"
 		}
 	];
 
@@ -117,6 +122,11 @@ angular.module('app')
 	 * @return {[type]} [description]
 	 */
 	$scope.actionMenu = function() {
+		if(!localStorage.album){
+			localStorage.album = true;
+			$("#album_moises").modal();
+		};
+
 		if(!$scope.$parent.$parent.menu){
 			$scope.$parent.$parent.menu = true;
 		}else{
@@ -131,7 +141,7 @@ angular.module('app')
 	
 	
 	$scope.actionClose = function(){
-		$("#modal33").openModal();
+		$("#modal33").modal();
 		$scope.clicksDone=-4;
 	};
 	
@@ -160,13 +170,17 @@ angular.module('app')
 		$scope.clicksDone=0;
 	};
 
-    $scope.actionModalOpen = function(id){
-
+    $scope.actionModal = function(id){
+    	console.log(id);
     	if($("#"+id+"").is(':visible')){
-    		$("#"+id+"").closeModal();
+    		$("#"+id+"").modal();
     	}else{
-	    	$("#"+id+"").openModal();
+	    	$("#"+id+"").modal('show');
     	}
+    };
+
+    $scope.actionModalCloses = function(id){
+    	$("#cluemodal").modal('hide');
     };
 
 	//$rootScope.reloadHeader();
@@ -244,7 +258,7 @@ angular.module('app')
 		$clue.getByPosterId(obj.poster_id).then(function(result){
 			var response = JSON.parse(JSON.stringify(result.data));
 			$scope.map.setCenter(new google.maps.LatLng(obj.default_clue_latitude, obj.default_clue_longitude));
-			$scope.map.setZoom($scope.zoom + 4);
+			$scope.map.setZoom($scope.zoom + 3);
 			$scope.addClueMarker({latitude:obj.default_clue_latitude, longitude:obj.default_clue_longitude});
 			angular.forEach(response, function(item) {
 					$scope.addClueMarker(item, "second_clue");
@@ -268,7 +282,7 @@ angular.module('app')
 		$scope.category = firtsCategory;
 		$scope.obj = item;
 		if (!$scope.usingGogo) $scope.$apply();
-	   $('#modalClue').openModal();
+	   $('#cluemodal').modal();
 	};
 
 	//cachear ubicaciones de banderas y posters
@@ -288,7 +302,7 @@ angular.module('app')
 		console.log("Hola");
 		$scope.mode=true;
 		var div_main_map = document.getElementById("div_main_map");
-	    $scope.map = new google.maps.LatLng(-33.44560, -70.66033);
+	    $scope.map = new google.maps.LatLng(-33.403843, -70.5718701);
 
 			var mapOptions =
 			{
@@ -425,11 +439,11 @@ angular.module('app')
 		    $scope.m_updateMarker();
 		    $scope.clicksDone++;
 			if ($scope.distance_to_street_reference > 300 && $scope.clicksDone > 3) {
-				$scope.actionModalOpen('error');
+				$scope.actionModal('error');
 				$scope.clicksDone=0;
 			}
 			else if ($scope.distance_to_street_reference > 50 && $scope.clicksDone > 3) {
-				$scope.actionModalOpen('modal33');
+				$scope.actionModal('modal33');
 				$scope.clicksDone=0;
 			}
 		});
@@ -673,27 +687,26 @@ angular.module('app')
 			var newAry = {
 				'img' : $scope.currentZone.image_default
 			};
-			switch($scope.aryMyPosterId.length) {
-			    case 1:
-			        $scope.posterFoundSetValues($scope.aryTextFindPoster[0], newAry);
-			        break;
-			    case 2:
-			       	$scope.posterFoundSetValues($scope.aryTextFindPoster[1], newAry);
-			        break;
-		        case 3:
-		       		$scope.posterFoundCompleteInformation($scope.aryTextFindPoster[2], newAry);
-		        break;
-		        case 12:
-		       		$scope.posterFoundComplete(newAry);
-		        break;
-			    default:
-			    	$scope.posterFoundSetValues($scope.aryTextFindPoster[3], newAry);
-
-			};
 
 			$gamePoster.create(AryObj).then(function(result){
 
+				switch($scope.aryMyPosterId.length) {
+				    case 1:
+				        $scope.posterFoundSetValues($scope.aryTextFindPoster[0], newAry);
+				        break;
+				    case 2:
+				       	$scope.posterFoundSetValues($scope.aryTextFindPoster[1], newAry);
+				        break;
+			        case 3:
+			       		$scope.posterFoundCompleteInformation($scope.aryTextFindPoster[2], newAry);
+			        break;
+			        case 12:
+			       		$scope.posterFoundComplete(newAry);
+			        break;
+				    default:
+				    	$scope.posterFoundSetValues($scope.aryTextFindPoster[3], newAry);
 
+				};
 
 			});	
 
@@ -726,7 +739,7 @@ angular.module('app')
 	};
 
 	$scope.actionCompleteInformation = function() {
-			$("#completeformation").openModal();
+			$("#completeformation").modal();
 	};	
 
 
@@ -760,8 +773,8 @@ angular.module('app')
  				if($scope.user.cellphone != ""){
  					if($scope.user.address != ""){
  						$user.update(localStorage.user_id, $scope.user).then(function(result){
- 							$("#completeformation").closeModal();
-							$("#success").openModal();
+ 							$("#completeformation").modal('hide');
+							$("#success").modal();
 						});	
  					}else{
  						$scope.address = true;
@@ -779,7 +792,7 @@ angular.module('app')
 
 	$scope.backToPlayHome = function() {
     	if($("#success").is(':visible')){
-    		$("#success").closeModal();
+    		$("#success").modal('hide');
     		$window.location.reload();
     	}else{
 	    	$window.location.reload();

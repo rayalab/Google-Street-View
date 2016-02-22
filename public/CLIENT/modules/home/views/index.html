@@ -1,18 +1,11 @@
-<style type="text/css" media="screen">
-
-    /* .btn-warning {
-         position: absolute;
-         top: 90%;
-         left: 174px;
-     }*/
-</style>
+<link href="bundles/css/modal.css" rel="stylesheet" type="text/css">
 <div class="navbar navbar-inverse menu-wrap wood-back ">
     <button ng-click="actionMenu()" class="close-button center-block" id="close-button">Close Menu</button>
-    <br/><br/><br/><br/>
+    <br/><br/>
     <div class="col-lg-12">
-        <img src="bundles/img/hambre.png" class="img-circle center-block">
+        <img src="bundles/img/hambre.png" class="center-block">
         <div class="row">
-            <div class="col-md-2 col-md-offset-1"  >
+            <div class="col-md-2 col-md-offset-3"  >
                 <a href="https://www.facebook.com/{{facebook_id}}"><img ng-src="http://{{image_profile}}" class="img-circle center-block"></a>
             </div>
             <div class="col-md-5">
@@ -21,7 +14,7 @@
             </div>
         </div>
         <br/>
-        <div class="row" style="overflow-y: scroll; height: 380px;">
+        <div class="row scroll-altura">
             <div class="col-md-12" >
 
                 <div>
@@ -49,37 +42,34 @@
                     <img src="bundles/img/logo.png" class="img-responsive">
                 </div>
                 <ul class="nav navbar-nav navbar-left">
-                    <li>
+                    <!--<li>
                         <p style="color:white; margin-top: 4%;">¡Bienvenido <a href="https://www.facebook.com/{{facebook_id}}" target="_blank">{{full_name}}!</a> <a href="javascript:void(0)" ng-click="logout()" style="color:gray">(salir)</a></p>
-                    </li>
+                    </li>-->
 
                 </ul>
                 <ul class="nav navbar-nav navbar-right">
                     <li>
-                        <input size=2 ng-keydown="aer($event.keyCode)" ng-model="whereGogo">
+                        <a href="javascript:void(0)" ng-click="actionModal('concurso')">Como Concursar</a>
                     </li>
                     <li>
-                        <a href="javascript:void(0)" ng-click="actionModalOpen('concurso')">Como Concursar</a>
-                    </li>
-                    <li>
-                        <a href="javascript:void(0)" ng-click="actionModalOpen('premio')" >Premios</a>
+                        <a href="javascript:void(0)" ng-click="actionModal('completeformation')" >Premios</a>
                     </li>
                     <li>
                         <a target="_blank" href="http://d3g8amkxnw6wed.cloudfront.net/pdf/BASES-CONCURSO-GOOGLE-STREET-VIEW.pdf" >Bases del Concurso</a>
                     </li>
                     <li>
                         <a href="https://www.facebook.com/lacrianza/?ref=ts&fref=ts" target="_blank">
-                            <i class="fa fa-facebook"></i>
+                            <img src="bundles/img/facebook.png" class="">
                         </a>
                     </li>
                     <li>
                         <a href="https://twitter.com/lacrianza" target="_blank">
-                            <i class="fa fa-twitter"></i>
+                            <img src="bundles/img/twitter.png" class="">
                         </a>
                     </li>
                     <li>
                         <a href="https://www.instagram.com/lacrianza/" target="_blank">
-                            <i class="fa fa-instagram"></i>
+                            <img src="bundles/img/insta.png" class="">
 
                         </a>
                     </li>
@@ -118,9 +108,9 @@
                 <div>
                     <button class="menu-icon"  id="open-button" style="margin-top:50px;">
                         <img ng-click="actionMenu()" src="bundles/img/album.png" class="img-circle center-block">
-                        <p class="white-label text-center icons">Ver Album</p>
+                        <p class="white-label text-center icons">Ver Álbum</p>
                     </button> 
-                    
+
                 </div>
 
                 <div style="margin-top: 90px;">
@@ -128,48 +118,81 @@
                         <img src="bundles/img/mostrar.png" class="img-circle center-block">
                         <p class="white-label text-center icons">Mostrar mapa</p>
                     </button> 
-                    
+
                 </div>
             </div>
         </div>
     </div>
 </div>
 
-<div id="modalClue" class="modal pista text-center">
-    <div class="modal-body">
-        <h4>
-            Busca el poster "{{titlePoster}}" 
-        </h4>
+<div class="modal fade" id="cluemodal" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true" data-backdrop="static" data-keyboard="false">
+    <div class="modal-dialog modal-sm mod-400">
+        <div class="modal-content wood">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">×</span><span class="sr-only">Close</span></button>
+            </div>
+            <div class="modal-body">
+                <h3 class="pista">Busca el poster "{{titlePoster}}" </h3>
+                <p class="bajada">
+                    {{descriptionClue}}
+                </p>
+                <div class="col-md-8 col-md-offset-2">
+                    <img ng-src="{{default_avatar}}" class="img-responsive img-thumbnail">
+                </div>     
 
-        <h5>{{descriptionClue}}</h5>
+            </div>
+            <div class="modal-footer">
+                <div class="col-md-8 col-md-offset-2">
+                    <button ng-click="nextClue(category, obj)" type="button" class="btn btn-default btn-block continuar" data-dismiss="modal"  role="button">Siguiente</button>
+                </div>
 
-        <img ng-src="{{default_avatar}}" class="center-block" style="height: 180px;">
+            </div>
+        </div>
     </div>
-
-    <a ng-click="nextClue(category, obj)" class=" modal-action modal-close btn btn-warning siguiente">Siguiente</a>
 </div>
 
-<div id="error" class="modal alert-modal">
-    <div class="modal-body text-center">
-        <h5 class="lost"> Por aquí no es... estas más perdido que pizza en hamburguesería.</h5>
-    </div>
-    <div class="col-md-4 col-md-offset-4">
-        <a ng-click="actionViewMap()" class=" modal-action modal-close btn btn-warning siguiente">Volver al mapa</a>
+
+
+<div class="modal fade" id="error" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true" data-backdrop="static" data-keyboard="false">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content error">
+            <div class="modal-body text-center">
+                <h5 class="lost"> Por aquí no es... estas más perdido que pizza en hamburguesería.</h5>
+            </div>
+            <div class="modal-footer">
+                <div class="col-md-12 text-center">
+                    <a ng-click="actionViewMap()" class="modal-action modal-close btn btn-default continuar">Volver al mapa</a>
+                </div>
+            </div>
+        </div>
     </div>
 </div>
 
-<div id="modal33" class="modal alert-modal">
-    <div class="modal-body text-center">
+<div class="modal fade" id="modal33" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true" data-backdrop="static" data-keyboard="false">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content error">
+            <div class="modal-body text-center">
+                <h5 class="lost"> Vas bien... pero para el otro lado</h5>
+            </div>
+            <div class="modal-footer">
+                <div class="col-md-12 text-center">
+                    <a ng-click="actionDismiss" class="modal-action modal-close btn btn-default continuar">Seguir Buscando!</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 
+<!--<div id="modal33" class="modal alert-modal">
+    <div class="modal-body text-center">
         <h5 class="lost"> Vas bien... pero para el otro lado.</h5>
-
     </div>
-    <div class="col-md-4 col-md-offset-4">
-        <a ng-click="actionDismiss()" class=" modal-action modal-close btn btn-warning siguiente">OK</a>
+    <div class="col-md-6 col-md-offset-5">
+        <a ng-click="actionDismiss()" class=" modal-action modal-close btn btn-warning siguiente">Seguir Buscando!</a>
     </div>
-</div>
+</div>-->
 
-<div id="fin-game" class="modal pista">
+<div class="modal fade pista" id="fin-game" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true" data-backdrop="static" data-keyboard="false">
     <div class="modal-body text-center">
         <img src="bundles/img/fin-modal.png" class="img-responsive center-block">
     </div>
@@ -178,41 +201,70 @@
     </div>
 </div>
 
-<div id="concurso" class="modal pista" style="height: 400px !important;">
-    <div class="modal-body text-center" >
-        <img src="bundles/img/como.png" class="img-responsive center-block">
-    </div>
-</div>
 
-<div id="premio" class="modal pista" style="height: 400px !important;">
-    <div class="modal-body text-center">
-        <img src="bundles/img/premio.png" class="img-responsive center-block">
-    </div>
-</div>
 
-<div id="posterFind" class="modal back-modal">
-    <div class="modal-content">
-        <img class="center-block" src="bundles/img/excelente.png"/>
-        <br/>
-        <h4 class="control-label aqua">{{titlePosterFound}}</h4>
-
-        <p class="control-label">{{descriptionPosterFound}}</p>
-
-        <div class="valign-wrapper" style="margin-bottom: 30px;">
-            <img ng-src="{{currentZone.image_default}}" class="img-responsive img-thumbnail center-block" style="height: 180px;">
-        </div>
-        <div class="row">
-            <div class="col-md-offset-2 col-md-4">
-                <a class="btn facebook" ng-click="shared()" ><i class="fa fa-facebook-square"></i> Compartir</a>
+<div class="modal fade" id="concurso" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true" data-backdrop="static" data-keyboard="false">
+    <div class="modal-dialog modal-sm mod-400">
+        <div class="modal-content wood">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">×</span><span class="sr-only">Close</span></button>a
             </div>
-            <div class="col-md-4">
-                <a class="btn continuar modal-action modal-close" ng-click="actionViewMapNextPoster()">Seguir jugando</a>
+            <div class="modal-body">
+                <img src="bundles/img/como.png" class="img-responsive center-block">   
             </div>
         </div>
     </div>
 </div>
 
-<div id="completeformation" class="modal back-modal">
+<div class="modal fade" id="premio" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true" data-backdrop="static" data-keyboard="false">
+    <div class="modal-dialog modal-sm mod-400">
+        <div class="modal-content wood">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">×</span><span class="sr-only">Close</span></button>a
+            </div>
+            <div class="modal-body">
+                <img src="bundles/img/premio.png" class="img-responsive center-block">
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div class="modal fade" id="posterFind" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true" data-backdrop="static" data-keyboard="false">
+    <div class="modal-dialog modal-sm mod-400">
+        <div class="modal-content wood">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">×</span><span class="sr-only">Close</span></button>
+                <img src="bundles/img/excelente.png" class="img-responsive center-block">
+                <!--<h3 class="modal-title" id="lineModalLabel">My Modal</h3>-->
+            </div>
+            <div class="modal-body">
+                <h3 class="titulo">{{titlePosterFound}}</h3>
+                <p class="bajada">
+                    {{descriptionPosterFound}}
+                </p>
+                <div class="col-md-8 col-md-offset-2">
+                    <img ng-src="{{currentZone.image_default}}" class="img-responsive img-thumbnail">
+                </div>     
+
+            </div>
+            <div class="modal-footer">
+                <div class="col-md-10 col-md-offset-1">
+                    <div class="col-md-6">
+                        <button type="button" id="saveImage" class="btn btn-default btn-block compartir" data-action="save" role="button" ng-click="shared()">Compartir</button>
+                    </div>
+                    <div class="col-md-6">
+                        <button type="button" class="btn btn-default btn-block continuar" data-dismiss="modal"  role="button" ng-click="actionViewMapNextPoster()">Seguir Jugando</button>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div id="completeformation" class="modal fade back-modal" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true" data-backdrop="static" data-keyboard="false">
     <img src="bundles/img/success.png" class="img-responsive center-block" style="margin-bottom: 20px;">
     <div class="row">
         <div class="col-md-8 col-md-offset-2">
@@ -290,7 +342,7 @@
 </div>
 
 
-<div id="success" class="modal back-end-modal">
+<div id="success" class="modal fade back-end-modal" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true" data-backdrop="static" data-keyboard="false">
     <div class="modal-content">
 
         <br/>
@@ -307,6 +359,35 @@
             <div class="col-md-6">    
                 <a ng-click="backToPlayHome()" class="btn btn-danger center-block">Seguir Jugando</a>
             </div>                
+        </div>
+    </div>
+</div>
+
+
+
+<div class="modal fade" id="bienvenida_moises" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true" data-backdrop="static" data-keyboard="false">
+    <div class="modal-dialog modal-md">
+        <div class="modal-content moises">
+            <div class="modal-header">
+                <button type="button" ng-click="actionModal('bienvenida_moises')" class="close" data-dismiss="modal"><span aria-hidden="true">×</span><span class="sr-only">Close</span></button>
+                
+            </div>
+            <div class="modal-body">
+                <img src="bundles/img/moises_bienvenida.png" class="img-responsive"/>    
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="album_moises" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true" data-backdrop="static" data-keyboard="false">
+    <div class="modal-dialog modal-md">
+        <div class="modal-content moises">
+            <div class="modal-header">
+               <button type="button" ng-click="actionModal('album_moises')" class="close" data-dismiss="modal"><span aria-hidden="true">×</span><span class="sr-only">Close</span></button>
+                            </div>
+            <div class="modal-body">
+                <img src="bundles/img/moises_album.png" class="img-responsive"/>    
+            </div>
         </div>
     </div>
 </div>

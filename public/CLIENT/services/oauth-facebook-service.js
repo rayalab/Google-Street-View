@@ -8,9 +8,7 @@ angular.module("oauthFacebookService", [])
 		login: function() {
 				FB.login(function(response) {
 				  if (response.authResponse) {
-				   console.log('Welcome!  Fetching your information.... ');
 				   FB.api('/me', 'get', {fields: 'last_name, name, email, id, picture'}, function(response) {
-				   		console.log(response);
 						 var accessToken = FB.getAuthResponse();
 						 var aryObj = {
 						  full_name   : response.name,
@@ -28,9 +26,8 @@ angular.module("oauthFacebookService", [])
 							Object.keys(data.game).map(function(value) {
 							  localStorage.setItem(value, data.game[value]);
 							});
-							return 'ok';
+							//return 'ok';
 						 });
-						 console.log(localStorage);
 						  dataStorage.then(function successCallback(response) {
 							$state.go('home');
 						  });

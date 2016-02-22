@@ -8400,7 +8400,7 @@ a.waves-effect .waves-ripple {
   z-index: -1;
 }
 
-.modal {
+/*.modal {
   display: none;
   position: fixed;
   left: 0;
@@ -8413,10 +8413,10 @@ a.waves-effect .waves-ripple {
   overflow-y: auto;
   border-radius: 2px;
   will-change: top, opacity;
-}
+}*/
 
 @media only screen and (max-width: 992px) {
-  .modal {
+/*  .modal {
     width: 80%;
   }
 }
@@ -8431,17 +8431,17 @@ a.waves-effect .waves-ripple {
 
 .modal .modal-close {
   cursor: pointer;
-}
+}*/
 
-.modal .modal-footer {
+/*.modal .modal-footer {
   border-radius: 0 0 2px 2px;
   background-color: #fafafa;
   padding: 4px 6px;
   height: 56px;
   width: 100%;
-}
+}*/
 
-.modal .modal-footer .btn, .modal .modal-footer .btn-large, .modal .modal-footer .btn-flat {
+/*.modal .modal-footer .btn, .modal .modal-footer .btn-large, .modal .modal-footer .btn-flat {
   float: right;
   margin: 6px 0;
 }
