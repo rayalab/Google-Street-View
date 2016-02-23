@@ -1,11 +1,10 @@
 angular.module('app')
 
-.controller('home.index', function homeIndex($stateParams, $flash, $scope, $poster, $clue, $location, $oauth, $rootScope, $gamePoster, $timeout, $state, $user, $window) {
+.controller('home.index', function homeIndex($stateParams, $scope, $poster, $clue, $location, $oauth, $rootScope, $gamePoster, $timeout, $state, $user, $window) {
 	
-	if(!localStorage.bienvenida){
-		localStorage.bienvenida = true;
-		$("#bienvenida_moises").modal();
-	};
+
+
+	$rootScope.reloadHeader(); 
 
 	$scope.full_name = localStorage.full_name;
 	$scope.facebook_id = localStorage.facebook_id;
@@ -147,7 +146,7 @@ angular.module('app')
 	};
 	
 	$scope.actionViewMap = function(){
-
+		$("#error").modal('hide');
 		if($scope.mode){
 			$scope.main_map_init();
 		}else{
@@ -168,11 +167,11 @@ angular.module('app')
 	};
 
 	$scope.actionDismiss = function() {
+		$("#modal33").modal('hide');
 		$scope.clicksDone=0;
 	};
 
     $scope.actionModal = function(id){
-    	console.log(id);
     	if($("#"+id+"").is(':visible')){
     		$("#"+id+"").modal();
     	}else{
@@ -289,13 +288,16 @@ angular.module('app')
 	//cachear ubicaciones de banderas y posters
 	$scope.init = function() {
 
-		if($rootScope.reloadHeader()){
-			$poster.getPosterRandom(localStorage.user_id).then(function(result){
-				var response = JSON.parse(JSON.stringify(result.data));
-				$scope.aryPoster = response;
-				$scope.main_map_init();
-			});	
-		}	
+		$poster.getPosterRandom(localStorage.user_id).then(function(result){
+
+			if(localStorage.bienvenida){
+				$("#bienvenida_moises").modal();
+				localStorage.bienvenida = false;
+			};
+			var response = JSON.parse(JSON.stringify(result.data));
+			$scope.aryPoster = response;
+			$scope.main_map_init();
+		});	
 	};
 
 	
@@ -698,25 +700,26 @@ angular.module('app')
 
 			$gamePoster.create(AryObj).then(function(result){
 
-				switch($scope.aryMyPosterId.length) {
-				    case 1:
-				        $scope.posterFoundSetValues($scope.aryTextFindPoster[0], newAry);
-				        break;
-				    case 2:
-				       	$scope.posterFoundSetValues($scope.aryTextFindPoster[1], newAry);
-				        break;
-			        case 3:
-			       		$scope.posterFoundCompleteInformation($scope.aryTextFindPoster[2], newAry);
-			        break;
-			        case 12:
-			       		$scope.posterFoundComplete(newAry);
-			        break;
-				    default:
-				    	$scope.posterFoundSetValues($scope.aryTextFindPoster[3], newAry);
-
-				};
 
 			});	
+
+			switch($scope.aryMyPosterId.length) {
+			    case 1:
+			        $scope.posterFoundSetValues($scope.aryTextFindPoster[0], newAry);
+			        break;
+			    case 2:
+			       	$scope.posterFoundSetValues($scope.aryTextFindPoster[1], newAry);
+			        break;
+		        case 3:
+		       		$scope.posterFoundCompleteInformation($scope.aryTextFindPoster[2], newAry);
+		        break;
+		        case 12:
+		       		$scope.posterFoundComplete(newAry);
+		        break;
+			    default:
+			    	$scope.posterFoundSetValues($scope.aryTextFindPoster[3], newAry);
+
+			};
 
 		}
 
@@ -729,30 +732,25 @@ angular.module('app')
 				$scope.aryDefaultPosters.splice(0, 1)
 				$scope.aryMyPosters.push(aryPush);
 
-				$scope.actionModalOpen('posterFind');
+				$scope.actionModal('posterFind');
 	};
 
 	$scope.posterFoundCompleteInformation = function(aryFound, aryPush) {
 				$scope.aryDefaultPosters.splice(0, 1)
 				$scope.aryMyPosters.push(aryPush);
 
-				//$scope.actionModalOpen('completeformation');
-				$state.go('end');
+				$scope.actionModal('completeformation');
+				//$state.go('end');
 	};
 
 	$scope.posterFoundComplete = function(aryPush) {
 				$scope.aryDefaultPosters.splice(0, 1)
 				$scope.aryMyPosters.push(aryPush);
-				$scope.actionModalOpen('fin-game');
+				$scope.actionModal('fin-game');
 	};
 
-	$scope.actionCompleteInformation = function() {
-			$("#completeformation").modal();
-	};	
-
-
 	$scope.endgame = function() {
-		$scope.actionModalOpen('fin-game');
+		$scope.actionModal('fin-game');
 	};	
 
 	$scope.sharedEndGame = function() {

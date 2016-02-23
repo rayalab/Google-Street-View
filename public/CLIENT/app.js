@@ -14,7 +14,6 @@ angular.module('config', [])
  */
 angular.module('layouts', [
 	'ui.router',
-	'flashMessage',
 	'config'
 ]);
 
@@ -31,7 +30,6 @@ angular.module('app', [
 	'config',
 	'layouts',
 	'ngResource',
-	'flashMessage',
 	'oauthFacebookService',
 	'posterService',
 	'clueService',

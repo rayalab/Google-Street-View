@@ -41,12 +41,6 @@
                 <div class="navbar-header">
                     <img src="bundles/img/logo.png" class="img-responsive">
                 </div>
-                <ul class="nav navbar-nav navbar-left">
-                    <!--<li>
-                        <p style="color:white; margin-top: 4%;">¡Bienvenido <a href="https://www.facebook.com/{{facebook_id}}" target="_blank">{{full_name}}!</a> <a href="javascript:void(0)" ng-click="logout()" style="color:gray">(salir)</a></p>
-                    </li>-->
-
-                </ul>
                 <ul class="nav navbar-nav navbar-right">
                     <li>
                         <a href="javascript:void(0)" ng-click="actionModal('concurso')">Como Concursar</a>
@@ -183,25 +177,22 @@
     </div>
 </div>
 
-<!--<div id="modal33" class="modal alert-modal">
-    <div class="modal-body text-center">
-        <h5 class="lost"> Vas bien... pero para el otro lado.</h5>
-    </div>
-    <div class="col-md-6 col-md-offset-5">
-        <a ng-click="actionDismiss()" class=" modal-action modal-close btn btn-warning siguiente">Seguir Buscando!</a>
-    </div>
-</div>-->
 
 <div class="modal fade pista" id="fin-game" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true" data-backdrop="static" data-keyboard="false">
-    <div class="modal-body text-center">
-        <img src="bundles/img/fin-modal.png" class="img-responsive center-block">
-    </div>
-    <div class="col-md-12 text-center">
-        <a ng-click="sharedEndGame()" class="btn continuar modal-action modal-close">Compartir</a>
+    
+    <div class="modal-dialog modal-sm mod-400">
+        <div class="modal-content wood">
+            <div class="modal-header">
+                <img src="bundles/img/fin-modal.png" class="img-responsive center-block">
+            </div>
+            <div class="modal-body">
+            </div>
+            <div class="modal-footer">
+                <button ng-click="sharedEndGame()" class="btn facebook center-block"><i class="fa fa-facebook-square"></i> Compartir</button>
+            </div>
+        </div>
     </div>
 </div>
-
-
 
 <div class="modal fade" id="concurso" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true" data-backdrop="static" data-keyboard="false">
     <div class="modal-dialog modal-sm mod-400">
@@ -257,112 +248,122 @@
                         <button type="button" class="btn btn-default btn-block continuar" data-dismiss="modal"  role="button" ng-click="actionViewMapNextPoster()">Seguir Jugando</button>
                     </div>
                 </div>
-
             </div>
         </div>
     </div>
 </div>
 
 
-<div id="completeformation" class="modal fade back-modal" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true" data-backdrop="static" data-keyboard="false">
-    <img src="bundles/img/success.png" class="img-responsive center-block" style="margin-bottom: 20px;">
-    <div class="row">
-        <div class="col-md-8 col-md-offset-2">
-            <div class="col-md-3">
-                <img ng-src="http://{{image_profile}}" class="img-responsive img-circle ">
+<div class="modal fade" id="completeformation" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true" data-backdrop="static" data-keyboard="false">
+    <div class="modal-dialog modal-md">
+        <div class="modal-content wood">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">×</span><span class="sr-only">Close</span></button>
+                <img src="bundles/img/success.png" class="img-responsive center-block" style="margin-bottom: 20px;">
+
             </div>
-            <div class="col-md-9">
-                <h4 class="white user">{{full_name}}</h4>
-            </div>
-        </div>
-    </div>
-    <br/>
-    <div class="text-center">
-        <h4 class="form green">ENCONTRASTE 3 POSTERS.</h4>
-        <h4 class="form white"> AHORA SÓLO INGRESA TUS DATOS Y PARTICIPA POR
-            UNA ENTRADA VIP DOBLE A LOLLAPALOOZA 2016</h4>
-    </div>
-    <br/><br/>
-    <!-- content goes here -->
-    <div class="col-md-8 col-md-offset-2">
-        <form class="form-horizontal" role="form">
-            <div class="form-group">
-                <div class="col-sm-2">
-                    <label class="control-label">Nombre</label>
-                </div>
-                <div class="col-sm-10">
-                    <input type="text" class="form-control" ng-model="user.full_name">
-                </div>
-            </div>
-            <div class="form-group">
-                <div class="col-sm-2">
-                    <label ng-class="{'warning':run}" class="control-label">RUT</label>
-                </div>
-                <div class="col-sm-10">
-                    <input type="text" class="form-control" ng-model="user.run">
-                </div>
-            </div>
-            <div class="form-group">
-                <div class="col-sm-2">
-                    <label ng-class="{'warning':cellphone}" class="control-label">Teléfono</label>
-                </div>
-                <div class="col-sm-10">
-                    <input type="text" class="form-control" ng-model="user.cellphone">
-                </div>
-            </div>
-            <div class="form-group">
-                <div class="col-sm-2">
-                    <label ng-class="{'warning':email}" class="control-label">Email</label>
-                </div>
-                <div class="col-sm-10">
-                    <input type="email" class="form-control" ng-model="user.email">
-                </div>
-            </div>
-            <div class="form-group">
-                <div class="col-sm-2">
-                    <label ng-class="{'warning':address}" class="control-label">Dirección</label>
-                </div>
-                <div class="col-sm-10">
-                    <input type="text" class="form-control" ng-model="user.address">
-                </div>
-            </div>
-            <div class="form-group">
-                <div class="col-md-7">
-                    <div class="checkbox acepto ">
-                        <label>
-                            <input type="checkbox" class="chk">Acepto términos y condiciones</label>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-md-8 col-md-offset-2">
+                        <div class="col-md-3">
+                            <img ng-src="http://{{image_profile}}" class="img-responsive img-circle ">
+                        </div>
+                        <div class="col-md-9">
+                            <h4 class="white user">{{full_name}}</h4>
+                        </div>
                     </div>
                 </div>
-                <div class="col-md-5">
-                    <button ng-click="sendInformation()" class="btn btn-danger pull-right">Enviar Datos</button>
+                <div class="text-center">
+                    <h4 class="form green">ENCONTRASTE 3 POSTERS.</h4>
+                    <h4 class="form white"> AHORA SÓLO INGRESA TUS DATOS Y PARTICIPA POR
+                        UNA ENTRADA VIP DOBLE A LOLLAPALOOZA 2016</h4>
                 </div>
+                <div class="modal-footer">
+                    <form class="form-horizontal" role="form">
+                        <div class="form-group">
+                            <div class="col-sm-2">
+                                <label class="control-label">Nombre</label>
+                            </div>
+                            <div class="col-sm-8">
+                                <input type="text" class="form-control" ng-model="user.full_name">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-sm-2">
+                                <label ng-class="{'warning':run}" class="control-label">RUT</label>
+                            </div>
+                            <div class="col-sm-8">
+                                <input type="text" class="form-control" ng-model="user.run">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-sm-2">
+                                <label ng-class="{'warning':cellphone}" class="control-label">Teléfono</label>
+                            </div>
+                            <div class="col-sm-8">
+                                <input type="text" class="form-control" ng-model="user.cellphone">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-sm-2">
+                                <label ng-class="{'warning':email}" class="control-label">Email</label>
+                            </div>
+                            <div class="col-sm-8">
+                                <input type="email" class="form-control" ng-model="user.email">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-sm-2">
+                                <label ng-class="{'warning':address}" class="control-label">Dirección</label>
+                            </div>
+                            <div class="col-sm-8">
+                                <input type="text" class="form-control" ng-model="user.address">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-sm-2">
+                            </div>
+                            <div class="col-md-4">
+                                <div class="checkbox acepto ">
+                                    <label>
+                                        <input type="checkbox" class="chk">Acepto términos y condiciones</label>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <button ng-click="sendInformation()" class="btn btn-danger pull-right">Enviar Datos</button>
+                            </div>
+                            <div class="col-sm-2">
+                            </div>
+                        </div>
+                    </form>
+                </div>
+
             </div>
-        </form>
-    </div>
-</div>
 
-
-<div id="success" class="modal fade back-end-modal" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true" data-backdrop="static" data-keyboard="false">
-    <div class="modal-content">
-
-        <br/>
-        <h4 class="white user">tus datos han sido enviados con éxito</h4>
-        <br/>
-        <br/>
-        <br/>
-        <br/>
-        <br/>
-        <div class="row">
-            <div class="col-md-6">
-                <a ng-click="shared()" class="btn facebook center-block"><i class="fa fa-facebook-square"></i> Compartir</a>
-            </div>
-            <div class="col-md-6">    
-                <a ng-click="backToPlayHome()" class="btn btn-danger center-block">Seguir Jugando</a>
-            </div>                
         </div>
     </div>
 </div>
 
+<div id="success" class="modal fade back-end-modal" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true" data-backdrop="static" data-keyboard="false">
+
+    <div class="modal-dialog modal-sm mod-400">
+        <div class="modal-content woodsucess">
+            <div class="modal-header">
+            </div>
+            <div class="modal-body">
+                <h3 class="titulo">tus datos han sido enviados con éxito</h3>
+            </div>
+            <div class="modal-footer">
+                <div class="col-md-6">
+                    <a ng-click="shared()" class="btn facebook center-block"><i class="fa fa-facebook-square"></i> Compartir</a>
+                </div>
+                <div class="col-md-6">    
+                    <a ng-click="backToPlayHome()" class="btn btn-danger center-block">Seguir Jugando</a>
+                </div>                
+            </div>
+        </div>
+    </div>
+</div>
 
 
 <div class="modal fade" id="bienvenida_moises" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true" data-backdrop="static" data-keyboard="false">

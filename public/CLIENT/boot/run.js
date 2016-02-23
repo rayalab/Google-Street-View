@@ -1,37 +1,33 @@
 /**
  * First execution, looks for logged user to use in all modules
  */
-angular.module('app').run(['$rootScope', '$state', '$flash', '$location',
-    function($rootScope, $state, $flash, $location) {
+angular.module('app').run(['$rootScope', '$state', '$location',
+    function($rootScope, $state, $location) {
    
         $rootScope.$on('$stateChangeError', function() {
             $state.transitionTo('error.number', { number: 404} );
         });
-
-        $rootScope.headerUrl = null;
-        $rootScope.currentUser = null;
-        $rootScope.currentToken = null;
 
         // Global reload header function
         $rootScope.reloadHeader = function() {
 
             //sets the user var that displays logged user's name in the menu
 
-            if (!localStorage.full_name) {
+            if (!localStorage.facebook_id) {
                 if($rootScope.mobile()){
                     console.log($rootScope.mobile());
-                    return'oauth-mobile';
+                    $state.go('mobile-oauth');
                 }else{
                     console.log($rootScope.mobile());
-                    return 'oauth';
+                    $state.go('oauth');
                 }
             }else{
                 if($rootScope.mobile()){
                     console.log($rootScope.mobile());
-                    return'home-mobile';
+                    $state.go('mobile-home');
                 }else{
                     console.log($rootScope.mobile());
-                    return 'home';
+                    $state.go('home');
                 }
             }
         };
@@ -44,11 +40,9 @@ angular.module('app').run(['$rootScope', '$state', '$flash', '$location',
         };
 
         $rootScope.init = function (){
-            var where = $rootScope.reloadHeader();
-            $state.go(where);
+            $rootScope.reloadHeader(); 
         };
 
-        $rootScope.flash = $flash;
         $rootScope.init();
     }
 ]);

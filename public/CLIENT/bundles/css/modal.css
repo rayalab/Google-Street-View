@@ -22,6 +22,26 @@
     width: 400px;
 }
 
+.modal-content.woodsucess {
+    background: url('../img/fin-wood.jpg') center right; 
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+    border-radius: 0px;
+    border: none;
+}
+
+.modal-body.woodsucess {
+    background: url('../img/fin-wood.jpg') center right; 
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+    border-radius: 0px;
+    border: none;
+}
+
 .modal-content.wood {
     background: url('../img/wood-mod.png') center right; 
     -webkit-background-size: cover;

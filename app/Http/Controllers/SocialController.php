@@ -62,8 +62,10 @@ class SocialController extends Controller
             $User->position_longitude = "-70.584075208";
             $User->position_latitude = "-33.415208";
             $User->save();
+            $new = true;
         }else{
             $User = $User[0];
+            $new = false;
         }
 
         $Game = Game::where('user_id', $User->user_id)->where('finish', '0000-00-00 00:00:00')->get();
@@ -78,7 +80,7 @@ class SocialController extends Controller
         }
 
 
-        return response()->json(array('user' => $User, 'game' => $Game));
+        return response()->json(array('user' => $User, 'game' => $Game, 'new' => $new));
     }
 
     /**

@@ -1,6 +1,6 @@
 angular.module('app')
 
-.controller('end.index', function endgameIndex($stateParams, $flash, $scope, $rootScope, $user, $location, $gamePoster, $state) {
+.controller('end.index', function endgameIndex($stateParams, $scope, $rootScope, $user, $location, $gamePoster, $state) {
 	 $scope.user = {
 	 	full_name : localStorage.full_name,
 	 	last_name : "",
