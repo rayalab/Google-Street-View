@@ -333,7 +333,7 @@ angular.module('app')
 				newFlag = new google.maps.Marker({
 					position: new google.maps.LatLng(item.default_clue_latitude, item.default_clue_longitude),
 					map: $scope.map,
-					title : 'poster '+item.poster_id+': '+item.default_clue_title,
+					title : item.poster_title,
 					icon: $scope.imgBaseURL + 'pines/'+item.poster_id+'.png',
 					visible:true,
 					draggable: false

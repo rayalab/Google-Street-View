@@ -84,14 +84,14 @@
     width: 24px;
     height: 24px;
     position: relative;
-    /*left: 15px;
-    top: 30px;*/
+    left: 10px;
+    top: 5px;
     overflow: hidden;
     text-indent: 10px;
     border: none;
     background: transparent;
     color: transparent;
-    text-align: center;
+    /*text-align: center;*/
 }
 .close-button::before,
 .close-button::after {
@@ -509,7 +509,15 @@ h4.excelente {
 }
 
 .scroll-altura {
-    max-height: calc(100vh - 310px);
+    max-height: calc(100vh - 280px);
    overflow-y: auto;
 }
 
+.separador {
+    border-left: 1px solid #fff;
+}
+
+.nav li.space-menu {
+    margin-left: 1px !important:
+        margin-right: 1px !important:
+}

@@ -8,7 +8,11 @@ angular.module("oauthFacebookService", [])
 		login: function() {
 				FB.login(function(response) {
 				  if (response.authResponse) {
-				   FB.api('/me', 'get', {fields: 'last_name, name, email, id, picture'}, function(response) {
+				   FB.api('/me', 'get', {fields: 'last_name, name, email, id'}, function(response) {
+
+			   		    FB.api("/me/picture?width=67&height=67",  function(responsePicture) {
+			   		    	console.log(responsePicture);
+			   		     localStorage.setItem('image', responsePicture.data.url.split('https://')[1]);		
 						 var accessToken = FB.getAuthResponse();
 						 var aryObj = {
 						  full_name   : response.name,
@@ -17,9 +21,8 @@ angular.module("oauthFacebookService", [])
 						  facebook_id : response.id,
 						  facebook_token : accessToken.accessToken
 						 };
-						 localStorage.setItem('image', response.picture.data.url.split('https://')[1]);
 
-						 var dataStorage = $http.post('http://'+(!prod?$location.$$host:api)+':8000/social', aryObj).success(function(data) { 
+				   		var dataStorage = $http.post('http://'+(!prod?$location.$$host:api)+':8000/social', aryObj).success(function(data) { 
 							localStorage.bienvenida = data.new;	
 							Object.keys(data.user).map(function(value) {
 							  localStorage.setItem(value, data.user[value]);
@@ -29,9 +32,11 @@ angular.module("oauthFacebookService", [])
 							});
 							//return 'ok';
 						 });
+
 						  dataStorage.then(function successCallback(response) {
 							$state.go('home');
 						  });
+					    }); 
 					});
 				  } else {
 				   console.log('User cancelled login or did not fully authorize.');

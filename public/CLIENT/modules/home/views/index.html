@@ -1,9 +1,9 @@
 <link href="bundles/css/modal.css" rel="stylesheet" type="text/css">
 <div class="navbar navbar-inverse menu-wrap wood-back ">
-    <button ng-click="actionMenu()" class="close-button center-block" id="close-button">Close Menu</button>
+    <button ng-click="actionMenu()" class="pull-left close-button" id="close-button">Close Menu</button>
     <br/><br/>
     <div class="col-lg-12">
-        <img src="bundles/img/hambre.png" class="center-block">
+        <img src="bundles/img/hambre.png" class="center-block" style="margin-bottom: 15px;">
         <div class="row">
             <div class="col-md-2 col-md-offset-3"  >
                 <a href="https://www.facebook.com/{{facebook_id}}"><img ng-src="http://{{image_profile}}" class="img-circle center-block"></a>
@@ -51,17 +51,18 @@
                     <li>
                         <a target="_blank" href="http://d3g8amkxnw6wed.cloudfront.net/pdf/BASES-CONCURSO-GOOGLE-STREET-VIEW.pdf" >Bases del Concurso</a>
                     </li>
-                    <li>
+
+                    <li class="separador space-menu" style="padding-left: 20px !important;">
                         <a href="https://www.facebook.com/lacrianza/?ref=ts&fref=ts" target="_blank">
                             <img src="bundles/img/facebook.png" class="">
                         </a>
                     </li>
-                    <li>
+                    <li class="space-menu">
                         <a href="https://twitter.com/lacrianza" target="_blank">
                             <img src="bundles/img/twitter.png" class="">
                         </a>
                     </li>
-                    <li>
+                    <li class="space-menu">
                         <a href="https://www.instagram.com/lacrianza/" target="_blank">
                             <img src="bundles/img/insta.png" class="">
 
@@ -100,14 +101,14 @@
                     <img ng-src="http://{{image_profile}}" class="img-circle img-responsive center-block">
                 </a>
                 <div>
-                    <button class="menu-icon"  id="open-button" style="margin-top:50px;">
+                    <button class="menu-icon"  id="open-button" style="margin-top:91px;">
                         <img ng-click="actionMenu()" src="bundles/img/album.png" class="img-circle center-block">
                         <p class="white-label text-center icons">Ver Álbum</p>
                     </button> 
 
                 </div>
 
-                <div style="margin-top: 90px;">
+                <div style="margin-top: 70px;">
                     <button class="menu-icon"  id="open-button" style="margin-top: 15px;" ng-click="actionViewMap()">
                         <img src="bundles/img/mostrar.png" class="img-circle center-block">
                         <p class="white-label text-center icons">Mostrar mapa</p>
@@ -179,7 +180,7 @@
 
 
 <div class="modal fade pista" id="fin-game" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true" data-backdrop="static" data-keyboard="false">
-    
+
     <div class="modal-dialog modal-sm mod-400">
         <div class="modal-content wood">
             <div class="modal-header">
@@ -355,10 +356,10 @@
             </div>
             <div class="modal-footer">
                 <div class="col-md-6">
-                    <a ng-click="shared()" class="btn facebook center-block"><i class="fa fa-facebook-square"></i> Compartir</a>
+                    <a ng-click="shared()" class="btn compartir center-block"><i class="fa fa-facebook-square"></i> Compartir</a>
                 </div>
                 <div class="col-md-6">    
-                    <a ng-click="backToPlayHome()" class="btn btn-danger center-block">Seguir Jugando</a>
+                    <a ng-click="backToPlayHome()" class="btn continuar center-block">Seguir Jugando</a>
                 </div>                
             </div>
         </div>
@@ -366,14 +367,10 @@
 </div>
 
 
-<div class="modal fade" id="bienvenida_moises" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true" data-backdrop="static" data-keyboard="false">
+<div class="modal fade" id="bienvenida_moises" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true" >
     <div class="modal-dialog modal-md">
         <div class="modal-content moises">
-            <div class="modal-header">
-                <button type="button" ng-click="actionModal('bienvenida_moises')" class="close" data-dismiss="modal"><span aria-hidden="true">×</span><span class="sr-only">Close</span></button>
-                <br/>
-                
-            </div>
+
             <div class="modal-body">
                 <img src="bundles/img/moises_bienvenida.png" class="img-responsive"/>    
             </div>
@@ -381,13 +378,9 @@
     </div>
 </div>
 
-<div class="modal fade" id="album_moises" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true" data-backdrop="static" data-keyboard="false">
+<div class="modal fade" id="album_moises" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true">
     <div class="modal-dialog modal-md">
         <div class="modal-content moises">
-            <div class="modal-header">
-               <button type="button" ng-click="actionModal('album_moises')" class="close" data-dismiss="modal"><span aria-hidden="true">×</span><span class="sr-only">Close</span></button>
-               <br/>
-                            </div>
             <div class="modal-body">
                 <img src="bundles/img/moises_album.png" class="img-responsive"/>    
             </div>
