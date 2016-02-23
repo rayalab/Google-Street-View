@@ -767,7 +767,9 @@ angular.module('app')
 	$scope.shared = function() {
 		FB.login(function(){
 		  FB.api('/me/feed', 'post', 
-		  	{message: 'Ya estoy participando en Hambre de Lolla Street View Lollapalooza 2016', 'source': 'http://www.hambredelolla.cl/'}
+		  	{message: 'Ya estoy participando en Hambre de Lolla Street View Lollapalooza 2016', 'source': 'http://www.hambredelolla.cl/'}, function(response){
+		  		$window.location.reload();
+		  	}
 		   );
 
 		}, {scope: 'publish_actions'});
@@ -803,6 +805,10 @@ angular.module('app')
     	}else{
 	    	$window.location.reload();
     	}
+	};
+
+	$scope.goPlayAgain = function() {
+    	$window.location.reload();
 	};
 	
 	$scope.init();
