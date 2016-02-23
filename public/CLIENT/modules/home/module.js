@@ -290,9 +290,9 @@ angular.module('app')
 
 		$poster.getPosterRandom(localStorage.user_id).then(function(result){
 
-			if(localStorage.bienvenida){
+			if(!localStorage.bienvenida){
 				$("#bienvenida_moises").modal();
-				localStorage.bienvenida = false;
+				localStorage.bienvenida = true;
 			};
 			var response = JSON.parse(JSON.stringify(result.data));
 			$scope.aryPoster = response;
