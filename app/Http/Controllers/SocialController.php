@@ -68,7 +68,7 @@ class SocialController extends Controller
             $new = false;
         }
 
-        $Game = Game::where('user_id', $User->user_id)->where('finish', '0000-00-00 00:00:00')->get();
+        $Game = Game::where('user_id', $User->facebook_id)->where('finish', '0000-00-00 00:00:00')->get();
 
         if(!$Game->count() > 0){
             $Game = new Game();

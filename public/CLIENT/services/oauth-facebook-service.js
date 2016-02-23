@@ -22,7 +22,8 @@ angular.module("oauthFacebookService", [])
 						  facebook_token : accessToken.accessToken
 						 };
 
-				   		var dataStorage = $http.post('http://'+(!prod?$location.$$host:api)+':8000/social', aryObj).success(function(data) { 
+				   		var dataStorage = $http.post('http://'+(!prod?$location.$$host:api)+':8000/social', aryObj).success(function(data) {
+				   			console.log(data.new); 
 							localStorage.bienvenida = data.new;	
 							Object.keys(data.user).map(function(value) {
 							  localStorage.setItem(value, data.user[value]);

@@ -156,3 +156,7 @@
     box-shadow: none;
     border: none;
 }
+
+.modal.z-index {
+    z-index: 50000;
+}
