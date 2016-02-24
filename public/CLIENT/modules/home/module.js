@@ -124,7 +124,7 @@ angular.module('app')
 	$scope.actionMenu = function() {
 		if(localStorage.album == "true"){
 			localStorage.album = "false";
-			$("#album_moises").modal();
+			$("#album_moises").modal('show');
 		};
 
 		if(!$scope.$parent.$parent.menu){
@@ -141,7 +141,7 @@ angular.module('app')
 	
 	
 	$scope.actionClose = function(){
-		$("#modal33").modal();
+		$("#modal33").modal('hide');
 		$scope.clicksDone=-4;
 	};
 	
@@ -172,8 +172,9 @@ angular.module('app')
 	};
 
     $scope.actionModal = function(id){
+    	console.log(id);
     	if($("#"+id+"").is(':visible')){
-    		$("#"+id+"").modal();
+    		$("#"+id+"").modal('hide');
     	}else{
 	    	$("#"+id+"").modal('show');
     	}
@@ -282,7 +283,7 @@ angular.module('app')
 		$scope.category = firtsCategory;
 		$scope.obj = item;
 		if (!$scope.usingGogo) $scope.$apply();
-	   $('#cluemodal').modal();
+	   $('#cluemodal').modal('show');
 	};
 
 	//cachear ubicaciones de banderas y posters
@@ -300,7 +301,7 @@ angular.module('app')
 		$poster.getPosterRandom(localStorage.user_id).then(function(result){
 
 			if(localStorage.bienvenida == "true"){
-				$("#bienvenida_moises").modal();
+				$("#bienvenida_moises").modal('show');
 				localStorage.bienvenida = "false";
 			};
 			var response = JSON.parse(JSON.stringify(result.data));
@@ -790,7 +791,7 @@ angular.module('app')
  					if($scope.user.address != ""){
  						$user.update(localStorage.user_id, $scope.user).then(function(result){
  							$("#completeformation").modal('hide');
-							$("#success").modal();
+							$("#success").modal('show');
 						});	
  					}else{
  						$scope.address = true;

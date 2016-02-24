@@ -130,7 +130,7 @@
     <div class="modal-dialog mobile-intro modal-xs">
         <div class="modal-content wood">
             <div class="modal-header">
-                <button type="button" class="close close-mob" data-dixsiss="modal"><span aria-hidden="true">×</span><span class="sr-only">Close</span></button>
+                <button ng-click="actionModal('cluemodal')" type="button" class="close close-mob" data-dixsiss="modal"><span aria-hidden="true">×</span><span class="sr-only">Close</span></button>
             </div>
             <div class="modal-body">
                 <h3 class="pista">Busca el poster "{{titlePoster}}" </h3>
@@ -145,7 +145,7 @@
             <div class="modal-footer">
                 <br/>
                 <div class="col-xs-8 col-xs-offset-2">
-                    <button ng-click="nextClue(category, obj)" type="button" class="btn btn-default btn-block continuar" data-dixsiss="modal"  role="button">Siguiente</button>
+                    <button ng-click="nextClue(category, obj); actionModal('cluemodal')" type="button" class="btn btn-default btn-block continuar" data-dixsiss="modal"  role="button">Siguiente</button>
                 </div>
 
             </div>
@@ -178,7 +178,7 @@
             </div>
             <div class="modal-footer">
                 <div class="col-xs-12 text-center">
-                    <a ng-click="actionDixsiss()" class="modal-action modal-close btn btn-default continuar">Seguir Buscando!</a>
+                    <a ng-click="actionDismiss()" class="modal-action modal-close btn btn-default continuar">Seguir Buscando!</a>
                 </div>
             </div>
         </div>
@@ -208,7 +208,6 @@
     <div class="modal-dialog mobile-intro modal-xs">
         <div class="modal-content wood">
             <div class="modal-header">
-                <button type="button" class="close close-mob" data-dixsiss="modal"><span aria-hidden="true">×</span><span class="sr-only">Close</span></button>
                 <img src="bundles/img/excelente.png" class="img-responsive center-block">
                 <!--<h3 class="modal-title" id="lineModalLabel">My Modal</h3>-->
             </div>
