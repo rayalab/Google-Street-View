@@ -521,3 +521,20 @@ h4.excelente {
     margin-left: 1px !important:
         margin-right: 1px !important:
 }
+
+/***** VERSION MOBILE ***/
+
+.modal-dialog.mobile-intro {
+    margin: 10px auto !important;
+    width: 70%;
+}
+
+.navbar.mob-margin {
+    margin-bottom: 0px;
+}
+
+
+.scroll-altura.mob-scroll {
+    max-height: calc(100vh - 121px);
+   overflow-y: scroll;
+}

@@ -23,12 +23,10 @@ angular.module("oauthFacebookService", [])
 
 				   		var dataStorage = $http.post('http://'+(!prod?$location.$$host:api)+':8000/social', aryObj).success(function(data) {
 							localStorage.bienvenida = data.new;
-							localStorage.album = data.new;	
+							localStorage.album = data.new;
+							localStorage.game_id = data.game;	
 							Object.keys(data.user).map(function(value) {
 							  localStorage.setItem(value, data.user[value]);
-							});
-							Object.keys(data.game).map(function(value) {
-							  localStorage.setItem(value, data.game[value]);
 							});
 							//return 'ok';
 						 });
