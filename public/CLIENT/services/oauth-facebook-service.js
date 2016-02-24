@@ -11,7 +11,6 @@ angular.module("oauthFacebookService", [])
 				   FB.api('/me', 'get', {fields: 'last_name, name, email, id'}, function(response) {
 
 			   		    FB.api("/me/picture?width=67&height=67",  function(responsePicture) {
-			   		    	console.log(responsePicture);
 			   		     localStorage.setItem('image', responsePicture.data.url.split('https://')[1]);		
 						 var accessToken = FB.getAuthResponse();
 						 var aryObj = {
@@ -23,7 +22,8 @@ angular.module("oauthFacebookService", [])
 						 };
 
 				   		var dataStorage = $http.post('http://'+(!prod?$location.$$host:api)+':8000/social', aryObj).success(function(data) {
-							localStorage.bienvenida = data.new;	
+							localStorage.bienvenida = data.new;
+							localStorage.album = data.new;	
 							Object.keys(data.user).map(function(value) {
 							  localStorage.setItem(value, data.user[value]);
 							});
