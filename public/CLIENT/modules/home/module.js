@@ -290,9 +290,9 @@ angular.module('app')
 
 		$poster.getPosterRandom(localStorage.user_id).then(function(result){
 
-			if(!localStorage.bienvenida){
+			if(localStorage.bienvenida == "true"){
 				$("#bienvenida_moises").modal();
-				localStorage.bienvenida = true;
+				localStorage.bienvenida = "false";
 			};
 			var response = JSON.parse(JSON.stringify(result.data));
 			$scope.aryPoster = response;
@@ -302,7 +302,7 @@ angular.module('app')
 
 	
 	$scope.main_map_init = function (){
-		console.log("Hola");
+		
 		$scope.mode=true;
 		var div_main_map = document.getElementById("div_main_map");
 	    $scope.map = new google.maps.LatLng(-33.403843, -70.5718701);
