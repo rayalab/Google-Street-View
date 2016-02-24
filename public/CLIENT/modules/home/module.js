@@ -122,8 +122,8 @@ angular.module('app')
 	 * @return {[type]} [description]
 	 */
 	$scope.actionMenu = function() {
-		if(!localStorage.album){
-			localStorage.album = true;
+		if(localStorage.album == "true"){
+			localStorage.album = "false";
 			$("#album_moises").modal();
 		};
 
@@ -287,7 +287,16 @@ angular.module('app')
 
 	//cachear ubicaciones de banderas y posters
 	$scope.init = function() {
+		$user.getById(localStorage.user_id).then(function(result){
+			if(result.data == 0){
+				$scope.logout();
+			}else{
+				$scope.initGame();
+			}
+		});	
+	};
 
+	$scope.initGame = function() {
 		$poster.getPosterRandom(localStorage.user_id).then(function(result){
 
 			if(localStorage.bienvenida == "true"){
@@ -297,12 +306,11 @@ angular.module('app')
 			var response = JSON.parse(JSON.stringify(result.data));
 			$scope.aryPoster = response;
 			$scope.main_map_init();
-		});	
-	};
+		});
 
-	
+	};
 	$scope.main_map_init = function (){
-		
+		console.log(localStorage);
 		$scope.mode=true;
 		var div_main_map = document.getElementById("div_main_map");
 	    $scope.map = new google.maps.LatLng(-33.403843, -70.5718701);

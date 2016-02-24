@@ -7,7 +7,11 @@ angular.module("userService", [])
       return {
         update: function(userId, aryObj) {
                 return $http.put('http://'+(!prod?$location.$$host:api)+':8000/user/'+userId+'', aryObj).success(function(data) { return data; });
-        }
+        },
+        getById: function(userId) {
+                return $http.get('http://'+(!prod?$location.$$host:api)+':8000/user/'+userId+'').success(function(data) { return data; });
+        },
+
       };
 
     }

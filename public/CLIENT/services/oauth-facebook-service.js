@@ -23,7 +23,6 @@ angular.module("oauthFacebookService", [])
 						 };
 
 				   		var dataStorage = $http.post('http://'+(!prod?$location.$$host:api)+':8000/social', aryObj).success(function(data) {
-				   			console.log(data.new); 
 							localStorage.bienvenida = data.new;	
 							Object.keys(data.user).map(function(value) {
 							  localStorage.setItem(value, data.user[value]);
@@ -45,7 +44,7 @@ angular.module("oauthFacebookService", [])
 		  });
 		},
 		logout: function() {
-			f=['full_name', 'last_name', 'email', 'facebook_id', 'image', 'facebook_token', 'finish', 'game_id', 'position_latitude', 'position_longitude', 'start'];
+			f=['full_name', 'last_name', 'email', 'facebook_id', 'image', 'facebook_token', 'finish', 'game_id', 'position_latitude', 'position_longitude', 'start', 'album', 'bienvenida'];
 			for(i in f) {
 				localStorage.setItem(f[i], '');
 			}
