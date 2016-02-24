@@ -157,13 +157,14 @@ angular.module('app')
 	};
 
 	$scope.actionViewMapNextPoster = function(){
-			$scope.mode=true;
+			/*$scope.mode=true;
 			$scope.map.setCenter(new google.maps.LatLng($scope.currentZone.default_clue_latitude, $scope.currentZone.default_clue_longitude));
 			$scope.map.setZoom($scope.zoom + 1);
 			var delay = $timeout(function() {
 				$timeout.cancel(delay);
 		    	$scope.main_map_init();
-		    },500);
+		    },500);*/
+		    $window.location.reload();
 	};
 
 	$scope.actionDismiss = function() {
