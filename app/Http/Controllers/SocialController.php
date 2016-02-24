@@ -72,7 +72,7 @@ class SocialController extends Controller
 
         if(!$Game->count() > 0){
             $Game = new Game();
-            $Game->user_id = $User->user_id;
+            $Game->user_id = $User->facebook_id;
             $Game->start = $dt->format('y-d-m H:i:s');
             $Game->save();
         }else{
