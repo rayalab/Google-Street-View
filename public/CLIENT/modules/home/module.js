@@ -173,7 +173,6 @@ angular.module('app')
 	};
 
     $scope.actionModal = function(id){
-    	console.log(id);
     	if($("#"+id+"").is(':visible')){
     		$("#"+id+"").modal('hide');
     	}else{
@@ -236,7 +235,6 @@ angular.module('app')
 		});
 
 		newClue.addListener('click', function() {
-			console.log('setting current zone to',$scope.currentZone);
 			$scope.m_initPanorama(item.latitude, item.longitude);
 		});
 	}
@@ -312,7 +310,7 @@ angular.module('app')
 
 	};
 	$scope.main_map_init = function (){
-		console.log(localStorage);
+		
 		$scope.mode=true;
 		var div_main_map = document.getElementById("div_main_map");
 	    $scope.map = new google.maps.LatLng(-33.403843, -70.5718701);
@@ -453,8 +451,6 @@ angular.module('app')
 
 		    //resetear avisos de distancia si se acerca al poster
 		    if ($scope.lastDistance != 0 && $scope.distance_to_street_reference < $scope.lastDistance) $scope.clicksDone=0;
-		    console.log($scope.lastDistance, $scope.distance_to_street_reference);
-		    console.log($scope.distance_to_street_reference < $scope.lastDistance ? 'mas cerca':'mas lejos')
 			$scope.lastDistance = $scope.distance_to_street_reference;
 
 		    $scope.clicksDone++;
@@ -528,7 +524,6 @@ angular.module('app')
 					}
 				);
 				var angle_in_degrees = angle_in_radians * (180/3.1415);
-				//console.log('[seb] angle: ' + angle_in_degrees);
 
 
 				//ANGLE WALL
@@ -552,7 +547,6 @@ angular.module('app')
 					
 				);
 				var angle_in_degrees_wall = angle_in_radians_wall * (180/3.1415);
-				//console.log('[seb] angle wall: ' + angle_in_degrees_wall);
 
 				var posters_id = [
 					document.getElementById("foto_001"),

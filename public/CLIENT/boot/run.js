@@ -15,18 +15,14 @@ angular.module('app').run(['$rootScope', '$state', '$location',
 
             if (!localStorage.facebook_id) {
                 if($rootScope.mobile()){
-                    console.log($rootScope.mobile());
                     $state.go('mobile-oauth');
                 }else{
-                    console.log($rootScope.mobile());
                     $state.go('oauth');
                 }
             }else{
                 if($rootScope.mobile()){
-                    console.log($rootScope.mobile());
                     $state.go('mobile-home');
                 }else{
-                    console.log($rootScope.mobile());
                     $state.go('home');
                 }
             }

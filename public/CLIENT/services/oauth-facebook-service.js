@@ -1,6 +1,6 @@
 angular.module("oauthFacebookService", [])
-  .factory("$oauth", ['$window', '$http', '$location', '$state',
-	function($window, $http, $location, $state) {
+  .factory("$oauth", ['$window', '$http', '$location', '$state', '$timeout',
+	function($window, $http, $location, $state, $timeout) {
 	prod = 1;
 	api  = 'api.vo.gt';
 
@@ -24,18 +24,22 @@ angular.module("oauthFacebookService", [])
 				   		var dataStorage = $http.post('http://'+(!prod?$location.$$host:api)+':8000/social', aryObj).success(function(data) {
 							localStorage.bienvenida = data.new;
 							localStorage.album = data.new;
-							localStorage.user_id = data.user_id;	
+							localStorage.user_id = data.user.user_id;	
 							localStorage.full_name = data.user.full_name;	
 							localStorage.name = data.user.name;	
 							localStorage.position_latitude = data.user.position_latitude;	
 							localStorage.position_longitude = data.user.position_longitude;	
-							localStorage.game_id = data.game;	
-							console.log("END");
-							return 'ok';
+							localStorage.game_id = data.game;
+
+
+	   						var delay = $timeout(function() {
+								$timeout.cancel(delay);
+								return 'ok';
+					    	},1000);
+	
 						 });
 
 						  dataStorage.then(function successCallback(response) {
-						  	console.log("Ok");
 							$state.go('home');
 						  });
 					    }); 
