@@ -450,10 +450,17 @@ angular.module('app')
 		    $scope.m_updateMarker();
 
 		    //resetear avisos de distancia si se acerca al poster
-		    if ($scope.lastDistance != 0 && $scope.distance_to_street_reference < $scope.lastDistance) $scope.clicksDone=0;
-			$scope.lastDistance = $scope.distance_to_street_reference;
+		    //solo si se encuentra realtivamente cerca
+			if ($scope.distance_to_street_reference <= 300) {
+			    if ($scope.lastDistance != 0 && $scope.distance_to_street_reference < $scope.lastDistance) 
+			    	$scope.clicksDone=0;
+			}
 
+			//guardar clicks y distancia
+			$scope.lastDistance = $scope.distance_to_street_reference;
 		    $scope.clicksDone++;
+
+		    //mostrar avisos de distancia si hizo muchos clicks a cierta distancia
 			if ($scope.distance_to_street_reference > 300 && $scope.clicksDone > 3) {
 				$scope.actionModal('error');
 				$scope.clicksDone=0;
