@@ -35,7 +35,7 @@ angular.module("oauthFacebookService", [])
 	   						var delay = $timeout(function() {
 								$timeout.cancel(delay);
 								return 'ok';
-					    	},1000);
+					    	},3000);
 	
 						 });
 
