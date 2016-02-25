@@ -21,27 +21,25 @@ angular.module("oauthFacebookService", [])
 						  facebook_token : accessToken.accessToken
 						 };
 						 localStorage.facebook_id = response.id;
-				   		var dataStorage = $http.post('http://'+(!prod?$location.$$host:api)+':8000/social', aryObj).success(function(data) {
-							localStorage.bienvenida = data.new;
-							localStorage.album = data.new;
-							localStorage.user_id = data.user.user_id;	
-							localStorage.full_name = data.user.full_name;	
-							localStorage.name = data.user.name;	
-							localStorage.position_latitude = data.user.position_latitude;	
-							localStorage.position_longitude = data.user.position_longitude;	
-							localStorage.game_id = data.game;
+					   		$http.post('http://'+(!prod?$location.$$host:api)+':8000/social', aryObj).success(function(data) {
+					   			if(data){
+									localStorage.bienvenida = data.new;
+									localStorage.album = data.new;
+									localStorage.user_id = data.user.user_id;	
+									localStorage.full_name = data.user.full_name;	
+									localStorage.name = data.user.name;	
+									localStorage.position_latitude = data.user.position_latitude;	
+									localStorage.position_longitude = data.user.position_longitude;	
+									localStorage.game_id = data.game;
 
 
-	   						var delay = $timeout(function() {
-								$timeout.cancel(delay);
-								return 'ok';
-					    	},3000);
-	
-						 });
-
-						  dataStorage.then(function successCallback(response) {
-							$state.go('home');
-						  });
+			   						var delay = $timeout(function() {
+			   							console.log(localStorage);
+										$timeout.cancel(delay);
+										$state.go('home');
+							    	},3000);
+					   			}	
+							 });
 					    }); 
 					});
 				  } else {
