@@ -76,6 +76,21 @@ angular.module('app')
 		}
 	];
 
+	$scope.aryError = [
+		{
+			'title' : "Por aquí no es... estas más perdido que pizza en hamburguesería."
+		},
+		{
+			'title' : "Vas muy bien… pero sólo si fuera la pista correcta."
+		},
+		{
+			'title' : "No es por aquí, pero no te desanimes."
+		},
+		{
+			'title' : "Buen intento, pero aquí no es."
+		}
+	];
+
 	$scope.aryDefaultPosters = [
 		{
 			'img' : "bundles/img/01def.jpg"
@@ -115,7 +130,9 @@ angular.module('app')
 		}
 	];
 
-
+	$scope.getRandomIndex = function(length){
+	    return Math.floor(Math.random() * length);
+	}
 	/**
 	 * Tira el menu hacia la izquierda
 	 * 
