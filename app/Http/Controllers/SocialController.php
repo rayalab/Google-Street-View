@@ -10,6 +10,8 @@ use App\User;
 use App\Game;
 use Illuminate\Support\Collection;
 use DateTime;
+use DB;
+
 class SocialController extends Controller
 {
 
@@ -52,35 +54,43 @@ class SocialController extends Controller
         $Game = [];     
 
         $User = User::where('facebook_id', $req["facebook_id"])->get();
+        $position_longitude = "-70.584075208";
+        $position_latitude = "-33.415208";
+        $full_name = $req["full_name"];
 
-        if(!$User->count() > 0){
-            $User = new User();
-            $User->full_name = $req["full_name"];
-            $User->name = $req["last_name"];
-            $User->facebook_id = $req["facebook_id"];
-            $User->facebook_token = $req["facebook_token"];
-            $User->position_longitude = "-70.584075208";
-            $User->position_latitude = "-33.415208";
-            $User->save();
-            $new = true;
-        }else{
-            $User = $User[0];
+        if($User->count() > 0){
+            $UserNew = $User[0]->user_id;
+            $full_name = $User[0]->full_name;
             $new = false;
-        }
-
-        $Game = Game::where('user_id', $User->facebook_id)->where('finish', '0000-00-00 00:00:00')->get();
-
-        if(!$Game->count() > 0){
-            $Game = new Game();
-            $Game->user_id = $User->facebook_id;
-            $Game->start = $dt->format('y-d-m H:i:s');
-            $Game->save();
         }else{
-            $Game = $Game[0];
+            $UserNew = DB::table('users')->insertGetId(
+                [
+                'full_name' => $req["full_name"],
+                'name' => $req["last_name"],
+                'facebook_id' => $req["facebook_id"],
+                'facebook_token' => $req["facebook_token"],
+                'position_longitude' => $position_longitude,
+                'position_latitude' => $position_latitude
+                ]
+            );
+            $new = true;
+        }
+
+        $Game = Game::where('user_id', $UserNew)->where('finish', '0000-00-00 00:00:00')->get();
+
+        if($Game->count() > 0){
+            $GameNew = $Game[0]->game_id;
+        }else{
+            $GameNew = DB::table('game')->insertGetId(
+                [
+                'user_id' => $UserNew,
+                'start' => $dt->format('y-d-m H:i:s')
+                ]
+            );
         }
 
 
-        return response()->json(array('user' => $User, 'user_id' => $Game->user_id,'game' => $Game->game_id, 'new' => $new));
+        return response()->json(array('full_name' => $full_name, 'user_id' => $UserNew,'game_id' => $GameNew, 'new' => $new));
     }
 
     /**

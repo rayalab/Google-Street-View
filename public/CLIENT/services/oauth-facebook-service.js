@@ -11,34 +11,30 @@ angular.module("oauthFacebookService", [])
 				   FB.api('/me', 'get', {fields: 'last_name, name, email, id'}, function(response) {
 
 			   		    FB.api("/me/picture?width=67&height=67",  function(responsePicture) {
-			   		     localStorage.setItem('image', responsePicture.data.url.split('https://')[1]);		
-						 var accessToken = FB.getAuthResponse();
-						 var aryObj = {
-						  full_name   : response.name,
-						  last_name   : response.last_name,
-						  email       : response.email,
-						  facebook_id : response.id,
-						  facebook_token : accessToken.accessToken
-						 };
-						 localStorage.facebook_id = response.id;
+				   		     localStorage.setItem('image', responsePicture.data.url.split('https://')[1]);		
+							 var accessToken = FB.getAuthResponse();
+							 var aryObj = {
+							  full_name   : response.name,
+							  last_name   : response.last_name,
+							  email       : response.email,
+							  facebook_id : response.id,
+							  facebook_token : accessToken.accessToken
+							 };
+							 localStorage.facebook_id = response.id;
 					   		$http.post('http://'+(!prod?$location.$$host:api)+':8000/social', aryObj).success(function(data) {
-					   			if(data){
+
+
 									localStorage.bienvenida = data.new;
 									localStorage.album = data.new;
-									localStorage.user_id = data.user.user_id;	
-									localStorage.full_name = data.user.full_name;	
-									localStorage.name = data.user.name;	
-									localStorage.position_latitude = data.user.position_latitude;	
-									localStorage.position_longitude = data.user.position_longitude;	
-									localStorage.game_id = data.game;
+									localStorage.user_id = data.user_id;	
+									localStorage.full_name = data.full_name;
+									localStorage.position_latitude = "-33.415208";	
+									localStorage.position_longitude = "-70.584075208";	
+									localStorage.game_id = data.game_id;
 
-
-			   						var delay = $timeout(function() {
-			   							console.log(localStorage);
-										$timeout.cancel(delay);
-										$state.go('home');
-							    	},3000);
-					   			}	
+					   			$http.get('http://'+(!prod?$location.$$host:api)+':8000/user/'+data.user_id+'').success(function(result) { 
+					   				go();
+					   			});
 							 });
 					    }); 
 					});
@@ -46,6 +42,13 @@ angular.module("oauthFacebookService", [])
 				   console.log('User cancelled login or did not fully authorize.');
 				  }
 		  });
+
+	   		function go() {
+					var delay = $timeout(function() {
+						$timeout.cancel(delay);
+						$state.go('home');
+			    	},2000);
+			};
 		},
 		logout: function() {
 			f=['full_name', 'last_name', 'email', 'facebook_id', 'image', 'facebook_token', 'finish', 'game_id', 'position_latitude', 'position_longitude', 'start', 'album', 'bienvenida'];
