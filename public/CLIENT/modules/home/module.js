@@ -60,7 +60,7 @@ angular.module('app')
 	$scope.aryTextFindPoster = [
 		{
 			'title' : "Encontraste tu primer poster",
-			'description' : "Aún te quedan dos por descubrir esta semana y así participar en el sorteo por entradas VIP dobles a Lollapalooza 2016."
+			'description' : "Aún te quedan dos por descubrir y así participar en el sorteo por entradas VIP dobles a Lollapalooza 2016."
 		},
 		{
 			'title' : "Encontraste tu segundo poster",

@@ -20,18 +20,22 @@ angular.module("oauthFacebookService", [])
 						  facebook_id : response.id,
 						  facebook_token : accessToken.accessToken
 						 };
-
+						 localStorage.facebook_id = response.id;
 				   		var dataStorage = $http.post('http://'+(!prod?$location.$$host:api)+':8000/social', aryObj).success(function(data) {
 							localStorage.bienvenida = data.new;
 							localStorage.album = data.new;
+							localStorage.user_id = data.user_id;	
+							localStorage.full_name = data.user.full_name;	
+							localStorage.name = data.user.name;	
+							localStorage.position_latitude = data.user.position_latitude;	
+							localStorage.position_longitude = data.user.position_longitude;	
 							localStorage.game_id = data.game;	
-							Object.keys(data.user).map(function(value) {
-							  localStorage.setItem(value, data.user[value]);
-							});
-							//return 'ok';
+							console.log("END");
+							return 'ok';
 						 });
 
 						  dataStorage.then(function successCallback(response) {
+						  	console.log("Ok");
 							$state.go('home');
 						  });
 					    }); 

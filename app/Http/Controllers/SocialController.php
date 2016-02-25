@@ -80,7 +80,7 @@ class SocialController extends Controller
         }
 
 
-        return response()->json(array('user' => $User, 'game' => $Game->game_id, 'new' => $new));
+        return response()->json(array('user' => $User, 'user_id' => $User->facebook_id,'game' => $Game->game_id, 'new' => $new));
     }
 
     /**
