@@ -2,8 +2,6 @@ angular.module('app')
 
 .controller('home.index', function homeIndex($stateParams, $scope, $poster, $clue, $location, $oauth, $rootScope, $gamePoster, $timeout, $state, $user, $window) {
 	
-
-
 	$rootScope.reloadHeader(); 
 
 	$scope.full_name = localStorage.full_name;

@@ -1,7 +1,7 @@
 angular.module('app')
 
 .controller('auth.login', function authLogin($stateParams, $scope, $oauth) {
-	// send auth login
+
 	$scope.sendPost = function() {
 		$oauth.login();
 	};
