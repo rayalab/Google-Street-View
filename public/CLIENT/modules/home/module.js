@@ -130,9 +130,13 @@ angular.module('app')
 		}
 	];
 
+	$scope.aryErrorTitle = "";
+
 	$scope.getRandomIndex = function(length){
 	    return Math.floor(Math.random() * length);
 	}
+
+
 	/**
 	 * Tira el menu hacia la izquierda
 	 * 
@@ -479,6 +483,9 @@ angular.module('app')
 
 		    //mostrar avisos de distancia si hizo muchos clicks a cierta distancia
 			if ($scope.distance_to_street_reference > 300 && $scope.clicksDone > 3) {
+				var getIndex = $scope.getRandomIndex($scope.aryError.length);
+				$scope.aryErrorTitle = $scope.aryError[getIndex].title;
+				$scope.$apply();
 				$scope.actionModal('error');
 				$scope.clicksDone=0;
 			}
