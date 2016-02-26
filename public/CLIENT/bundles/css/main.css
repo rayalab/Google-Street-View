@@ -416,8 +416,8 @@ input[type="checkbox"] {
 }
 
 .chk {
-   background-color: #2de07d !important;  
-    
+    background-color: #2de07d !important;  
+
 }
 
 .form-control {
@@ -510,7 +510,7 @@ h4.excelente {
 
 .scroll-altura {
     max-height: calc(100vh - 280px);
-   overflow-y: auto;
+    overflow-y: auto;
 }
 
 .separador {
@@ -536,9 +536,15 @@ h4.excelente {
 
 .scroll-altura.mob-scroll {
     max-height: calc(100vh - 121px);
-   overflow-y: scroll;
+    overflow-y: scroll;
 }
 
 .close-mob {
-font-size: 50px !important;
+    font-size: 50px !important;
+}
+
+.pink-close {
+    background: #FF004F;
+    padding: 20px;
+    border-radius: 20px;
 }

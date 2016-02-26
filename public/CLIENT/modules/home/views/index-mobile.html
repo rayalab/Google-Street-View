@@ -1,30 +1,30 @@
 <link href="bundles/css/modal.css" rel="stylesheet" type="text/css">
 <div class="navbar navbar-inverse menu-wrap  mob-wrap wood-back ">
-    <button ng-click="actionMenu()" class="pull-right close-button" id="close-button">Close Menu</button>
+    <button ng-click="actionMenu()" class="pull-right close-button pink-close" id="close-button">Close Menu</button>
     <br/>
-        <div class="row">
-            <div class="col-xs-12">
-                <img src="bundles/img/hambre.png" class="center-block img-responsive" style="max-height: 60px;" >
-            </div>            
-        </div>
-        <br/>
-        <div class="scroll-altura mob-scroll">
-            <div class="col-xs-12" >
-                <div>
-                    <div ng-repeat="(key, value) in aryMyPosters" class="col-xs-4 col-xs-4 col-xs-4">
-                        <div class="thumbnail">
-                            <img ng-src="{{value.img}}" class="img-responsive" style="height: 150px;">
-                        </div>
+    <div class="row">
+        <div class="col-xs-12">
+            <img src="bundles/img/hambre.png" class="center-block img-responsive" style="max-height: 60px;" >
+        </div>            
+    </div>
+    <br/>
+    <div class="scroll-altura mob-scroll">
+        <div class="col-xs-12" >
+            <div>
+                <div ng-repeat="(key, value) in aryMyPosters" class="col-xs-4 col-xs-4 col-xs-4">
+                    <div class="thumbnail">
+                        <img ng-src="{{value.img}}" class="img-responsive" style="height: 150px;">
                     </div>
-                    <div ng-repeat="(key, value) in aryDefaultPosters" class="col-xs-4 col-xs-4 col-xs-4">
-                        <div class="thumbnail">
-                            <img ng-src="{{value.img}}" class="img-responsive" style="height: 150px;">
-                        </div>
+                </div>
+                <div ng-repeat="(key, value) in aryDefaultPosters" class="col-xs-4 col-xs-4 col-xs-4">
+                    <div class="thumbnail">
+                        <img ng-src="{{value.img}}" class="img-responsive" style="height: 150px;">
                     </div>
                 </div>
             </div>
         </div>
-    
+    </div>
+
 </div>
 
 <div class="navbar mob-margin visible-xs navbar-default navbar-inverse navbar-static-top">
@@ -43,8 +43,8 @@
         <div class="collapse navbar-collapse" id="navbar-ex-collapse">
             <ul class="nav navbar-nav navbar-right text-center">
                 <li>
-                    
-               <a href="javascript:void(0)" ng-click="actionModal('concurso')">Cómo Concursar</a>
+
+                    <a href="javascript:void(0)" ng-click="actionModal('concurso')">Cómo Concursar</a>
                 </li>
                 <li>
                     <a href="javascript:void(0)" ng-click="actionModal('premio')" >Premios</a>
@@ -129,26 +129,27 @@
 <div class="modal fade" id="cluemodal" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true">
     <div class="modal-dialog mobile-intro modal-xs">
         <div class="modal-content wood">
-            <div class="modal-header">
-                <button ng-click="actionModal('cluemodal')" type="button" class="close close-mob" data-dixsiss="modal"><span aria-hidden="true">×</span><span class="sr-only">Close</span></button>
-            </div>
-            <div class="modal-body">
-                <h3 class="pista">Busca el poster "{{titlePoster}}" </h3>
-                <p class="bajada">
-                    {{descriptionClue}}
-                </p>
-                <div class="col-xs-6 col-xs-offset-3">
-                    <img ng-src="{{default_avatar}}" class="img-responsive img-thumbnail" style="margin-bottom: 10px;">
-                </div>     
 
-            </div>
-            <div class="modal-footer">
-                <br/>
-                <div class="col-xs-8 col-xs-offset-2">
-                    <button ng-click="nextClue(category, obj); actionModal('cluemodal')" type="button" class="btn btn-default btn-block continuar" data-dixsiss="modal"  role="button">Siguiente</button>
+            <div class="row">
+                <div class="col-xs-5 col-xs-offset-1" style="margin-top: 7%; padding-bottom: 10px;"> 
+                    <img ng-src="{{default_avatar}}"  class="img-responsive center-block img-thumbnail">
                 </div>
+            <div class="col-xs-6">
+                <div class="modal-body">
+                    <h3 class="pista">Busca el poster "{{titlePoster}}" </h3>
+                    <p class="bajada">
+                        {{descriptionClue}}
+                    </p>
+                </div>
+                <div class="modal-footer">
+                    
+                        <button ng-click="nextClue(category, obj);
+                        actionModal('cluemodal')" type="button" class="btn btn-default btn-block continuar" data-dixsiss="modal"  role="button">Siguiente</button>  
+                </div>
+            </div>
 
             </div>
+            
         </div>
     </div>
 </div>
@@ -207,31 +208,37 @@
 <div class="modal fade" id="posterFind" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true" data-backdrop="static" data-keyboard="false">
     <div class="modal-dialog mobile-intro modal-xs">
         <div class="modal-content wood">
-            <div class="modal-header">
-                <img src="bundles/img/excelente.png" class="img-responsive center-block">
-                <!--<h3 class="modal-title" id="lineModalLabel">My Modal</h3>-->
-            </div>
-            <div class="modal-body">
-                <h3 class="titulo">{{titlePosterFound}}</h3>
-                <p class="bajada">
-                    {{descriptionPosterFound}}
-                </p>
-                <div class="col-xs-8 col-xs-offset-2">
-                    <img ng-src="{{currentZone.image_default}}" class="img-responsive img-thumbnail">
-                </div>     
-
-            </div>
-            <div class="modal-footer">
-                <div class="col-xs-10 col-xs-offset-1">
-                    <div class="col-xs-6">
-                        <button type="button" id="saveImage" class="btn btn-default btn-block compartir" data-action="save" role="button" ng-click="shared()">Compartir</button>
+            <div class="row">
+                <div class="col-xs-4 col-xs-offset-1" style="margin-top: 7%; padding-bottom: 10px;">
+                    <img ng-src="{{currentZone.image_default}}" class="img-responsive center-block img-thumbnail">
+                </div>
+            <div class="col-xs-7">
+                <div class="modal-header">
+                    <img src="bundles/img/excelente.png" class="img-responsive center-block">
+                    <div class="modal-body">
+                        <h3 class="titulo">{{titlePosterFound}}</h3>
+                        <p class="bajada">
+                            {{descriptionPosterFound}}
+                        </p>
                     </div>
-                    <div class="col-xs-6">
-                        <button type="button" class="btn btn-default btn-block continuar" data-dixsiss="modal"  role="button" ng-click="actionViewMapNextPoster(); actionModal('posterFind')">Seguir Jugando</button>
-
+                </div>
+                <div class="modal-footer">
+                    <div class="col-xs-12">
+                        <div class="col-xs-12">
+                            <button type="button" id="saveImage" class="btn btn-default btn-block compartir" data-action="save" role="button" ng-click="shared()">Compartir</button>
+                        </div>
+                        <br/>
+                        <div class="col-xs-12">
+                            <button type="button" class="btn btn-default btn-block continuar" data-dixsiss="modal"  role="button" ng-click="actionViewMapNextPoster();
+                                actionModal('posterFind')">Seguir Jugando</button>
+                        </div>
                     </div>
                 </div>
             </div>
+
+            </div>
+            
+
         </div>
     </div>
 </div>
