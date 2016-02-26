@@ -1,9 +1,13 @@
 <script type="text/javascript">
-	
+	$(document).ready(function() {
+         if(window.orientation == 0){
+            alert('Gira tu telefono para jugar correctamente.');
+        }
+    });
     window.addEventListener("orientationchange", function() {
         // Announce the new orientation number
         if(window.orientation == 0){
-        	alert('Gira tu telefono para comenzar a jugar correctamente.');
+        	alert('Gira tu telefono para jugar correctamente.');
         }
     });
 </script>
