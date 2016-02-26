@@ -783,24 +783,40 @@ angular.module('app')
 
 	$scope.sharedEndGame = function() {
 		FB.login(function(){
-		  FB.api('/me/feed', 'post', 
-		  	{message: 'Ya estoy participando en Hambre de Lolla Street View Lollapalooza 2016', 'source': 'http://www.hambredelolla.cl/'}, function(response){
-		  		$window.location.reload();
-		  	}
-		   );
+			FB.ui(
+	        {
+	            method: 'share',
+	            href: 'http://www.hambredelolla.cl/', //$window.location.href,
+	            //Open Graph Tags 
+	            title: "Lollapalooza 2016", // The same than name in feed method
+	            picture: $scope.currentZone.image_default,
+	            caption: "http://www.hambredelolla.cl/",
+	            description: "Ya estoy participando en Hambre de Lolla Street View Lollapalooza 2016",
 
-		}, {scope: 'publish_actions'});
+	        }, function(response) {
+	        	
+	        	$window.location.reload();
+	        });
+        });
 	};
 
 	$scope.shared = function() {
 		FB.login(function(){
-		  FB.api('/me/feed', 'post', 
-		  	{message: 'Ya estoy participando en Hambre de Lolla Street View Lollapalooza 2016', 'source': 'http://www.hambredelolla.cl/'}, function(response){
-		  		$window.location.reload();
-		  	}
-		   );
+			FB.ui(
+	        {
+	            method: 'share',
+	            href: 'http://www.hambredelolla.cl/', //$window.location.href,
+	            //Open Graph Tags 
+	            title: "Lollapalooza 2016", // The same than name in feed method
+	            picture: $scope.currentZone.image_default,
+	            caption: "http://www.hambredelolla.cl/",
+	            description: "Ya estoy participando en Hambre de Lolla Street View Lollapalooza 2016",
 
-		}, {scope: 'publish_actions'});
+	        }, function(response) {
+	        	
+	        	$window.location.reload();
+	        });
+        });
 	};	
 
 	$scope.sendInformation = function() {
