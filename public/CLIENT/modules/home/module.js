@@ -793,10 +793,10 @@ angular.module('app')
 	            method: 'share',
 	            href: 'http://www.hambredelolla.cl/', //$window.location.href,
 	            //Open Graph Tags 
-	            title: "Lollapalooza 2016", // The same than name in feed method
+	            title: "La Crianza", // The same than name in feed method
 	            picture: $scope.currentZone.image_default,
 	            caption: "http://www.hambredelolla.cl/",
-	            description: "Ya estoy participando en Hambre de Lolla Street View Lollapalooza 2016",
+	            description: "Yo estoy jugando en Hambre de Lolla Street View y participando por entradas VIP a Lollapalooza 2016",
 
 	        }, function(response) {
 	        	
@@ -812,10 +812,10 @@ angular.module('app')
 	            method: 'share',
 	            href: 'http://www.hambredelolla.cl/', //$window.location.href,
 	            //Open Graph Tags 
-	            title: "Lollapalooza 2016", // The same than name in feed method
+	            title: "La Crianza", // The same than name in feed method
 	            picture: $scope.currentZone.image_default,
 	            caption: "http://www.hambredelolla.cl/",
-	            description: "Ya estoy participando en Hambre de Lolla Street View Lollapalooza 2016",
+	            description: "Yo estoy jugando en Hambre de Lolla Street View y participando por entradas VIP a Lollapalooza 2016",
 
 	        }, function(response) {
 	        	
