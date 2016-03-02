@@ -794,7 +794,7 @@ angular.module('app')
 	            href: 'http://www.hambredelolla.cl/', //$window.location.href,
 	            //Open Graph Tags 
 	            title: "La Crianza", // The same than name in feed method
-	            picture: $scope.currentZone.image_default,
+	            picture: 'http://gsv.rayalab.cl.s3.amazonaws.com/doc/share-link.png',
 	            caption: "http://www.hambredelolla.cl/",
 	            description: "Yo estoy jugando en Hambre de Lolla Street View y participando por entradas VIP a Lollapalooza 2016",
 
@@ -813,7 +813,7 @@ angular.module('app')
 	            href: 'http://www.hambredelolla.cl/', //$window.location.href,
 	            //Open Graph Tags 
 	            title: "La Crianza", // The same than name in feed method
-	            picture: $scope.currentZone.image_default,
+	            picture: 'http://gsv.rayalab.cl.s3.amazonaws.com/doc/share-link.png',
 	            caption: "http://www.hambredelolla.cl/",
 	            description: "Yo estoy jugando en Hambre de Lolla Street View y participando por entradas VIP a Lollapalooza 2016",
 
